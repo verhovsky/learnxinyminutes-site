@@ -86,11 +86,11 @@
     <a href="/docs/files/learnwasm-ua.wast">learnwasm-ua.wast</a>
     </p>
   <div id="doc">
-    <div class="highlight"><pre class="highlight plaintext"><code>;; learnwasm-ua.wast
+    <div class="highlight"><pre><span></span>;; learnwasm-ua.wast
 
 (module
   ;; У WebAssembly весь код знаходиться в модулях. Будь-яка операція
-  ;; може бути записана за допомогою s-виразу. Також існує синтаксис "стек машини",
+  ;; може бути записана за допомогою s-виразу. Також існує синтаксис &quot;стек машини&quot;,
   ;; втім, він не сумісний з проміжним бінарним представленням коду.
 
   ;; Формат бінарного проміжного представлення майже повністю сумісний 
@@ -109,7 +109,7 @@
     ;; f32 - число з плаваючою комою, 32 біти
     ;; f64 - число з плаваючою комою, 64 біти
 
-    ;; Створити локальну змінну можна за допомогою ключового слова "local".
+    ;; Створити локальну змінну можна за допомогою ключового слова &quot;local&quot;.
     ;; Змінні потрібно оголошувати на початку функції.
 
     (local $int_32 i32)
@@ -189,7 +189,7 @@
   ;; wasm-opt learn-wasm.wasm -o learn-wasm.opt.wasm -O3 --rse
 
   ;; Тепер наш скомпільований WebAssembly можна завантажити у Node.js:
-  ;; const fs = require('fs')
+  ;; const fs = require(&#39;fs&#39;)
   ;; const instantiate = async function (inFilePath, _importObject) {
   ;;  var importObject = {
   ;;     console: {
@@ -208,28 +208,28 @@
   ;; }
   ;;
   ;; const main = function () {
-  ;;   var wasmExports = await instantiate('learn-wasm.wasm')
+  ;;   var wasmExports = await instantiate(&#39;learn-wasm.wasm&#39;)
   ;;   wasmExports.print_args(1, 0)
   ;; }
 
   ;; Цей код зчитує функції з importObject
   ;; (вказано у асинхронній JavaScript функції instantiate), а потім експортує функцію
-  ;; "print_args", яку ми викликаємо у Node.js
+  ;; &quot;print_args&quot;, яку ми викликаємо у Node.js
 
-  (import "console" "log" (func $print_i32 (param i32)))
-  (import "math" "cos" (func $cos (param f64) (result f64)))
+  (import &quot;console&quot; &quot;log&quot; (func $print_i32 (param i32)))
+  (import &quot;math&quot; &quot;cos&quot; (func $cos (param f64) (result f64)))
 
   (func $print_args (param $arg0 i32) (param $arg1 i32)
     (call $print_i32 (local.get $arg0))
     (call $print_i32 (local.get $arg1))
   )
-  (export "print_args" (func $print_args))
+  (export &quot;print_args&quot; (func $print_args))
 
-  ;; Завантаження даних з пам'яті WebAssembly.
+  ;; Завантаження даних з пам&#39;яті WebAssembly.
   ;; Наприклад, ми хочемо порахувати cos для елементів Javascript масиву.
   ;; Нам потрібно отримати доступ до масиву і можливість ітерувати по ньому.
   ;; У прикладі нижче ми змінимо існуючий масив.
-  ;; f64.load і f64.store приймають адресу числа у пам'яті *у байтах*.
+  ;; f64.load і f64.store приймають адресу числа у пам&#39;яті *у байтах*.
   ;; Для того, щоб отримати доступ до 3-го елементу масиву, ми маємо передати щось
   ;; накшталт (i32.mul (i32.const 8) (i32.const 2)) у функцію f64.store.
 
@@ -237,7 +237,7 @@
   ;; (використаємо функцію instantiate з попереднього прикладу):
   ;;
   ;; const main = function () {
-  ;;   var wasm = await instantiate('learn-wasm.wasm')
+  ;;   var wasm = await instantiate(&#39;learn-wasm.wasm&#39;)
   ;;   var n = 100
   ;;   const memory = new Float64Array(wasm.memory.buffer, 0, n)
   ;;   for (var i=0; i&lt;n; i++) {
@@ -246,37 +246,37 @@
   ;;   wasm.apply_cos64(n)
   ;; }
   ;;
-  ;; Ця функція не буде працювати, якщо ми виділимо пам'ять для (створимо) Float32Array у JavaScript.
+  ;; Ця функція не буде працювати, якщо ми виділимо пам&#39;ять для (створимо) Float32Array у JavaScript.
 
-  (memory (export "memory") 100)
+  (memory (export &quot;memory&quot;) 100)
 
   (func $apply_cos64 (param $array_length i32)
     ;; визначаємо змінну циклу або лічильник
     (local $idx i32)
-    ;; визначаємо змінну для доступу до пам'яті
+    ;; визначаємо змінну для доступу до пам&#39;яті
     (local $idx_bytes i32)
     ;; константа - кількість байтів у числі типу f64.
     (local $bytes_per_double i32)
 
-    ;; визначаємо змінну, яка зберігатиме значення з пам'яті
+    ;; визначаємо змінну, яка зберігатиме значення з пам&#39;яті
     (local $temp_f64 f64)
 
     (local.set $idx (i32.const 0))
-    (local.set $idx_bytes (i32.const 0)) ;; не обов'язково
+    (local.set $idx_bytes (i32.const 0)) ;; не обов&#39;язково
     (local.set $bytes_per_double (i32.const 8))
 
     (block
       (loop
-        ;; записуємо у idx_bytes необхідне зміщення в пам'яті - для поточного числа.
+        ;; записуємо у idx_bytes необхідне зміщення в пам&#39;яті - для поточного числа.
         (local.set $idx_bytes (i32.mul (local.get $idx) (local.get $bytes_per_double)))
 
-        ;; отримуємо число з пам'яті (за зміщенням):
+        ;; отримуємо число з пам&#39;яті (за зміщенням):
         (local.set $temp_f64 (f64.load (local.get $idx_bytes)))
 
         ;; рахуємо cos:
         (local.set $temp_64 (call $cos (local.get $temp_64)))
 
-        ;; тепер зберігаємо результат обчислень у пам'ять:
+        ;; тепер зберігаємо результат обчислень у пам&#39;ять:
         (f64.store
           (local.get $idx_bytes)
           (local.get $temp_64))
@@ -297,9 +297,9 @@
       )
     )
   )
-  (export "apply_cos64" (func $apply_cos64))
+  (export &quot;apply_cos64&quot; (func $apply_cos64))
 )
-</code></pre></div>
+</pre></div>
     <hr>
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the Github Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/uk-ua/wasm-ua.html.markdown">pull request</a> yourself!
     </p>

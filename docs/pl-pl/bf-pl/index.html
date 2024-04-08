@@ -92,7 +92,7 @@ Zawiera zaledwie 8 poleceń.</p>
 
 <p>Możesz przetesotwać brainfucka w swojej przeglądarce, korzystając z narzędzia 
 <a href="http://fatiherikli.github.io/brainfuck-visualizer/">brainfuck-visualizer</a>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Wszystkie znaki oprócz "&gt;&lt;+-.,[]" (wyłączając znaki zapytania) są ignorowane.
+<div class="highlight"><pre><span></span>Wszystkie znaki oprócz &quot;&gt;&lt;+-.,[]&quot; (wyłączając znaki zapytania) są ignorowane.
 
 Pamięć w brainfucku jest reprezentowana przez tablicę 30.000 komórek
 zainicjalizowanych zerami, ze wskaźnikiem pokazującym na aktualną komórkę.
@@ -102,7 +102,7 @@ Oto osiem poleceń brainfucka:
 - : dekrementuje (zmniejsza o jeden) wartość aktualnie wskazywanej komórki
 &gt; : przesuwa wskaźnik na następną komórkę (w prawo)
 &lt; : przesuwa wskaźnik na poprzednią komórkę (w lewo)
-. : wyświetla wartość bieżącej komórki (w formie znaku ASCII, np. 65 = 'A')
+. : wyświetla wartość bieżącej komórki (w formie znaku ASCII, np. 65 = &#39;A&#39;)
 , : wczytuje (jeden) znak z wejścia do bieżącej komórki
     (konkretnie jego numer z tabeli ASCII)
 [ : jeśli wartość w bieżącej komórce jest równa zeru, przechodzi do
@@ -118,7 +118,7 @@ Zobaczmy kilka prostych programów w brainfucku.
 
 ++++++ [ &gt; ++++++++++ &lt; - ] &gt; +++++ .
 
-Ten program wypisuje literę 'A'. Najpierw zwiększa wartość komórki #1 do 6.
+Ten program wypisuje literę &#39;A&#39;. Najpierw zwiększa wartość komórki #1 do 6.
 Komórka #1 będzie wykorzystana w pętli. Następnie program wchodzi w pętlę ([)
 i przechodzi do komórki #2. Pętla wykonuje się sześć razy (komórka #1 jest
 dekrementowana sześć razy, nim osiągnie wartość zero, kiedy to program
@@ -127,7 +127,7 @@ przechodzi do odpowiadającego ] i wykonuje kolejne instrukcje).
 W tym momencie wskaźnik pokazuje na komórkę #1, mającą wartość 0, podczas gdy
 komórka #2 ma wartość 60. Przesuwamy wskaźnik na komórkę #2, inkrementujemy ją
 pięć razy, uzyskując wartość 65. Następnie wyświetlamy wartość komórki #2.
-65 to 'A' w tabeli ASCII, więc właśnie ten znak jest wypisany na konsolę.
+65 to &#39;A&#39; w tabeli ASCII, więc właśnie ten znak jest wypisany na konsolę.
 
 
 , [ &gt; + &lt; - ] &gt; .
@@ -161,7 +161,7 @@ wewnętrznej pętli komórka #2 ma wartość zero. W takim razie wewętrzna pęt
 nie wywoła się następny raz. Aby rozwiązać ten problem, inkrementujemy także
 wartość komórki #4, a następnie kopiujemy jej wartość do komórki #2.
 Ostatecznie wynik działania znajduje się w komórce #3.
-</code></pre></div>
+</pre></div>
 <p>I to właśnie jest brainfuck. Nie taki trudny, co? W ramach rozrywki możesz
 napisać własne programy w brainfucku. Możesz też napisać interpreter brainfucka
 w innym języku. Implementacja interpretera to dość proste zadanie. Jeśli

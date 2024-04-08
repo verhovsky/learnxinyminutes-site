@@ -88,7 +88,7 @@
   <div id="doc">
     <p>Brainfuck (sans majuscule à part au début d’une phrase) est un langage
 Turing-complet extrêmement simple avec seulement 8 commandes.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Tout caractère en dehors de "&gt;&lt;+-.,[]" (en dehors des guillemets) est ignoré.
+<div class="highlight"><pre><span></span>Tout caractère en dehors de &quot;&gt;&lt;+-.,[]&quot; (en dehors des guillemets) est ignoré.
 
 Brainfuck est représenté par un tableau de 30 000 cellules initialisées à 0 et
 un pointeur de données pointant sur la cellule courante.
@@ -98,7 +98,7 @@ Il y a huit commandes :
 - : Décrémente la valeur de la cellule courante de un.
 &gt; : Déplace le pointeur de données sur la cellule suivante (à droite).
 &lt; : Déplace le pointeur de données sur la cellule précédente (à gauche).
-. : Affiche la valeur ASCII de la cellule courante (par ex. 65 = 'A').
+. : Affiche la valeur ASCII de la cellule courante (par ex. 65 = &#39;A&#39;).
 , : Lit un caractère et le place dans la cellule courante.
 [ : Si la valeur dans la cellule courante vaut 0, saute au ] correspondant.
     Sinon, continue avec la commande suivante.
@@ -112,7 +112,7 @@ Regardons quelques programmes simples en brainfuck.
 
 ++++++ [ &gt; ++++++++++ &lt; - ] &gt; +++++ .
 
-Ce programme affiche la lettre 'A'. Il commence par incrémenter la première
+Ce programme affiche la lettre &#39;A&#39;. Il commence par incrémenter la première
 cellule à 6. Il entre ensuite dans une boucle et se déplace sur la seconde
 cellule. Il l’incrémente 10 fois, retourne sur la première cellule, et la
 décrémente. Cette boucle est exécutée 6 fois (ce qui correspond aux 6
@@ -122,7 +122,7 @@ sortir de la boucle).
 À ce moment-là, nous sommes sur la première cellule, qui a une valeur de 0,
 tandis que la seconde cellule a une valeur de 60. Nous nous déplaçons sur
 celle-ci, l’incrémentons 5 fois, pour une valeur de 65, et affichons sa valeur.
-En ASCII, 65 correspond à 'A' donc le programme affiche 'A' dans le terminal.
+En ASCII, 65 correspond à &#39;A&#39; donc le programme affiche &#39;A&#39; dans le terminal.
 
 , [ &gt; + &lt; - ] &gt; .
 
@@ -153,7 +153,7 @@ cellule est à zéro. Dans ce cas, la boucle interne ne fonctionnera pas une
 seconde fois. Pour régler le problème, nous incrémentons aussi la quatrième
 cellule, puis recopions sa valeur dans la seconde cellule.
 À la fin, la troisième cellule contient le résultat de la multiplication.
-</code></pre></div>
+</pre></div>
 <p>Et voilà ce qu’est le brainfuck. Pas très dur, hein ? Pour le fun, vous pouvez
 écrire vos propres programmes en brainfuck, ou écrire un interpréteur brainfuck
 dans un autre langage. L’interpréteur est relativement simple à implémenter,

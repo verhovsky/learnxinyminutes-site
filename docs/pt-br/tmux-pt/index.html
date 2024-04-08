@@ -89,16 +89,16 @@
     <p>O <a href="http://tmux.sourceforge.net">tmux</a> é um multiplexador de terminal,
 ele permite criar vários terminais e gerenciar tudo na mesma interface.
 tmux pode também rodar em background e depois ser recuperado(exibido) novamente.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>  tmux [command]     # Roda um [comando]
-                     # 'tmux' sem comandos irá criar uma nova seção
+<div class="highlight"><pre><span></span>  tmux [command]     # Roda um [comando]
+                     # &#39;tmux&#39; sem comandos irá criar uma nova seção
 
     new              # Cria uma nova seção
-     -s "Nome"       # Cria uma nova seção com nome "Nome"
-     -n "Janela"     # Cria uma janela com o nome "Janela"
-     -c "/dir"       # Inícia em uma pasta específica
+     -s &quot;Nome&quot;       # Cria uma nova seção com nome &quot;Nome&quot;
+     -n &quot;Janela&quot;     # Cria uma janela com o nome &quot;Janela&quot;
+     -c &quot;/dir&quot;       # Inícia em uma pasta específica
 
     attach           # Acopla a última seção disponível
-     -t "#"          # Acopla a seção com nome "#"
+     -t &quot;#&quot;          # Acopla a seção com nome &quot;#&quot;
      -d              # Separa (Desacopla) a seção de outras instâncias.
 
     ls               # Lista todas as seções
@@ -111,22 +111,22 @@ tmux pode também rodar em background e depois ser recuperado(exibido) novamente
     lsp              # Lista os painéis
      -a              # Lista todos os painéis
      -s              # Lista todos os painéis em uma seção
-     -t "#"          # Lista os painéis chamados "#"
+     -t &quot;#&quot;          # Lista os painéis chamados &quot;#&quot;
 
     kill-window      # Encerrar a janela atual
-     -t "#"          # Encerrar a janela chamada "#"
+     -t &quot;#&quot;          # Encerrar a janela chamada &quot;#&quot;
      -a              # Encerrar todas as janelas
-     -a -t "#"       # Encerrar todas as janelas exceto a "#"
+     -a -t &quot;#&quot;       # Encerrar todas as janelas exceto a &quot;#&quot;
 
     kill-session     # Encerrar seção atual
-     -t "#"          # Encerrar seção com nome "#"
+     -t &quot;#&quot;          # Encerrar seção com nome &quot;#&quot;
      -a              # Encerrar todas as seções
-     -a -t "#"       # Encerrar todas as seções exceto a "#"
-</code></pre></div>
+     -a -t &quot;#&quot;       # Encerrar todas as seções exceto a &quot;#&quot;
+</pre></div>
 <h3>Teclas de atalhos (comandos)</h3>
 
 <p>As seções tmux acopladas são controladas através de teclas de atalho. (prefix key)</p>
-<div class="highlight"><pre class="highlight plaintext"><code>----------------------------------------------------------------------
+<div class="highlight"><pre><span></span>----------------------------------------------------------------------
   (C-b) = Ctrl + b    # Abre a opção de receber comandos(atalhos).
 
   (M-1) = Meta + 1 -ou- Alt + 1
@@ -139,7 +139,7 @@ tmux pode também rodar em background e depois ser recuperado(exibido) novamente
 
   !                  # Retira o painel atual da janela.
   %                  # Divide o painel atual em dois. Esquerda e direita.
-  "                  # Divide o painel atual em dois. Para cima e para baixo.
+  &quot;                  # Divide o painel atual em dois. Para cima e para baixo.
 
   n                  # Muda para a próxima janela.
   p                  # Muda para a janela anterior.
@@ -173,12 +173,12 @@ tmux pode também rodar em background e depois ser recuperado(exibido) novamente
 
   M-Up, M-Down       # Altera o tamanho do painel atual em cinco células.
   M-Left, M-Right
-</code></pre></div>
+</pre></div>
 <h3>Configurando ~/.tmux.conf</h3>
 
 <p>Existe um arquivo chamado tmux.conf, ele pode ser usado para definir opções no
  momento de inicialização, da mesma maneira que .vimrc, init.el, .bash_profile são usados.</p>
-<div class="highlight"><pre class="highlight plaintext"><code># Exemplo tmux.conf
+<div class="highlight"><pre><span></span># Exemplo tmux.conf
 # 2015.12
 
 
@@ -235,7 +235,7 @@ bind F swap-window -t +1
 # Dividir painéis
 bind = split-window -h
 bind - split-window -v
-unbind '"'
+unbind &#39;&quot;&#39;
 unbind %
 
 # Habilitar a sub-seção a enviar comandos.
@@ -282,16 +282,16 @@ set-option -g visual-bell off
 
 # Definir automaticamente o título de janelas
 set-option -g set-titles on
-set-option -g set-titles-string '#H:#S.#I.#P #W #T' # window number,program name,active (or not)
+set-option -g set-titles-string &#39;#H:#S.#I.#P #W #T&#39; # window number,program name,active (or not)
 
 # Ajustes na barra de status
-set -g status-left "#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]"
+set -g status-left &quot;#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]&quot;
 
 # Mostrar indicativos de performance na barra de status
 # Requires https://github.com/thewtex/tmux-mem-cpu-load/
 set -g status-interval 4
-set -g status-right "#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]"
-</code></pre></div>
+set -g status-right &quot;#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]&quot;
+</pre></div>
 <h3>Referências</h3>
 
 <p><a href="http://tmux.sourceforge.net">Tmux | Início</a></p>

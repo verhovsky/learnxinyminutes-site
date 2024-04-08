@@ -91,7 +91,7 @@
 <p><em>Easylang</em> is statically typed and has as data types only strings and numbers (floating point), resizeable arrays of strings and numbers and arrays of arrays.</p>
 
 <p><a href="https://easylang.online/ide/">The browser IDE</a> includes various tutorials, including one for beginners.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>print "Hello world"
+<div class="highlight"><pre><span></span>print &quot;Hello world&quot;
 #
 # number variable (64 bit floating point)
 #
@@ -100,12 +100,12 @@ print h
 #
 # string variable
 #
-str$ = "monkey"
+str$ = &quot;monkey&quot;
 # strings can grow
-str$ &amp;= " circus" 
+str$ &amp;= &quot; circus&quot; 
 print str$
 #
-# blocks end with 'end' or a dot, a newline has no
+# blocks end with &#39;end&#39; or a dot, a newline has no
 # other meaning than a space
 #
 for i = 1 to 5
@@ -134,7 +134,7 @@ print r
 # strings can be concatenated and numbers are
 # automatically converted to strings
 #
-print "1 + 2 = " &amp; 1 + 2
+print &quot;1 + 2 = &quot; &amp; 1 + 2
 #
 # array of numbers
 #
@@ -157,7 +157,7 @@ print a[] ; print b[]
 # 
 # array of strings
 #
-fruits$[] = [ "apple" "banana" "orange" ]
+fruits$[] = [ &quot;apple&quot; &quot;banana&quot; &quot;orange&quot; ]
 #
 # for-in iterates over the elements of an array
 #
@@ -167,9 +167,9 @@ for fruit$ in fruits$[]
 #
 # strings are also used for single characters
 #
-letters$[] = str_chars "ping"
+letters$[] = str_chars &quot;ping&quot;
 print letters$[]
-letters$[1] = "o"
+letters$[1] = &quot;o&quot;
 print str_join letters$[]
 #
 # 2-dimensional arrays are arrays of arrays
@@ -184,7 +184,7 @@ print a[][]
 #
 # builtin functions
 if sin 90 = 1
-  print "angles are in degree"
+  print &quot;angles are in degree&quot;
 .
 print pow 2 8
 # seconds since 1970
@@ -196,7 +196,7 @@ print random 6 + 1
 # hour and minutes
 print substr time_str sys_time 11 5
 # 
-print str_ord "A"
+print str_ord &quot;A&quot;
 print str_chr 65
 # 
 # set number format
@@ -205,13 +205,13 @@ print sqrt 2
 print pi
 print logn 10
 # 
-a$[] = str_split "10,15,22" ","
+a$[] = str_split &quot;10,15,22&quot; &quot;,&quot;
 print a$[]
 print 2 * number a$[0]
 print len a$[]
-print len "Hello"
+print len &quot;Hello&quot;
 #
-# With 'break n' you can leave nested loops and a function
+# With &#39;break n&#39; you can leave nested loops and a function
 #
 names$[] = [ ]
 func name2id name$ . id .
@@ -223,31 +223,31 @@ func name2id name$ . id .
   .
   names$[] &amp;= name$
 .
-call name2id "alice" id ; print id
-call name2id "bob" id ; print id
-call name2id "alice" id ; print i
+call name2id &quot;alice&quot; id ; print id
+call name2id &quot;bob&quot; id ; print id
+call name2id &quot;alice&quot; id ; print i
 #
-# with 'repeat' you can make loops, which you can leave
-# in the loop body using 'until'
+# with &#39;repeat&#39; you can make loops, which you can leave
+# in the loop body using &#39;until&#39;
 #
 sum = 0
 repeat
   s$ = input
-  until s$ = ""
+  until s$ = &quot;&quot;
   sum += number s$
 .
-print "sum: " &amp; sum
+print &quot;sum: &quot; &amp; sum
 #
-# "input" reads a string from the "input_data" section, 
+# &quot;input&quot; reads a string from the &quot;input_data&quot; section, 
 # if it exists, otherwise via a prompt.
 #
 input_data
 10
 -2
 6
-</code></pre></div>
+</pre></div>
 <p>Built-in graphic primitives and event-driven programming</p>
-<div class="highlight"><pre class="highlight plaintext"><code># simple drawing with the mouse
+<div class="highlight"><pre><span></span># simple drawing with the mouse
 # 
 set_linewidth 4
 set_color 900
@@ -270,7 +270,7 @@ on mouse_move
     draw_line mouse_x mouse_y
   .
 .
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code># an animated pendulum
+</pre></div><div class="highlight"><pre><span></span># an animated pendulum
 #
 on animate
   # The animate event occurs after each screen refresh.
@@ -286,7 +286,7 @@ on animate
   ang += vel
 .
 ang = 10
-</code></pre></div>
+</pre></div>
 <ul>
 <li><p><a href="https://easylang.online/">More about Easylang</a></p></li>
 <li><p><a href="https://github.com/chkas/easylang">Source code</a></p></li>

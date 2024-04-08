@@ -87,7 +87,7 @@
     </p>
   <div id="doc">
     <p>Draw 3D models with code using <a href="https://openscad.org/">OpenSCAD</a>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Comments look like this
+<div class="highlight"><pre><span></span>// Comments look like this
 
 // 3D Primitives
 cube(10);
@@ -131,7 +131,7 @@ r = 20;
 cube_len = 5;
 
 for (i = [0:num_cubes]) {
-    echo(str("Plot cube ", i));
+    echo(str(&quot;Plot cube &quot;, i));
     rotate([0, i * 360 / num_cubes, 0])
         translate([r, 0, 0])
         cube(cube_len, center=true);
@@ -164,16 +164,16 @@ function inch2mm(i) = i * 25.4;
 cube(inch2mm(2));
 
 // Modules create objects you want to use later
-module house(roof="flat", paint=[1,0,0]) {
+module house(roof=&quot;flat&quot;, paint=[1,0,0]) {
     color(paint)
-    if (roof=="flat") {
+    if (roof==&quot;flat&quot;) {
         translate([0,-1,0]) cube();
-    } else if (roof=="pitched") {
+    } else if (roof==&quot;pitched&quot;) {
         rotate([90,0,0])
             linear_extrude(height=1)
             polygon(points=[[0,0],[0,1],[0.5,1.5],[1,1],[1,0]]);
     }
-    else if (roof=="domical") {
+    else if (roof==&quot;domical&quot;) {
         translate([0,-1,0]) {
             translate([0.5,0.5,1])
                 sphere(r=0.5,$fn=20);
@@ -182,13 +182,13 @@ module house(roof="flat", paint=[1,0,0]) {
     }
 }
 
-house("pitched");
-translate([2, 0, 0]) house("domical");
+house(&quot;pitched&quot;);
+translate([2, 0, 0]) house(&quot;domical&quot;);
 
 // Import modules and function from other files
 include &lt;filename&gt; // Import the content of the file as if they were written in this file
 use &lt;filename&gt;     // Import modules and functions, but do not execute any commands
-</code></pre></div>
+</pre></div>
 <h2>Further Reading</h2>
 
 <ul>

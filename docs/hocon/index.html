@@ -96,556 +96,556 @@ noisy than some other formats.</p>
 
 <p>Additionally, its support for comments makes it much better suited for
 user-facing configurations than JSON.</p>
-<div class="highlight"><pre class="highlight hocon"><code><span class="c1">// Comments can either look like this,</span><span class="w">
-</span><span class="c1"># or they can look like this.</span><span class="w">
-</span><span class="c1">// Anything after // or # is a comment.</span><span class="w">
+<div class="highlight"><pre><span></span>// Comments can either look like this,
+# or they can look like this.
+// Anything after // or # is a comment.
 
-</span><span class="c1">##################</span><span class="w">
-</span><span class="c1">### THE BASICS ###</span><span class="w">
-</span><span class="c1">##################</span><span class="w">
+##################
+### THE BASICS ###
+##################
 
-</span><span class="c1"># Everything in HOCON is either a key, a value, or a separator.</span><span class="w">
-</span><span class="c1"># : and = are separators. They separate the key from the value.</span><span class="w">
-</span><span class="nl">key</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="nl">another_key</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="l">another_value</span><span class="w">
+# Everything in HOCON is either a key, a value, or a separator.
+# : and = are separators. They separate the key from the value.
+key: value
+another_key = another_value
 
-</span><span class="c1"># You can use either separator with or without whitespace on either side.</span><span class="w">
-</span><span class="nl">colon1</span><span class="p">:</span><span class="l">value</span><span class="w">
-</span><span class="nl">colon2</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="nl">colon3</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="nl">equals1</span><span class="p">=</span><span class="l">value</span><span class="w">
-</span><span class="nl">equals2</span><span class="p">=</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="nl">equals3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="c1"># As you'll see, HOCON is very nonrestrictive regarding its syntax style.</span><span class="w">
+# You can use either separator with or without whitespace on either side.
+colon1:value
+colon2: value
+colon3 : value
+equals1=value
+equals2= value
+equals3 = value
+# As you&#39;ll see, HOCON is very nonrestrictive regarding its syntax style.
 
-</span><span class="c1"># HOCON also isn't opinionated on how keys look.</span><span class="w">
-</span><span class="nl">THIS_IS_A_VALID_KEY</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="nl">this-is-also-a-valid-key</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="l">keys</span><span class="w"> </span><span class="l">can</span><span class="w"> </span><span class="l">have</span><span class="w"> </span><span class="l">spaces</span><span class="w"> </span><span class="nl">too</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="l">or</span><span class="w"> </span><span class="l">even</span><span class="w"> </span><span class="l">numbers</span><span class="w"> </span><span class="l">like</span><span class="w"> </span><span class="nl">12345</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span><span class="nl">"you can even quote keys if you'd like!"</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
+# HOCON also isn&#39;t opinionated on how keys look.
+THIS_IS_A_VALID_KEY: value
+this-is-also-a-valid-key: value
+keys can have spaces too: value
+or even numbers like 12345: value
+&quot;you can even quote keys if you&#39;d like!&quot;: value
 
-</span><span class="c1"># A key, followed by any separator, and then finally a value, is called a field.</span><span class="w">
-</span><span class="nl">this_entire_line_is</span><span class="p">:</span><span class="w"> </span><span class="l">a</span><span class="w"> </span><span class="l">field</span><span class="w">
+# A key, followed by any separator, and then finally a value, is called a field.
+this_entire_line_is: a field
 
-</span><span class="c1">###################</span><span class="w">
-</span><span class="c1">### VALUE TYPES ###</span><span class="w">
-</span><span class="c1">###################</span><span class="w">
+###################
+### VALUE TYPES ###
+###################
 
-</span><span class="c1"># The types that a value can be are string, number, object, array, boolean, and</span><span class="w">
-</span><span class="c1"># null. Every value type except for array and object are called simple values.</span><span class="w">
+# The types that a value can be are string, number, object, array, boolean, and
+# null. Every value type except for array and object are called simple values.
 
-</span><span class="c1">## SIMPLE VALUES ##</span><span class="w">
+## SIMPLE VALUES ##
 
-</span><span class="nl">quoted_string</span><span class="p">:</span><span class="w"> </span><span class="s2">"I like quoting my strings."</span><span class="w">
-</span><span class="nl">unquoted_string</span><span class="p">:</span><span class="w"> </span><span class="l">I</span><span class="w"> </span><span class="l">don't</span><span class="w"> </span><span class="l">like</span><span class="w"> </span><span class="l">quoting</span><span class="w"> </span><span class="l">my</span><span class="w"> </span><span class="l">strings.</span><span class="w">
-</span><span class="c1"># Special characters that cannot be used in unquoted strings are:</span><span class="w">
-</span><span class="c1"># $ " { } [ ] : = , + # ` ^ ? ! @ * &amp;</span><span class="w">
-</span><span class="c1"># Unquoted strings do not support any kind of escaping. If using one of those</span><span class="w">
-</span><span class="c1"># special characters is desired, use a quoted string.</span><span class="w">
-</span><span class="nl">multi-line_string</span><span class="p">:</span><span class="w"> </span><span class="s2">"""
+quoted_string: &quot;I like quoting my strings.&quot;
+unquoted_string: I don&#39;t like quoting my strings.
+# Special characters that cannot be used in unquoted strings are:
+# $ &quot; { } [ ] : = , + # ` ^ ? ! @ * &amp;
+# Unquoted strings do not support any kind of escaping. If using one of those
+# special characters is desired, use a quoted string.
+multi-line_string: &quot;&quot;&quot;
   This entire thing is a string!
   One giant, multi-line string.
-  You can put 'single' and "double" quotes without it being invalid.
-"""</span><span class="w">
-
-</span><span class="nl">number</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w">
-</span><span class="nl">negative</span><span class="p">:</span><span class="w"> </span><span class="mi">-123</span><span class="w">
-</span><span class="nl">fraction</span><span class="p">:</span><span class="w"> </span><span class="l">3.1415926536</span><span class="w">
-</span><span class="nl">scientific_notation</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2e6</span><span class="w"> </span><span class="c1">// same as 1.2 * (10^6)</span><span class="w">
-
-</span><span class="nl">boolean</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1"># or false</span><span class="w">
-</span><span class="nl">empty</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-
-</span><span class="c1">## ARRAYS ##</span><span class="w">
-
-</span><span class="c1"># Arrays hold lists of values.</span><span class="w">
-</span><span class="c1"># Values in arrays can be separated with commas..</span><span class="w">
-</span><span class="nl">array</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="nl">fibonacci</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">]</span><span class="w">
-</span><span class="nl">multiples_of_5</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,]</span><span class="w"> </span><span class="c1"># Notice the trailing comma. That's okay here.</span><span class="w">
-</span><span class="c1"># or newlines..</span><span class="w">
-</span><span class="nl">friends</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="s2">"Brian"</span><span class="w">
-  </span><span class="s2">"Sophie"</span><span class="w">
-  </span><span class="s2">"Maya"</span><span class="w">
-  </span><span class="s2">"Sabina"</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span><span class="c1"># or both!</span><span class="w">
-</span><span class="nl">ingredients</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="s2">"Egg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"Sugar"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"Oil"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"Flour"</span><span class="p">,</span><span class="w"> </span><span class="c1"># Notice the trailing comma. That's okay here too.</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span><span class="c1"># Once again, HOCON has a very loose syntax. Use whichever style you prefer.</span><span class="w">
-</span><span class="l">no</span><span class="w"> </span><span class="l">newline</span><span class="w"> </span><span class="l">before</span><span class="w"> </span><span class="l">or</span><span class="w"> </span><span class="l">after</span><span class="w"> </span><span class="nl">bracket</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"This"</span><span class="w">
-  </span><span class="s2">"is"</span><span class="w">
-  </span><span class="s2">"an"</span><span class="w">
-  </span><span class="s2">"array!"</span><span class="p">]</span><span class="w">
-
-</span><span class="c1"># Just like any other value, arrays can hold other arrays.</span><span class="w">
-</span><span class="l">array</span><span class="w"> </span><span class="l">in</span><span class="w"> </span><span class="nl">array</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">]</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="l">array</span><span class="w"> </span><span class="l">in</span><span class="w"> </span><span class="l">array</span><span class="w"> </span><span class="l">in</span><span class="w"> </span><span class="nl">array</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">"y"</span><span class="p">,</span><span class="w"> </span><span class="s2">"z"</span><span class="p">]</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">]</span><span class="w">
-
-</span><span class="c1">## OBJECTS ##</span><span class="w">
-
-</span><span class="c1"># Objects hold fields.</span><span class="w">
-</span><span class="c1"># Just like arrays, fields in objects can be separated with commas..</span><span class="w">
-</span><span class="nl">object</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">key</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="p">,</span><span class="w"> </span><span class="nl">another_key</span><span class="p">:</span><span class="w"> </span><span class="l">another_value</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="nl">server_connection</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">ip</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w"> </span><span class="nl">port</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">}</span><span class="w">
-</span><span class="nl">first</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">letter</span><span class="p">:</span><span class="w"> </span><span class="l">a</span><span class="p">,</span><span class="w"> </span><span class="nl">number</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,}</span><span class="w"> </span><span class="c1"># Notice the trailing comma.</span><span class="w">
-</span><span class="c1"># or newlines..</span><span class="w">
-</span><span class="nl">power_grid</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">max_capacity</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="w">
-  </span><span class="nl">current_power</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="c1"># or both!</span><span class="w">
-</span><span class="nl">food_colors</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">carrot</span><span class="p">:</span><span class="w"> </span><span class="l">orange</span><span class="p">,</span><span class="w">
-  </span><span class="nl">pear</span><span class="p">:</span><span class="w"> </span><span class="l">green</span><span class="p">,</span><span class="w">
-  </span><span class="nl">apple</span><span class="p">:</span><span class="w"> </span><span class="l">red</span><span class="p">,</span><span class="w">
-  </span><span class="nl">plum</span><span class="p">:</span><span class="w"> </span><span class="l">purple</span><span class="p">,</span><span class="w">
-  </span><span class="nl">banana</span><span class="p">:</span><span class="w"> </span><span class="l">yellow</span><span class="p">,</span><span class="w"> </span><span class="c1"># Trailing commas are okay here too!</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># Arrays can hold objects just like any other value type.</span><span class="w">
-</span><span class="nl">coworkers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="l">Jeff</span><span class="w">
-    </span><span class="nl">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="l">Henry</span><span class="w">
-    </span><span class="nl">age</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="l">Timmy</span><span class="w">
-    </span><span class="nl">age</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-
-</span><span class="c1"># The field separator may be omitted if the key is followed by {</span><span class="w">
-</span><span class="nl">no_separator</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">key</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-  </span><span class="nl">speed_of_light</span><span class="p">:</span><span class="w"> </span><span class="l">very</span><span class="w"> </span><span class="l">fast</span><span class="w">
-  </span><span class="nl">ten</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-
-  </span><span class="c1"># Objects can go inside other objects just like any other value.</span><span class="w">
-  </span><span class="nl">another_object</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">twenty</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
-    </span><span class="nl">speed_of_sound</span><span class="p">:</span><span class="w"> </span><span class="l">also</span><span class="w"> </span><span class="l">pretty</span><span class="w"> </span><span class="l">fast</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># In fact, the entirety of any HOCON document is an actually just an object.</span><span class="w">
-</span><span class="c1"># That object is called the root object. The only difference between it and any</span><span class="w">
-</span><span class="c1"># other object is that the curly brackets at the top and bottom of the document</span><span class="w">
-</span><span class="c1"># may be omitted.</span><span class="w">
-
-</span><span class="c1"># This means that HOCON documents can be formatted in the same way that</span><span class="w">
-</span><span class="c1"># regular objects can be formatted, including separating fields with commas</span><span class="w">
-</span><span class="c1"># rather than with newlines.</span><span class="w">
-
-</span><span class="c1"># Additionally, while the entirety of a HOCON document can be and is usually an</span><span class="w">
-</span><span class="c1"># object, it can also be an array. If it is an array, the opening and closing</span><span class="w">
-</span><span class="c1"># brackets at the top and bottom of the document must be explicitly written.</span><span class="w">
-
-</span><span class="c1">######################</span><span class="w">
-</span><span class="c1">### DUPLICATE KEYS ###</span><span class="w">
-</span><span class="c1">######################</span><span class="w">
-
-</span><span class="nl">is_happy</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="c1"># If there is a duplicate key, the new value overrides the previous value.</span><span class="w">
-</span><span class="nl">is_happy</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="nl">online_users</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">Jacob</span><span class="p">,</span><span class="w"> </span><span class="l">Mike</span><span class="p">]</span><span class="w">
-</span><span class="c1"># Same with arrays.</span><span class="w">
-</span><span class="nl">online_users</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">Jacob</span><span class="p">,</span><span class="w"> </span><span class="l">Mike</span><span class="p">,</span><span class="w"> </span><span class="l">Henry</span><span class="p">]</span><span class="w">
-
-</span><span class="c1"># For objects, it's a bit different.</span><span class="w">
-</span><span class="nl">my_car</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="l">blue</span><span class="w">
-  </span><span class="nl">speed</span><span class="p">:</span><span class="w"> </span><span class="mi">9001</span><span class="w">
-  </span><span class="nl">passengers</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-
-  </span><span class="nl">engine</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">running</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="nl">temperature</span><span class="p">:</span><span class="w"> </span><span class="mi">137</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="c1"># If there is a duplicate key and both values are objects,</span><span class="w">
-</span><span class="c1"># then the objects are merged.</span><span class="w">
-</span><span class="nl">my_car</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="c1">// These fields are added to the old, previous object.</span><span class="w">
-  </span><span class="nl">nickname</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Favorite Car"</span><span class="w">
-  </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="l">-door</span><span class="w"> </span><span class="l">sedan</span><span class="w">
-
-  </span><span class="c1">// Since the value of this duplicate key is NOT an object,</span><span class="w">
-  </span><span class="c1">// it simply overrides the previous value.</span><span class="w">
-  </span><span class="nl">speed</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
-  </span><span class="c1">// Same with arrays. They override, not merge.</span><span class="w">
-  </span><span class="nl">passengers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Nate"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ty"</span><span class="p">]</span><span class="w">
-
-  </span><span class="c1">// This object is recursively merged with the other object.</span><span class="w">
-  </span><span class="nl">engine</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="c1">// These two fields are added to the previous object.</span><span class="w">
-    </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="l">gas</span><span class="w">
-    </span><span class="nl">oil_level</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-    </span><span class="c1">// This field overrides the previous value.</span><span class="w">
-    </span><span class="nl">temperature</span><span class="p">:</span><span class="w"> </span><span class="mi">179</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># Object merging is done two at a time. That is to say, the first two objects</span><span class="w">
-</span><span class="c1"># merge into one, then that object merges with the next object, and so on.</span><span class="w">
-
-</span><span class="c1"># Because of this, if you set a field with an object value to a non-object value</span><span class="w">
-</span><span class="c1"># and then back to an object value, the new object will completely override any</span><span class="w">
-</span><span class="c1"># previous value.</span><span class="w">
-
-</span><span class="c1">// Null, a non-object value, completely overrides the object value.</span><span class="w">
-</span><span class="nl">my_car</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-
-</span><span class="c1">// Then, this object completely overrides null.</span><span class="w">
-</span><span class="nl">my_car</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">nickname</span><span class="p">:</span><span class="w"> </span><span class="s2">"My New Car"</span><span class="w">
-  </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="l">-door</span><span class="w"> </span><span class="l">minivan</span><span class="w">
-  </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="l">gray</span><span class="w">
-  </span><span class="nl">speed</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="w">
-  </span><span class="nl">passengers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ayden"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Liz"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1">###########################</span><span class="w">
-</span><span class="c1">### VALUE CONCATENATION ###</span><span class="w">
-</span><span class="c1">###########################</span><span class="w">
-
-</span><span class="c1">## SIMPLE VALUE CONCATENATION ##</span><span class="w">
-
-</span><span class="c1"># Simple values (all value types except objects and arrays) separated by</span><span class="w">
-</span><span class="c1"># whitespace are concatenated into a single string. The whitespace between</span><span class="w">
-</span><span class="c1"># values is preserved.</span><span class="w">
-</span><span class="nl">number_concatenation</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mf">12.5</span><span class="w"> </span><span class="mi">-3</span><span class="w"> </span><span class="mi">2e5</span><span class="w"> </span><span class="c1">// same as: "1 2 3 12.5 -3 2e5"</span><span class="w">
-</span><span class="nl">boolean_concat</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// "true false true"</span><span class="w">
-</span><span class="nl">null_concat</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="c1">// "null null null"</span><span class="w">
-</span><span class="nl">mixed_concat</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="c1">// "1 true null"</span><span class="w">
-
-</span><span class="c1"># String value concatenation can appear anywhere that a quoted string can.</span><span class="w">
-</span><span class="nl">number_concat_in_array</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="c1">// same as: ["1 2", "3 4", "5 6"]</span><span class="w">
-
-</span><span class="c1"># In fact, unquoted strings are actually just string value concatenations.</span><span class="w">
-</span><span class="nl">unquoted_string_concat</span><span class="p">:</span><span class="w"> </span><span class="l">his</span><span class="w"> </span><span class="l">name</span><span class="w"> </span><span class="l">is</span><span class="w"> </span><span class="l">jeff</span><span class="w"> </span><span class="c1">// same as: "his name is jeff"</span><span class="w">
-
-</span><span class="c1"># Going further, even keys that are unquoted strings are actually just string</span><span class="w">
-</span><span class="c1"># value concatenations.</span><span class="w">
-</span><span class="l">this</span><span class="w"> </span><span class="l">is</span><span class="w"> </span><span class="l">a</span><span class="w"> </span><span class="nl">key</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w"> </span><span class="c1">// the KEY is the same as: "this is a key"</span><span class="w">
-</span><span class="c1"># The following field is identical to the field above.</span><span class="w">
-</span><span class="nl">"this is a key"</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-
-</span><span class="c1"># Quoted strings can also be concatenated. This will be useful later,</span><span class="w">
-</span><span class="c1"># when we cover substitutions.</span><span class="w">
-</span><span class="nl">quoted_string_concat</span><span class="p">:</span><span class="w"> </span><span class="s2">"her"" name"</span><span class="w"> </span><span class="s2">"is ""jenna"</span><span class="w"> </span><span class="c1">// same as: "her name is jenna"</span><span class="w">
-</span><span class="c1"># Notice that the whitespace (or lack thereof) between values is preserved.</span><span class="w">
-
-</span><span class="c1">## ARRAY CONCATENATION ##</span><span class="w">
-
-</span><span class="c1"># Arrays separated by whitespace are merged into a single array.</span><span class="w">
-</span><span class="nl">array_concat</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="c1">// same as: [1, 2, 3, 4, 5, 6]</span><span class="w">
-
-</span><span class="c1"># Arrays cannot be concatenated with a non-array value.</span><span class="w">
-</span><span class="c1">//array_concat: true [false] results in an error</span><span class="w">
-</span><span class="c1">//array_concat: 1 [2] results in an error</span><span class="w">
-
-</span><span class="c1">## OBJECT CONCATENATION ##</span><span class="w">
-
-</span><span class="c1"># Objects separated by whitespace are merged into a single object.</span><span class="w">
-</span><span class="c1"># The merge functionality is identical to that of duplicate key object merging.</span><span class="w">
-</span><span class="nl">lamp</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">on</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="l">tan</span><span class="p">}</span><span class="w"> </span><span class="c1">// same as: {on: true, color: tan}</span><span class="w">
-
-</span><span class="c1"># Similarly to arrays, objects cannot be concatenated with a non-object value.</span><span class="w">
-</span><span class="c1">//object_concat: true {on: false} results in an error</span><span class="w">
-</span><span class="c1">//object_concat: 1 {number: 2} results in an error</span><span class="w">
-
-</span><span class="c1">########################</span><span class="w">
-</span><span class="c1">### PATH EXPRESSIONS ###</span><span class="w">
-</span><span class="c1">########################</span><span class="w">
-
-</span><span class="c1"># Path expressions are used to write out a path through the object graph.</span><span class="w">
-</span><span class="c1"># Think of it as navigating through objects to a specific field.</span><span class="w">
-</span><span class="c1"># Each object to traverse through is called an element, and each element is</span><span class="w">
-</span><span class="c1"># separated with a period.</span><span class="w">
-
-</span><span class="nl">country</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">city</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">neighborhood</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">house</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"My House"</span><span class="w">
-        </span><span class="nl">address</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w"> </span><span class="l">Example</span><span class="w"> </span><span class="l">Dr.</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="c1"># For example, the path to the address of the house could be written as:</span><span class="w">
-</span><span class="c1"># country.city.neighborhood.house.address</span><span class="w">
-</span><span class="c1"># Country, city, neighborhood, house, and address are all elements.</span><span class="w">
-
-</span><span class="c1"># Path expressions are used in two places: substitutions (which will be</span><span class="w">
-</span><span class="c1"># covered in a moment), and as keys.</span><span class="w">
-</span><span class="c1"># That's right: keys themselves can also be path expressions.</span><span class="w">
-</span><span class="nl">foo</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">bar</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">baz</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">number</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="c1"># Rather than tediously specifying each object, a path expression can be used.</span><span class="w">
-</span><span class="c1"># The following field represents the same object found above.</span><span class="w">
-</span><span class="nl">foo.bar.baz.number</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
-
-</span><span class="c1"># Fields and objects specified with path expressions are merged in the same way</span><span class="w">
-</span><span class="c1"># that any object is usually merged.</span><span class="w">
-</span><span class="nl">foo.bar.baz.bool</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="c1">// the object foo's value is: foo { bar { baz { number: 12, bool: true } } }</span><span class="w">
-
-</span><span class="c1">#####################</span><span class="w">
-</span><span class="c1">### SUBSTITUTIONS ###</span><span class="w">
-</span><span class="c1">#####################</span><span class="w">
-
-</span><span class="c1"># Substitutions refer to a specific value from some path expression.</span><span class="w">
-</span><span class="c1"># They're only allowed in values, not keys or nested inside other substitutions.</span><span class="w">
-
-</span><span class="nl">me</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">favorite_animal</span><span class="p">:</span><span class="w"> </span><span class="l">parrots</span><span class="w">
-  </span><span class="nl">favorite_food</span><span class="p">:</span><span class="w"> </span><span class="l">cookies</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="c1"># The syntax for a substitution is either ${path_expression} or</span><span class="w">
-</span><span class="c1"># ${?path_expression}. The latter syntax will be discussed in a moment.</span><span class="w">
-</span><span class="nl">my_fav_animal</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">me.favorite_animal</span><span class="si">}</span><span class="w">
-</span><span class="nl">my_fav_food</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">me.favorite_food</span><span class="si">}</span><span class="w">
-
-</span><span class="c1"># Substitutions are not parsed inside quoted strings. To get around this,</span><span class="w">
-</span><span class="c1"># either use an unquoted string or value concatenation.</span><span class="w">
-</span><span class="nl">animal_announcement</span><span class="p">:</span><span class="w"> </span><span class="l">My</span><span class="w"> </span><span class="l">favorite</span><span class="w"> </span><span class="l">animal</span><span class="w"> </span><span class="l">is</span><span class="w"> </span><span class="si">${</span><span class="nv">my_fav_animal</span><span class="si">}</span><span class="w">
-</span><span class="c1">// the value is: My favorite animal is parrots</span><span class="w">
-</span><span class="nl">food_announcement</span><span class="p">:</span><span class="w"> </span><span class="s2">"My favorite food is "</span><span class="si">${</span><span class="nv">my_fav_food</span><span class="si">}</span><span class="s2">"!"</span><span class="w">
-</span><span class="c1">// the value is: "My favorite food is cookies!"</span><span class="w">
-
-</span><span class="c1"># Substitutions are parsed last in the document. Because of this, you can</span><span class="w">
-</span><span class="c1"># reference a key that hasn't been defined yet.</span><span class="w">
-</span><span class="nl">color_announcement</span><span class="p">:</span><span class="w"> </span><span class="s2">"My favorite color is"</span><span class="w"> </span><span class="si">${</span><span class="nv">my_fav_color</span><span class="si">}</span><span class="s2">"!"</span><span class="w">
-</span><span class="c1">// the value is: "My favorite color is blue!"</span><span class="w">
-</span><span class="nl">my_fav_color</span><span class="p">:</span><span class="w"> </span><span class="l">blue</span><span class="w">
-
-</span><span class="c1"># Another effect of substitutions being parsed last is that substitutions will</span><span class="w">
-</span><span class="c1"># always use the latest, as in last, value assigned in the entire document,</span><span class="w">
-</span><span class="c1"># which includes merged objects.</span><span class="w">
-</span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="l">green</span><span class="w">
-</span><span class="nl">their_favorite_color</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">color</span><span class="si">}</span><span class="w"> </span><span class="c1">// the value is: orange</span><span class="w">
-</span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="l">orange</span><span class="w">
-
-</span><span class="nl">random_object</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">number</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="nl">the_number</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">random_object.number</span><span class="si">}</span><span class="w"> </span><span class="c1">// the value is: 15</span><span class="w">
-</span><span class="nl">random_object</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">number</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1">###############################</span><span class="w">
-</span><span class="c1">### UNDEFINED SUBSTITUTIONS ###</span><span class="w">
-</span><span class="c1">###############################</span><span class="w">
-
-</span><span class="c1"># A substitution using the ${path_expression} syntax with an undefined path</span><span class="w">
-</span><span class="c1"># expression, meaning a path expression that does not point to a defined value,</span><span class="w">
-</span><span class="c1"># is invalid and will therefore generate an error.</span><span class="w">
-</span><span class="c1">//${does.not.exist} will throw an error</span><span class="w">
-
-</span><span class="c1"># However, an undefined substitution using the ${?path_expression} syntax</span><span class="w">
-</span><span class="c1"># has different behavior depending on what it is the value of.</span><span class="w">
-</span><span class="nl">request</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="c1"># If it is the value of a field, then the field will not be created.</span><span class="w">
-  </span><span class="nl">response</span><span class="p">:</span><span class="w"> </span><span class="si">${?</span><span class="nv">does.not.exist</span><span class="si">}</span><span class="w"> </span><span class="c1">// this field won't be created and does not exist</span><span class="w">
-  </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="l">HTTP</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="nl">request</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="c1"># Additionally, if it would have overridden a previous value, then the</span><span class="w">
-  </span><span class="c1"># previous value remains unchanged.</span><span class="w">
-  </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="si">${?</span><span class="nv">does.not.exist</span><span class="si">}</span><span class="w"> </span><span class="c1">// request.type is still HTTP</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># If it is a value in an array, then it is simply not added.</span><span class="w">
-</span><span class="nl">values</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">172</span><span class="p">,</span><span class="w"> </span><span class="s2">"Brian"</span><span class="p">,</span><span class="w"> </span><span class="si">${?</span><span class="nv">does.not.exist</span><span class="si">}</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="c1">// the value is: [ 172, "Brian", null, true ]</span><span class="w">
-
-</span><span class="c1"># If it is part of simple value concatenation, it acts as an empty string.</span><span class="w">
-</span><span class="nl">final_string</span><span class="p">:</span><span class="w"> </span><span class="s2">"String One"</span><span class="si">${?</span><span class="nv">does.not.exist</span><span class="si">}</span><span class="s2">"String Two"</span><span class="w">
-</span><span class="c1">// the value is: "String OneString Two"</span><span class="w">
-
-</span><span class="c1"># If it is part of array concatenation, it acts as an empty array.</span><span class="w">
-</span><span class="nl">final_array</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="si">${?</span><span class="nv">does.not.exist</span><span class="si">}</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="c1">// the value is: [ 1, 2, 3, 7, 8, 9 ]</span><span class="w">
-
-</span><span class="c1"># If it is part of object concatenation, it acts as an empty object.</span><span class="w">
-</span><span class="nl">final_array</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="si">${?</span><span class="nv">does.not.exist</span><span class="si">}</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="c1">// the value is: { a: 1, c: 3 }</span><span class="w">
-
-</span><span class="c1">######################################</span><span class="w">
-</span><span class="c1">### SELF-REFERENTIAL SUBSTITUTIONS ###</span><span class="w">
-</span><span class="c1">######################################</span><span class="w">
-
-</span><span class="c1"># Substitutions normally "look forward" and use the final value defined in the</span><span class="w">
-</span><span class="c1"># document. However, in cases when this would create a cycle, the substitution</span><span class="w">
-</span><span class="c1"># looks only backwards.</span><span class="w">
-
-</span><span class="c1"># A field which contains a substitution that points to itself or points to</span><span class="w">
-</span><span class="c1"># other fields that eventually point back to itself is called a</span><span class="w">
-</span><span class="c1"># self-referential field.</span><span class="w">
-</span><span class="nl">letters</span><span class="p">:</span><span class="w"> </span><span class="s2">"a b c"</span><span class="w"> </span><span class="c1">// the value is: "a b c"</span><span class="w">
-</span><span class="nl">letters</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">letters</span><span class="si">}</span><span class="s2">" d"</span><span class="w"> </span><span class="c1">// "a b c d"</span><span class="w">
-</span><span class="nl">letters</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">letters</span><span class="si">}</span><span class="s2">" e"</span><span class="w"> </span><span class="c1">// "a b c d e"</span><span class="w">
-
-</span><span class="nl">PATH</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">/bin</span><span class="p">]</span><span class="w"> </span><span class="c1">// the value is: [/bin]</span><span class="w">
-</span><span class="nl">PATH</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="w"> </span><span class="p">[</span><span class="l">/usr/bin</span><span class="p">]</span><span class="w"> </span><span class="c1">// [/bin, /usr/bin]</span><span class="w">
-</span><span class="nl">PATH</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="w"> </span><span class="p">[</span><span class="l">/usr/local/bin</span><span class="p">]</span><span class="w"> </span><span class="c1">// [/bin, /usr/bin, /usr/local/bin]</span><span class="w">
-
-</span><span class="nl">x</span><span class="p">:</span><span class="w"> </span><span class="s2">"x"</span><span class="w"> </span><span class="c1">// the value is: "x"</span><span class="w">
-</span><span class="nl">y</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">x</span><span class="si">}</span><span class="s2">"y"</span><span class="w"> </span><span class="c1">// "xy"</span><span class="w">
-</span><span class="nl">x</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">y</span><span class="si">}</span><span class="s2">"z"</span><span class="w"> </span><span class="c1">// "xyz"</span><span class="w">
-
-</span><span class="c1">##########################</span><span class="w">
-</span><span class="c1">### += FIELD SEPARATOR ###</span><span class="w">
-</span><span class="c1">##########################</span><span class="w">
-
-</span><span class="c1"># In addition to : and =, there actually exists another separator: +=</span><span class="w">
-</span><span class="c1"># A field separated with += acts as a self-referential array concatenation.</span><span class="w">
-</span><span class="c1"># In short, it appends an element to a previously defined array.</span><span class="w">
-
-</span><span class="nl">a</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w">
-</span><span class="nl">b</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w">
-</span><span class="c1"># This field:</span><span class="w">
-</span><span class="l">a</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="c1">// the value is: [1, 2]</span><span class="w">
-</span><span class="c1"># functions the same as:</span><span class="w">
-</span><span class="nl">b</span><span class="p">:</span><span class="w"> </span><span class="si">${?</span><span class="nv">b</span><span class="si">}</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="c1">// the value is: [1, 2]</span><span class="w">
-
-</span><span class="nl">USERS</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">/usr/luke</span><span class="p">]</span><span class="w"> </span><span class="c1">// the value is: [/usr/luke]</span><span class="w">
-</span><span class="l">USERS</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="l">/usr/devon</span><span class="w"> </span><span class="c1">// [/usr/luke, /usr/devon]</span><span class="w">
-</span><span class="l">USERS</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="l">/usr/michael</span><span class="w"> </span><span class="c1">// [/usr/luke, /usr/devon, /usr/michael]</span><span class="w">
-
-</span><span class="c1"># Since += only appends elements to a previously existing array, if the previous</span><span class="w">
-</span><span class="c1"># value was not an array, an error will be generated.</span><span class="w">
-</span><span class="nl">OTHER_USERS</span><span class="p">:</span><span class="w"> </span><span class="l">/usr/luke</span><span class="w">
-</span><span class="c1">//OTHER_USERS += /usr/devon results in an error</span><span class="w">
-
-</span><span class="c1"># Notice that the underlying substitution syntax used is ${?path}, not ${path}.</span><span class="w">
-</span><span class="c1"># Recall that, using the ${?} syntax, an undefined substitution in array</span><span class="w">
-</span><span class="c1"># concatenation acts as an empty array. Because of this, it is perfectly</span><span class="w">
-</span><span class="c1"># acceptable if the field that is being set is initially undefined.</span><span class="w">
-</span><span class="c1">//z: [] not necessary</span><span class="w">
-</span><span class="l">z</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c1">// the value is: [3]</span><span class="w">
-</span><span class="l">z</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c1">// the value is: [3, 4]</span><span class="w">
-
-</span><span class="l">NEW_USERS</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="l">/usr/sandra</span><span class="w"> </span><span class="c1">// the value is: [/usr/sandra]</span><span class="w">
-</span><span class="l">NEW_USERS</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="l">/usr/kennedy</span><span class="w"> </span><span class="c1">// [/usr/sandra, /usr/kennedy]</span><span class="w">
-</span><span class="l">NEW_USERS</span><span class="w"> </span><span class="err">+</span><span class="p">=</span><span class="w"> </span><span class="l">/usr/robin</span><span class="w"> </span><span class="c1">// [/usr/sandra, /usr/kennedy, /usr/robin]</span><span class="w">
-
-</span><span class="c1">################</span><span class="w">
-</span><span class="c1">### INCLUDES ###</span><span class="w">
-</span><span class="c1">################</span><span class="w">
-
-</span><span class="c1"># Includes allow you to "import" one HOCON document into another.</span><span class="w">
-
-</span><span class="c1"># An include statement consists of the unquoted string "include" followed by</span><span class="w">
-</span><span class="c1"># whitespace and then a resource name, which is one of the following:</span><span class="w">
-</span><span class="c1"># - a single quoted string which is heuristically interpreted as a URL,</span><span class="w">
-</span><span class="c1">#   filename, or a Java classpath resource.</span><span class="w">
-</span><span class="c1"># - url(), file(), or classpath(), with the parentheses surrounding a quoted</span><span class="w">
-</span><span class="c1">#   string which is either a URL, filename, or classpath resource respectively.</span><span class="w">
-</span><span class="c1"># - required(), with the parentheses surrounding one of the above.</span><span class="w">
-</span><span class="l">include</span><span class="w"> </span><span class="s2">"https://example.com/config.conf"</span><span class="w">
-</span><span class="l">include</span><span class="w"> </span><span class="s2">"/foo/bar/config.conf"</span><span class="w">
-</span><span class="l">include</span><span class="w"> </span><span class="s2">"config.conf"</span><span class="w">
-
-</span><span class="l">include</span><span class="w"> </span><span class="l">url</span><span class="p">(</span><span class="s2">"https://example.com/config.conf"</span><span class="p">)</span><span class="w">
-</span><span class="l">include</span><span class="w"> </span><span class="l">file</span><span class="p">(</span><span class="s2">"/foo/bar/config.conf"</span><span class="p">)</span><span class="w">
-</span><span class="l">include</span><span class="w"> </span><span class="l">classpath</span><span class="p">(</span><span class="s2">"config.conf"</span><span class="p">)</span><span class="w">
-
-</span><span class="c1"># If the included file does not exist, it will be silently ignored and act as if</span><span class="w">
-</span><span class="c1"># it were an empty object. However, if it is wrapped around required(), then</span><span class="w">
-</span><span class="c1"># parsing will explicitly error if the file cannot be resolved.</span><span class="w">
-</span><span class="c1">//include required("doesnt_exist.conf") will error</span><span class="w">
-</span><span class="c1">//include required(url("https://example.com/doesnt_exist.conf")) will error</span><span class="w">
-</span><span class="c1">//include required(file("doesnt_exist.conf")) will error</span><span class="w">
-</span><span class="c1">//include required(classpath("doesnt_exist.conf")) will error</span><span class="w">
-
-</span><span class="c1"># The file specified by the include statement is called the included file, and</span><span class="w">
-</span><span class="c1"># the file which contains the include statement is called the including file.</span><span class="w">
-
-</span><span class="c1"># Including a file functions as if you directly replaced the include statement,</span><span class="w">
-</span><span class="c1"># wherever it may be, with the contents of the included file's root object.</span><span class="w">
-
-</span><span class="c1"># An included file must have an object as its root value and not an array.</span><span class="w">
-</span><span class="c1"># If the included file has an array as its root value, then it is invalid and</span><span class="w">
-</span><span class="c1"># an error will be generated.</span><span class="w">
-
-</span><span class="c1"># Pretend that the following is in a file called user_config.conf:</span><span class="w">
-</span><span class="nl">username</span><span class="p">:</span><span class="w"> </span><span class="l">RandomUser</span><span class="mi">1337</span><span class="w">
-</span><span class="nl">auto_login</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="nl">color_theme</span><span class="p">:</span><span class="w"> </span><span class="l">dark</span><span class="w">
-</span><span class="nl">screensaver</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">image</span><span class="p">:</span><span class="w"> </span><span class="l">usr/images/screensaver.jpg</span><span class="w">
-  </span><span class="nl">turn_on_after</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="l">m</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># And then we include that file.</span><span class="w">
-</span><span class="l">include</span><span class="w"> </span><span class="l">file</span><span class="p">(</span><span class="s2">"user_config.conf"</span><span class="p">)</span><span class="w">
-
-</span><span class="c1"># We can now reference values from that file!</span><span class="w">
-</span><span class="nl">path_to_user_screensaver</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">screensaver.image</span><span class="si">}</span><span class="w"> </span><span class="c1">//</span><span class="w">
-</span><span class="nl">greeting</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome, "</span><span class="si">${</span><span class="nv">username</span><span class="si">}</span><span class="s2">"!"</span><span class="w"> </span><span class="c1">// the value is: "Welcome, RandomUser1337!"</span><span class="w">
-
-</span><span class="c1"># Duplicate keys override as they normally do.</span><span class="w">
-</span><span class="nl">status</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto Login: "</span><span class="si">${</span><span class="nv">auto_login</span><span class="si">}</span><span class="w"> </span><span class="c1">// the value is: "Auto Login: true"</span><span class="w">
-</span><span class="nl">auto_login</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="nl">status</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto Login: "</span><span class="si">${</span><span class="nv">auto_login</span><span class="si">}</span><span class="w"> </span><span class="c1">// the value is: "Auto Login: false"</span><span class="w">
-
-</span><span class="c1"># Object merging is also the same as usual.</span><span class="w">
-</span><span class="nl">screensaver</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="c1">// This gets added to the screensaver object.</span><span class="w">
-  </span><span class="nl">enable_during_day</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-  </span><span class="c1">// This overrides the previous value.</span><span class="w">
-  </span><span class="nl">turn_on_after</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="l">s</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># Include statements can appear in place of a field. Anywhere that a field</span><span class="w">
-</span><span class="c1"># could appear, an include statement could appear as well.</span><span class="w">
-
-</span><span class="c1"># Pretend that the following is in a file called server_settings.conf:</span><span class="w">
-</span><span class="nl">max_connections</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="nl">url</span><span class="p">:</span><span class="w"> </span><span class="l">example.com</span><span class="w">
-</span><span class="nl">port</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="w">
-</span><span class="nl">admin_page</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">username</span><span class="p">:</span><span class="w"> </span><span class="l">admin</span><span class="w">
-  </span><span class="nl">password</span><span class="p">:</span><span class="w"> </span><span class="l">pass</span><span class="mi">12345</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># And then we include that file nested inside another object.</span><span class="w">
-</span><span class="nl">websites</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">my_epic_website</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="k">include</span><span class="w"> </span><span class="k">file</span><span class="p">(</span><span class="s2">"server_settings.conf"</span><span class="p">)</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="c1"># Now, we can reference the contents of server_settings.conf as if they</span><span class="w">
-</span><span class="c1"># had been written directly into the object my_epic_website.</span><span class="w">
-</span><span class="nl">server_port</span><span class="p">:</span><span class="w"> </span><span class="si">${</span><span class="nv">websites.my_epic_website.port</span><span class="si">}</span><span class="w">
-
-</span><span class="nl">the_password</span><span class="p">:</span><span class="w"> </span><span class="s2">"The password is: "</span><span class="si">${</span><span class="nv">websites.my_epic_website.admin_page.password</span><span class="si">}</span><span class="w">
-</span><span class="c1">// the value is: The password is: pass12345</span><span class="w">
-
-</span><span class="nl">max_conn</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max Connections: "</span><span class="si">${</span><span class="nv">websites.my_epic_website.max_connections</span><span class="si">}</span><span class="w">
-</span><span class="c1">// the value is: Max Connections: 10</span><span class="w">
-</span></code></pre></div>
+  You can put &#39;single&#39; and &quot;double&quot; quotes without it being invalid.
+&quot;&quot;&quot;
+
+number: 123
+negative: -123
+fraction: 3.1415926536
+scientific_notation: 1.2e6 // same as 1.2 * (10^6)
+
+boolean: true # or false
+empty: null
+
+## ARRAYS ##
+
+# Arrays hold lists of values.
+# Values in arrays can be separated with commas..
+array: [ 1, 2, 3, 4, 5 ]
+fibonacci: [1,1,2,3,5,8,13]
+multiples_of_5: [5, 10, 15, 20,] # Notice the trailing comma. That&#39;s okay here.
+# or newlines..
+friends: [
+  &quot;Brian&quot;
+  &quot;Sophie&quot;
+  &quot;Maya&quot;
+  &quot;Sabina&quot;
+]
+# or both!
+ingredients: [
+  &quot;Egg&quot;,
+  &quot;Sugar&quot;,
+  &quot;Oil&quot;,
+  &quot;Flour&quot;, # Notice the trailing comma. That&#39;s okay here too.
+]
+# Once again, HOCON has a very loose syntax. Use whichever style you prefer.
+no newline before or after bracket: [&quot;This&quot;
+  &quot;is&quot;
+  &quot;an&quot;
+  &quot;array!&quot;]
+
+# Just like any other value, arrays can hold other arrays.
+array in array: [ [1, 2, 3], [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] ]
+array in array in array: [ [ [1, 2], [8, 9] ], [ [&quot;a&quot;, &quot;b&quot; ], [&quot;y&quot;, &quot;z&quot;] ] ]
+
+## OBJECTS ##
+
+# Objects hold fields.
+# Just like arrays, fields in objects can be separated with commas..
+object: { key: value, another_key: another_value }
+server_connection: {ip: &quot;127.0.0.1&quot;, port: 80}
+first: {letter: a, number: 1,} # Notice the trailing comma.
+# or newlines..
+power_grid: {
+  max_capacity: 15000
+  current_power: 1200
+}
+# or both!
+food_colors: {
+  carrot: orange,
+  pear: green,
+  apple: red,
+  plum: purple,
+  banana: yellow, # Trailing commas are okay here too!
+}
+
+# Arrays can hold objects just like any other value type.
+coworkers: [
+  {
+    name: Jeff
+    age: 27
+  },
+  {
+    name: Henry
+    age: 35
+  },
+  {
+    name: Timmy
+    age: 12
+  }
+]
+
+# The field separator may be omitted if the key is followed by {
+no_separator {
+  key: value
+  speed_of_light: very fast
+  ten: 10
+
+  # Objects can go inside other objects just like any other value.
+  another_object {
+    twenty: 20
+    speed_of_sound: also pretty fast
+  }
+}
+
+# In fact, the entirety of any HOCON document is an actually just an object.
+# That object is called the root object. The only difference between it and any
+# other object is that the curly brackets at the top and bottom of the document
+# may be omitted.
+
+# This means that HOCON documents can be formatted in the same way that
+# regular objects can be formatted, including separating fields with commas
+# rather than with newlines.
+
+# Additionally, while the entirety of a HOCON document can be and is usually an
+# object, it can also be an array. If it is an array, the opening and closing
+# brackets at the top and bottom of the document must be explicitly written.
+
+######################
+### DUPLICATE KEYS ###
+######################
+
+is_happy: false
+# If there is a duplicate key, the new value overrides the previous value.
+is_happy: true
+online_users: [Jacob, Mike]
+# Same with arrays.
+online_users: [Jacob, Mike, Henry]
+
+# For objects, it&#39;s a bit different.
+my_car: {
+  color: blue
+  speed: 9001
+  passengers: null
+
+  engine: {
+    running: true
+    temperature: 137
+  }
+}
+# If there is a duplicate key and both values are objects,
+# then the objects are merged.
+my_car: {
+  // These fields are added to the old, previous object.
+  nickname: &quot;My Favorite Car&quot;
+  type: 2-door sedan
+
+  // Since the value of this duplicate key is NOT an object,
+  // it simply overrides the previous value.
+  speed: 60
+  // Same with arrays. They override, not merge.
+  passengers: [&quot;Nate&quot;, &quot;Ty&quot;]
+
+  // This object is recursively merged with the other object.
+  engine: {
+    // These two fields are added to the previous object.
+    type: gas
+    oil_level: 10
+    // This field overrides the previous value.
+    temperature: 179
+  }
+}
+
+# Object merging is done two at a time. That is to say, the first two objects
+# merge into one, then that object merges with the next object, and so on.
+
+# Because of this, if you set a field with an object value to a non-object value
+# and then back to an object value, the new object will completely override any
+# previous value.
+
+// Null, a non-object value, completely overrides the object value.
+my_car: null
+
+// Then, this object completely overrides null.
+my_car: {
+  nickname: &quot;My New Car&quot;
+  type: 4-door minivan
+  color: gray
+  speed: 90
+  passengers: [&quot;Ayden&quot;, &quot;Liz&quot;]
+}
+
+###########################
+### VALUE CONCATENATION ###
+###########################
+
+## SIMPLE VALUE CONCATENATION ##
+
+# Simple values (all value types except objects and arrays) separated by
+# whitespace are concatenated into a single string. The whitespace between
+# values is preserved.
+number_concatenation: 1 2 3 12.5 -3 2e5 // same as: &quot;1 2 3 12.5 -3 2e5&quot;
+boolean_concat: true false true // &quot;true false true&quot;
+null_concat: null null null // &quot;null null null&quot;
+mixed_concat: 1 true null // &quot;1 true null&quot;
+
+# String value concatenation can appear anywhere that a quoted string can.
+number_concat_in_array: [1 2, 3 4, 5 6] // same as: [&quot;1 2&quot;, &quot;3 4&quot;, &quot;5 6&quot;]
+
+# In fact, unquoted strings are actually just string value concatenations.
+unquoted_string_concat: his name is jeff // same as: &quot;his name is jeff&quot;
+
+# Going further, even keys that are unquoted strings are actually just string
+# value concatenations.
+this is a key: value // the KEY is the same as: &quot;this is a key&quot;
+# The following field is identical to the field above.
+&quot;this is a key&quot;: value
+
+# Quoted strings can also be concatenated. This will be useful later,
+# when we cover substitutions.
+quoted_string_concat: &quot;her&quot;&quot; name&quot; &quot;is &quot;&quot;jenna&quot; // same as: &quot;her name is jenna&quot;
+# Notice that the whitespace (or lack thereof) between values is preserved.
+
+## ARRAY CONCATENATION ##
+
+# Arrays separated by whitespace are merged into a single array.
+array_concat: [1, 2, 3] [4, 5, 6] // same as: [1, 2, 3, 4, 5, 6]
+
+# Arrays cannot be concatenated with a non-array value.
+//array_concat: true [false] results in an error
+//array_concat: 1 [2] results in an error
+
+## OBJECT CONCATENATION ##
+
+# Objects separated by whitespace are merged into a single object.
+# The merge functionality is identical to that of duplicate key object merging.
+lamp: {on: true} {color: tan} // same as: {on: true, color: tan}
+
+# Similarly to arrays, objects cannot be concatenated with a non-object value.
+//object_concat: true {on: false} results in an error
+//object_concat: 1 {number: 2} results in an error
+
+########################
+### PATH EXPRESSIONS ###
+########################
+
+# Path expressions are used to write out a path through the object graph.
+# Think of it as navigating through objects to a specific field.
+# Each object to traverse through is called an element, and each element is
+# separated with a period.
+
+country: {
+  city: {
+    neighborhood: {
+      house: {
+        name: &quot;My House&quot;
+        address: 123 Example Dr.
+      }
+    }
+  }
+}
+# For example, the path to the address of the house could be written as:
+# country.city.neighborhood.house.address
+# Country, city, neighborhood, house, and address are all elements.
+
+# Path expressions are used in two places: substitutions (which will be
+# covered in a moment), and as keys.
+# That&#39;s right: keys themselves can also be path expressions.
+foo: {
+  bar: {
+    baz: {
+      number: 12
+    }
+  }
+}
+# Rather than tediously specifying each object, a path expression can be used.
+# The following field represents the same object found above.
+foo.bar.baz.number: 12
+
+# Fields and objects specified with path expressions are merged in the same way
+# that any object is usually merged.
+foo.bar.baz.bool: true
+// the object foo&#39;s value is: foo { bar { baz { number: 12, bool: true } } }
+
+#####################
+### SUBSTITUTIONS ###
+#####################
+
+# Substitutions refer to a specific value from some path expression.
+# They&#39;re only allowed in values, not keys or nested inside other substitutions.
+
+me: {
+  favorite_animal: parrots
+  favorite_food: cookies
+}
+# The syntax for a substitution is either ${path_expression} or
+# ${?path_expression}. The latter syntax will be discussed in a moment.
+my_fav_animal: ${me.favorite_animal}
+my_fav_food: ${me.favorite_food}
+
+# Substitutions are not parsed inside quoted strings. To get around this,
+# either use an unquoted string or value concatenation.
+animal_announcement: My favorite animal is ${my_fav_animal}
+// the value is: My favorite animal is parrots
+food_announcement: &quot;My favorite food is &quot;${my_fav_food}&quot;!&quot;
+// the value is: &quot;My favorite food is cookies!&quot;
+
+# Substitutions are parsed last in the document. Because of this, you can
+# reference a key that hasn&#39;t been defined yet.
+color_announcement: &quot;My favorite color is&quot; ${my_fav_color}&quot;!&quot;
+// the value is: &quot;My favorite color is blue!&quot;
+my_fav_color: blue
+
+# Another effect of substitutions being parsed last is that substitutions will
+# always use the latest, as in last, value assigned in the entire document,
+# which includes merged objects.
+color: green
+their_favorite_color: ${color} // the value is: orange
+color: orange
+
+random_object: {
+  number: 12
+}
+the_number: ${random_object.number} // the value is: 15
+random_object: {
+  number: 15
+}
+
+###############################
+### UNDEFINED SUBSTITUTIONS ###
+###############################
+
+# A substitution using the ${path_expression} syntax with an undefined path
+# expression, meaning a path expression that does not point to a defined value,
+# is invalid and will therefore generate an error.
+//${does.not.exist} will throw an error
+
+# However, an undefined substitution using the ${?path_expression} syntax
+# has different behavior depending on what it is the value of.
+request: {
+  # If it is the value of a field, then the field will not be created.
+  response: ${?does.not.exist} // this field won&#39;t be created and does not exist
+  type: HTTP
+}
+
+request: {
+  # Additionally, if it would have overridden a previous value, then the
+  # previous value remains unchanged.
+  type: ${?does.not.exist} // request.type is still HTTP
+}
+
+# If it is a value in an array, then it is simply not added.
+values: [ 172, &quot;Brian&quot;, ${?does.not.exist}, null, true, ]
+// the value is: [ 172, &quot;Brian&quot;, null, true ]
+
+# If it is part of simple value concatenation, it acts as an empty string.
+final_string: &quot;String One&quot;${?does.not.exist}&quot;String Two&quot;
+// the value is: &quot;String OneString Two&quot;
+
+# If it is part of array concatenation, it acts as an empty array.
+final_array: [ 1, 2, 3 ] ${?does.not.exist} [ 7, 8, 9 ]
+// the value is: [ 1, 2, 3, 7, 8, 9 ]
+
+# If it is part of object concatenation, it acts as an empty object.
+final_array: { a: 1 } ${?does.not.exist} { c: 3 }
+// the value is: { a: 1, c: 3 }
+
+######################################
+### SELF-REFERENTIAL SUBSTITUTIONS ###
+######################################
+
+# Substitutions normally &quot;look forward&quot; and use the final value defined in the
+# document. However, in cases when this would create a cycle, the substitution
+# looks only backwards.
+
+# A field which contains a substitution that points to itself or points to
+# other fields that eventually point back to itself is called a
+# self-referential field.
+letters: &quot;a b c&quot; // the value is: &quot;a b c&quot;
+letters: ${letters}&quot; d&quot; // &quot;a b c d&quot;
+letters: ${letters}&quot; e&quot; // &quot;a b c d e&quot;
+
+PATH: [/bin] // the value is: [/bin]
+PATH: ${PATH} [/usr/bin] // [/bin, /usr/bin]
+PATH: ${PATH} [/usr/local/bin] // [/bin, /usr/bin, /usr/local/bin]
+
+x: &quot;x&quot; // the value is: &quot;x&quot;
+y: ${x}&quot;y&quot; // &quot;xy&quot;
+x: ${y}&quot;z&quot; // &quot;xyz&quot;
+
+##########################
+### += FIELD SEPARATOR ###
+##########################
+
+# In addition to : and =, there actually exists another separator: +=
+# A field separated with += acts as a self-referential array concatenation.
+# In short, it appends an element to a previously defined array.
+
+a: [1]
+b: [1]
+# This field:
+a += 2 // the value is: [1, 2]
+# functions the same as:
+b: ${?b} [2] // the value is: [1, 2]
+
+USERS: [/usr/luke] // the value is: [/usr/luke]
+USERS += /usr/devon // [/usr/luke, /usr/devon]
+USERS += /usr/michael // [/usr/luke, /usr/devon, /usr/michael]
+
+# Since += only appends elements to a previously existing array, if the previous
+# value was not an array, an error will be generated.
+OTHER_USERS: /usr/luke
+//OTHER_USERS += /usr/devon results in an error
+
+# Notice that the underlying substitution syntax used is ${?path}, not ${path}.
+# Recall that, using the ${?} syntax, an undefined substitution in array
+# concatenation acts as an empty array. Because of this, it is perfectly
+# acceptable if the field that is being set is initially undefined.
+//z: [] not necessary
+z += 3 // the value is: [3]
+z += 4 // the value is: [3, 4]
+
+NEW_USERS += /usr/sandra // the value is: [/usr/sandra]
+NEW_USERS += /usr/kennedy // [/usr/sandra, /usr/kennedy]
+NEW_USERS += /usr/robin // [/usr/sandra, /usr/kennedy, /usr/robin]
+
+################
+### INCLUDES ###
+################
+
+# Includes allow you to &quot;import&quot; one HOCON document into another.
+
+# An include statement consists of the unquoted string &quot;include&quot; followed by
+# whitespace and then a resource name, which is one of the following:
+# - a single quoted string which is heuristically interpreted as a URL,
+#   filename, or a Java classpath resource.
+# - url(), file(), or classpath(), with the parentheses surrounding a quoted
+#   string which is either a URL, filename, or classpath resource respectively.
+# - required(), with the parentheses surrounding one of the above.
+include &quot;https://example.com/config.conf&quot;
+include &quot;/foo/bar/config.conf&quot;
+include &quot;config.conf&quot;
+
+include url(&quot;https://example.com/config.conf&quot;)
+include file(&quot;/foo/bar/config.conf&quot;)
+include classpath(&quot;config.conf&quot;)
+
+# If the included file does not exist, it will be silently ignored and act as if
+# it were an empty object. However, if it is wrapped around required(), then
+# parsing will explicitly error if the file cannot be resolved.
+//include required(&quot;doesnt_exist.conf&quot;) will error
+//include required(url(&quot;https://example.com/doesnt_exist.conf&quot;)) will error
+//include required(file(&quot;doesnt_exist.conf&quot;)) will error
+//include required(classpath(&quot;doesnt_exist.conf&quot;)) will error
+
+# The file specified by the include statement is called the included file, and
+# the file which contains the include statement is called the including file.
+
+# Including a file functions as if you directly replaced the include statement,
+# wherever it may be, with the contents of the included file&#39;s root object.
+
+# An included file must have an object as its root value and not an array.
+# If the included file has an array as its root value, then it is invalid and
+# an error will be generated.
+
+# Pretend that the following is in a file called user_config.conf:
+username: RandomUser1337
+auto_login: true
+color_theme: dark
+screensaver: {
+  image: usr/images/screensaver.jpg
+  turn_on_after: 1m
+}
+
+# And then we include that file.
+include file(&quot;user_config.conf&quot;)
+
+# We can now reference values from that file!
+path_to_user_screensaver: ${screensaver.image} //
+greeting: &quot;Welcome, &quot;${username}&quot;!&quot; // the value is: &quot;Welcome, RandomUser1337!&quot;
+
+# Duplicate keys override as they normally do.
+status: &quot;Auto Login: &quot;${auto_login} // the value is: &quot;Auto Login: true&quot;
+auto_login: false
+status: &quot;Auto Login: &quot;${auto_login} // the value is: &quot;Auto Login: false&quot;
+
+# Object merging is also the same as usual.
+screensaver: {
+  // This gets added to the screensaver object.
+  enable_during_day: false
+  // This overrides the previous value.
+  turn_on_after: 30s
+}
+
+# Include statements can appear in place of a field. Anywhere that a field
+# could appear, an include statement could appear as well.
+
+# Pretend that the following is in a file called server_settings.conf:
+max_connections: 10
+url: example.com
+port: 80
+admin_page: {
+  username: admin
+  password: pass12345
+}
+
+# And then we include that file nested inside another object.
+websites: {
+  my_epic_website: {
+    include file(&quot;server_settings.conf&quot;)
+  }
+}
+
+# Now, we can reference the contents of server_settings.conf as if they
+# had been written directly into the object my_epic_website.
+server_port: ${websites.my_epic_website.port}
+
+the_password: &quot;The password is: &quot;${websites.my_epic_website.admin_page.password}
+// the value is: The password is: pass12345
+
+max_conn: &quot;Max Connections: &quot;${websites.my_epic_website.max_connections}
+// the value is: Max Connections: 10
+</pre></div>
 <h3>More Resources</h3>
 
 <ul>
@@ -657,7 +657,7 @@ user-facing configurations than JSON.</p>
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the Github Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/hocon.html.markdown">pull request</a> yourself!
     </p>
     <p class="contributed">
-    Originally contributed by TehBrian, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/hocon.html.markdown">0 contributor(s)</a>.
+    Originally contributed by TehBrian, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/hocon.html.markdown">1 contributor(s)</a>.
     </p>
 
     <footer>

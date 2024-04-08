@@ -17,7 +17,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Language" content="sv-se">
         <!-- Use title if it's in the page YAML frontmatter -->
-        <title>Learn brainfuck in Y Minutes</title>
+        <title>Learn bf in Y Minutes</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -67,7 +67,7 @@
         <div class="container">
             <div class="share">
     <span class="sharemsg">
-      <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fdocs%2Fsv-se%2Fbrainfuck-sv%2F&text=Learn+X+in+Y+minutes%2C+where+X%3Dbrainfuck">
+      <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fdocs%2Fsv-se%2Fbrainfuck-sv%2F&text=Learn+X+in+Y+minutes%2C+where+X%3Dbf">
         Share this page
       </a></span>
 
@@ -80,7 +80,7 @@
     <button type="button" aria-labelledby="theme-label" onclick="set_theme('dark');">dark</button>
   </div>
   <h1><a href="/">Learn X in Y minutes</a></h1>
-  <h2>Where X=brainfuck</h2>
+  <h2>Where X=bf</h2>
     <p class="filelink">
     Get the code:
     <a href="/docs/files/brainfuck-sv.bf">brainfuck-sv.bf</a>
@@ -90,7 +90,7 @@
 minimalistiskt Turing-komplett programmeringsspråk med endast 8 kommandon.</p>
 
 <p>Du kan testa brainfuck i din webbläsare via <a href="http://fatiherikli.github.io/brainfuck-visualizer/">brainfuck-visualizer</a>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Alla karaktärer förutom "&gt;&lt;+-.,[]" (inte inkluderat citattecken) ignoreras.
+<div class="highlight"><pre><span></span>Alla karaktärer förutom &quot;&gt;&lt;+-.,[]&quot; (inte inkluderat citattecken) ignoreras.
 
 Brainfuck är representerat av ett fält med 30 000 celler initialiserade till
 noll och en data pekare som pekar på den valda cellen.
@@ -100,7 +100,7 @@ Det finns åtta kommandon:
 - : Minskar värdet av den valda cellen med ett.
 &gt; : Flyttar data pekaren till nästa cell (cellen till höger).
 &lt; : Flyttar data pekaren till förra cellen (cellen till vänster).
-. : Skriver ut ASCII värdet av den valda cellen (t.ex. 65 = 'A').
+. : Skriver ut ASCII värdet av den valda cellen (t.ex. 65 = &#39;A&#39;).
 , : Läser in en karaktär till den valda cellen.
 [ : Om värdet vid den valda cellen är noll, hoppa till matchande ].
     Annars fortsätts till nästa instruktion.
@@ -113,16 +113,16 @@ Nedan är ett exempel på ett simpelt brainfuck program.
 
 ++++++ [ &gt; ++++++++++ &lt; - ] &gt; +++++ .
 
-Programmet skriver ut bokstaven 'A'. Först ökar den värdet av cell #1 till 6.
-Cell #1 kommer att användas för att loopa. Sen börjar den loopen (vid '[') och
+Programmet skriver ut bokstaven &#39;A&#39;. Först ökar den värdet av cell #1 till 6.
+Cell #1 kommer att användas för att loopa. Sen börjar den loopen (vid &#39;[&#39;) och
 flyttar till cell #2. Den ökar värdet av cell #2 10 gånger, går tillbaka till
 cell #1 och minskar den med 1. Den gör det här 6 gånger (så många iterationer
 det tar för cell #1 att bli noll).
 
 Nu är programmet på cell #1, vilket har ett värde av 0 och cell #2 har värdet 60.
 Programmet flyttar pekaren till cell #2 och ökar värdet med 5, vilket leder till
-att cell #2 har ett värde av 65 (vilket är bokstaven 'A' i ASCII), sedan skriver
-den ut cell #2 och bokstaven 'A' skrivs ut till skärmen.
+att cell #2 har ett värde av 65 (vilket är bokstaven &#39;A&#39; i ASCII), sedan skriver
+den ut cell #2 och bokstaven &#39;A&#39; skrivs ut till skärmen.
 
 
 , [ &gt; + &lt; - ] &gt; .
@@ -153,7 +153,7 @@ ett problem: Vid slutet av den innre loopen är cell #2 noll. Vilket betyder att
 den inre loopen inte kommer att fungera tills nästa gång. För att lösa det här
 problemet ökas också cell #4 som sedan kopieras till cell #2.
 Sedan är resultatet i cell #3.
-</code></pre></div>
+</pre></div>
 <p>Och det är brainfuck. Inte så svårt va? För skojs skull kan du skriva dina egna
 brainfuck program, eller skriva en egen brainfuck interpretator i ett annat
 språk. interpretatorn är ganska simpel att implementera, men om man är en

@@ -90,16 +90,16 @@
 yra terminalo daugintuvas: jis leidžia vienu metu sukurti, turėti
 ir valdyti kelis terminalus viename ekrane. tmux gali būti atjungtas
 nuo ekrano ir veikti fone, o vėliau gali būti vėl prijungtas.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>  tmux [komanda]     # Vykdyti komandą
-                     # 'tmux' be komandų sukurs naują sesiją
+<div class="highlight"><pre><span></span>  tmux [komanda]     # Vykdyti komandą
+                     # &#39;tmux&#39; be komandų sukurs naują sesiją
 
     new              # Sukurti naują sesiją
-     -s "Session"    # Sukurti pavadintą sesiją
-     -n "Window"     # Sukurti pavadintą langą
-     -c "/dir"       # Pradėti nurodytoje direktorijoje
+     -s &quot;Session&quot;    # Sukurti pavadintą sesiją
+     -n &quot;Window&quot;     # Sukurti pavadintą langą
+     -c &quot;/dir&quot;       # Pradėti nurodytoje direktorijoje
 
     attach           # Priskirti paskutinę/prienamą sesiją
-     -t "#"          # Priskirti nurodytą sesiją
+     -t &quot;#&quot;          # Priskirti nurodytą sesiją
      -d              # Atjungti sesiją nuo kitų langų
 
     ls               # Aktyvių sesijų sąrašas
@@ -115,19 +115,19 @@ nuo ekrano ir veikti fone, o vėliau gali būti vėl prijungtas.</p>
      -t              # Visų skydelių taikinyje sąrašas
 
     kill-window      # Užbaigti dabartinį langą
-     -t "#"          # Užbaigti nurodytą langą
+     -t &quot;#&quot;          # Užbaigti nurodytą langą
      -a              # Užbaigti visus langus
-     -a -t "#"       # Užbaigti visus langus, bet ne taikinį
+     -a -t &quot;#&quot;       # Užbaigti visus langus, bet ne taikinį
 
     kill-session     # Užbaigti dabartinę sesiją
-     -t "#"          # Užbaigti nurodytą sesiją
+     -t &quot;#&quot;          # Užbaigti nurodytą sesiją
      -a              # Užbaigti visas sesijas
-     -a -t "#"       # Užbaigti visas sesijas, bet ne taikinį
-</code></pre></div>
+     -a -t &quot;#&quot;       # Užbaigti visas sesijas, bet ne taikinį
+</pre></div>
 <h3>Klavišai</h3>
 
 <p>Priskirta tmux sesija yra valdoma klavišų kompinacijomis.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>----------------------------------------------------------------------
+<div class="highlight"><pre><span></span>----------------------------------------------------------------------
   (C-b) = Ctrl + b    # Kombinacija reikalinga norint naudoti klavišus
 
   (M-1) = Meta + 1 -or- Alt + 1
@@ -140,7 +140,7 @@ nuo ekrano ir veikti fone, o vėliau gali būti vėl prijungtas.</p>
 
   !                  # Iškelia esamą skydelį iš lango.
   %                  # Perskelia esamą skydelį į du, kairįjį ir dešinį
-  "                  # Perskelia esamą skydelį į du, viršutinį ir apatinį
+  &quot;                  # Perskelia esamą skydelį į du, viršutinį ir apatinį
 
   n                  # Pakeičia į kitą langą
   p                  # Pakeičia į buvusį langą
@@ -173,12 +173,12 @@ nuo ekrano ir veikti fone, o vėliau gali būti vėl prijungtas.</p>
 
   M-Up, M-Down       # Keisti esamo skydelio dydį penkių ląstelių žingsniu
   M-Left, M-Right
-</code></pre></div>
+</pre></div>
 <h3>Configuring ~/.tmux.conf</h3>
 
 <p>tmux.conf gali būti nustatytas automatiškai paleidimo metu, panašiai kaip ir
 .vimrc arba init.el.</p>
-<div class="highlight"><pre class="highlight plaintext"><code># Pavyzdys tmux.conf
+<div class="highlight"><pre><span></span># Pavyzdys tmux.conf
 # 2014.10
 
 
@@ -239,7 +239,7 @@ bind F swap-window -t +1
 # Easy split pane commands
 bind = split-window -h
 bind - split-window -v
-unbind '"'
+unbind &#39;&quot;&#39;
 unbind %
 
 # Activate inner-most session (when nesting tmux) to send commands
@@ -288,16 +288,16 @@ set-option -g visual-bell off
 
 # Automatically set window titles
 set-option -g set-titles on
-set-option -g set-titles-string '#H:#S.#I.#P #W #T' # window number,program name,active (or not)
+set-option -g set-titles-string &#39;#H:#S.#I.#P #W #T&#39; # window number,program name,active (or not)
 
 # Statusbar Adjustments
-set -g status-left "#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]"
+set -g status-left &quot;#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]&quot;
 
 # Show performance counters in statusbar
 # Requires https://github.com/thewtex/tmux-mem-cpu-load/
 set -g status-interval 4
-set -g status-right "#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]"
-</code></pre></div>
+set -g status-right &quot;#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]&quot;
+</pre></div>
 <h3>Šaltiniai</h3>
 
 <p><a href="http://tmux.sourceforge.net">Tmux | Home</a></p>

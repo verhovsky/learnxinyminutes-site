@@ -99,7 +99,7 @@ influenciado por ambas as sintaxes Java e Javascript.
 <p>A linguagem é tipada estaticamente e também vem com o seu Ambiente de Desenvolvimento
 Integrado (do inglês Integrated Development Environment - IDE) oficial para
 compilar e executar os scripts.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>/* ---------
+<div class="highlight"><pre><span></span>/* ---------
    Comentários
    ---------
 */
@@ -122,8 +122,8 @@ compilar e executar os scripts.</p>
 // com um tipo de retorno void.
 // Observação! A sintaxe é muito semelhante à do C++.
 void setup() {
-  // Isso imprime a saída clássica "Hello World!" no console quando executado.
-  println("Olá Mundo!"); // Mais uma linguagem com esse maldito ponto e vírgula, não é?
+  // Isso imprime a saída clássica &quot;Hello World!&quot; no console quando executado.
+  println(&quot;Olá Mundo!&quot;); // Mais uma linguagem com esse maldito ponto e vírgula, não é?
 }
 
 // Normalmente, colocamos todos os códigos estáticos dentro do método setup() 
@@ -159,19 +159,19 @@ void draw(){
 
 boolean valorBoleano = true; // Boleano
 byte valorByteDeA = 23; // Byte
-char valorCharDeA = 'A'; // Caractere
+char valorCharDeA = &#39;A&#39;; // Caractere
 color valorDeCorBrancoM = color(255, 255, 255); // Cor (especificada usando
 // método color())
 color valorDeCorBrancoH = #FFFFFF; // Cor (especificada usando valor de hash)
 int valor = 5; // Inteiro (Número sem decimais)
-long valorLongo = 2147483648L; // "L" é adicionado ao número para marcá-lo como um longo
+long valorLongo = 2147483648L; // &quot;L&quot; é adicionado ao número para marcá-lo como um longo
 float valorFloat = 1,12345; // Float (números de ponto flutuante de 32 bits)
 double valorDouble = 1,12345D; // Double (números de ponto flutuante de 64 bits)
 
 // NOTA!
-// Embora os tipos de dados "long" e "double" funcionem na linguagem,
+// Embora os tipos de dados &quot;long&quot; e &quot;double&quot; funcionem na linguagem,
 // funções do Processing não usam esses tipos de dados, portanto
-// eles precisam ser convertidos em tipos de dados "int" e "float", 
+// eles precisam ser convertidos em tipos de dados &quot;int&quot; e &quot;float&quot;, 
 // respectivamente, usando a sintaxe (int) e (float) antes de passar para uma 
 // função.
 
@@ -180,20 +180,20 @@ double valorDouble = 1,12345D; // Double (números de ponto flutuante de 64 bits
 // Primeiramente, farei um resumo dos mais usados ​​para economizar tempo.
 
 // String
-// Enquanto o tipo de dados char usa '', o tipo de dados String usa "" - aspas 
+// Enquanto o tipo de dados char usa &#39;&#39;, o tipo de dados String usa &quot;&quot; - aspas 
 // duplas.
-string stringExemplo = "Olá, Processing!";
+string stringExemplo = &quot;Olá, Processing!&quot;;
 // String também pode ser criada a partir de um array de tipos de dados char.
 // Nós vamos discutir array muito em breve.
-char fonte = {'H', 'E', 'L', 'L', 'O'};
+char fonte = {&#39;H&#39;, &#39;E&#39;, &#39;L&#39;, &#39;L&#39;, &#39;O&#39;};
 String stringDeFonte = new String(source); // HELLO
-// Como em Java, strings podem ser concatenadas usando o operador "+".
-print("Olá " + "Mundo!"); // Olá Mundo!
+// Como em Java, strings podem ser concatenadas usando o operador &quot;+&quot;.
+print(&quot;Olá &quot; + &quot;Mundo!&quot;); // Olá Mundo!
 
 // Array
 // Arrays em Processing podem conter quaisquer tipos de dados, incluindo os 
 // próprios objetos. Como os arrays são semelhantes aos objetos, eles devem 
-// ser criados com a palavra-chave "new".
+// ser criados com a palavra-chave &quot;new&quot;.
 int[] arrayInt = new int[5];
 int[] arrayIntComValores ​​= {1, 2, 3}; // Você também pode preencher com dados.
 
@@ -201,7 +201,7 @@ int[] arrayIntComValores ​​= {1, 2, 3}; // Você também pode preencher com 
 // As funções são semelhantes às do array; arraylists podem conter qualquer 
 // tipo de dados. A única diferença é que as listas de matrizes são 
 // redimensionadas dinamicamente, pois é uma forma de implementação de matriz 
-// redimensionável da interface "List" do Java .
+// redimensionável da interface &quot;List&quot; do Java .
 ArrayList&lt;Integer&gt; intArrayList = new ArrayList&lt;Integer&gt;();
 
 // Objeto
@@ -263,15 +263,15 @@ float um = sin(PI/2); // um = 1.0
 
 // Declarações Condicionais
 // Instruções If - A mesma sintaxe das instruções if em Java.
-if (author.getAppearance().equals("quente")) {
-  print("Narcisismo no máximo!");
+if (author.getAppearance().equals(&quot;quente&quot;)) {
+  print(&quot;Narcisismo no máximo!&quot;);
 } else {
   // Você pode verificar outras condições aqui.
-  print("Algo está realmente errado aqui!");
+  print(&quot;Algo está realmente errado aqui!&quot;);
 }
 // Um ​​atalho para instruções if-else também pode ser usado.
 int = 3;
-String valor = (i &gt; 5) ? "Grande" : "Pequena"; // "Pequena"
+String valor = (i &gt; 5) ? &quot;Grande&quot; : &quot;Pequena&quot;; // &quot;Pequena&quot;
 
 // A estrutura switch-case pode ser usada para verificar várias condições de 
 // forma concisa. É importante usar a instrução break. Se a instrução `break`
@@ -280,16 +280,16 @@ String valor = (i &gt; 5) ? "Grande" : "Pequena"; // "Pequena"
 int valor = 2;
 switch(valor) {
   case 0:
-    print("Nada!"); // Isso não é executado.
+    print(&quot;Nada!&quot;); // Isso não é executado.
     break; // Salta para a próxima instrução
   case 1:
-    print("Chegando lá..."); // Isso novamente não é executado.
+    print(&quot;Chegando lá...&quot;); // Isso novamente não é executado.
     break;
   case 2:
-    print("Bravo!"); // Esta linha é executada.
+    print(&quot;Bravo!&quot;); // Esta linha é executada.
     break;
   default:
-    print("Não encontrado!"); // Esta linha é executada se nosso valor for algum outro valor.
+    print(&quot;Não encontrado!&quot;); // Esta linha é executada se nosso valor for algum outro valor.
     break;
 }
 
@@ -315,12 +315,12 @@ noLoop(); // só permite que ele seja executado uma vez.
 redraw(); // executa o método draw() mais uma vez.
 exit(); // Isso para o programa. É útil para programas com draw()
 // rodando continuamente.
-</code></pre></div>
+</pre></div>
 <h2>Desenho com Processing</h2>
 
 <p>Como você já deve ter entendido o básico da linguagem, vamos agora
 ver a melhor parte do Processing - DESENHAR.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>/* ------
+<div class="highlight"><pre><span></span>/* ------
    Formas
    ------
 */
@@ -375,7 +375,7 @@ arc(x, y, largura, altura, inicio, fim, [modo]);
 // Formas 3D
 
 // espaço 3D
-pode ser configurado definindo "P3D" para o parâmetro do renderizador no
+pode ser configurado definindo &quot;P3D&quot; para o parâmetro do renderizador no
 // método size().
 size(largura, altura, P3D);
 // No espaço 3D, você terá que traduzir para a coordenada específica para
@@ -455,10 +455,10 @@ stroke(255, 255, 0, 200); // cor do traço definida para amarelo com transparên
 // Principalmente armazenado como Tipo de dados PImage.
 filter(sombreador); // O Processing suporta várias funções de filtro para manipulação de imagens.
 texture(imagem); // PImage pode ser passado em argumentos para mapeamento de textura das formas.
-</code></pre></div>
+</pre></div>
 <p>Se você quiser levar as coisas adiante, há mais coisas que o Processing tem o poder de fazer. Renderizar modelos, shaders e outros efeitos. Há muito para se cobrir em uma
 documentação curta, então vou deixá-los aqui. Se você se interessar, por favor verifique as referências.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Antes de prosseguirmos, vou falar um pouco mais sobre como importar bibliotecas
+<div class="highlight"><pre><span></span>// Antes de prosseguirmos, vou falar um pouco mais sobre como importar bibliotecas
 // para que você possa estender a funcionalidade do Processing para outros horizontes.
 
 /* -------
@@ -471,7 +471,7 @@ documentação curta, então vou deixá-los aqui. Se você se interessar, por fa
 // A instrução de importação pode ser escrita como abaixo na parte superior 
 // do código-fonte.
 import processing.algumacoisa.*;
-</code></pre></div>
+</pre></div>
 <h2>VAC?</h2>
 
 <p>Vamos ao código? Vamos sujar as mãos!</p>
@@ -480,7 +480,7 @@ import processing.algumacoisa.*;
 capaz de fazer com poucas linhas de código.</p>
 
 <p>Copie o código abaixo em seu IDE do Processing e veja a mágica.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Isenção de responsabilidade: eu não escrevi este programa porque atualmente 
+<div class="highlight"><pre><span></span>// Isenção de responsabilidade: eu não escrevi este programa porque atualmente 
 // estou ocupado com meu estágio e este sketch é adaptado do openprocessing pois
 //  mostra algo legal com um código simples.
 // Recuperado de: (https://www.openprocessing.org/sketch/559769)
@@ -531,7 +531,7 @@ void branch(float len) {
 
   }
 }
-</code></pre></div>
+</pre></div>
 <p>A linguagem Processing é fácil de aprender e é particularmente útil para criar
 conteúdo (mesmo em 3D) sem ter que digitar muitos códigos. É tão simples
 que você pode ler o código e ter uma ideia aproximada do fluxo do programa.</p>

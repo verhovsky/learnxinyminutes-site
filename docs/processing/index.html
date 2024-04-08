@@ -97,7 +97,7 @@ influenced by both Java and Javascript syntaxes. <a href="https://processing.org
 
 <p>The language is statically typed, and also comes with its official IDE to
 compile and run the scripts.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>/* ---------
+<div class="highlight"><pre><span></span>/* ---------
    Comments
    ---------
 */
@@ -119,8 +119,8 @@ compile and run the scripts.</p>
 // void return type.
 // Note! The syntax looks strikingly similar to that of C++.
 void setup() {
-  // This prints out the classic output "Hello World!" to the console when run.
-  println("Hello World!"); // Another language with a semi-column trap, aint it?
+  // This prints out the classic output &quot;Hello World!&quot; to the console when run.
+  println(&quot;Hello World!&quot;); // Another language with a semi-column trap, aint it?
 }
 
 // Normally, we put all the static codes inside the setup() method as the name
@@ -156,19 +156,19 @@ void draw() {
 
 boolean booleanValue = true; // Boolean
 byte byteValueOfA = 23; // Byte
-char charValueOfA = 'A'; // Char
+char charValueOfA = &#39;A&#39;; // Char
 color colourValueOfWhiteM = color(255, 255, 255); // Colour (Specified using
 // color() method)
 color colourValueOfWhiteH = #FFFFFF; // Colour (Specified using hash value)
 int intValue = 5; // Integer (Number without decimals)
-long longValue = 2147483648L; // "L" is added to number to mark it as a long
+long longValue = 2147483648L; // &quot;L&quot; is added to number to mark it as a long
 float floatValue = 1.12345; // Float (32-bit floating-point numbers)
 double doubleValue = 1.12345D; // Double (64-bit floating-point numbers)
 
 // NOTE!
-// Although datatypes "long" and "double" work in the language,
+// Although datatypes &quot;long&quot; and &quot;double&quot; work in the language,
 // processing functions do not use these datatypes, therefore
-// they need to be converted into "int" and "float" datatypes respectively,
+// they need to be converted into &quot;int&quot; and &quot;float&quot; datatypes respectively,
 // using (int) and (float) syntax before passing into a function.
 
 // There is a whole bunch of default composite datatypes available for use in
@@ -176,26 +176,26 @@ double doubleValue = 1.12345D; // Double (64-bit floating-point numbers)
 // Primarily, I will brief through the most commonly used ones to save time.
 
 // String
-// While char datatype uses '', String datatype uses "" - double quotes.
-String sampleString = "Hello, Processing!";
+// While char datatype uses &#39;&#39;, String datatype uses &quot;&quot; - double quotes.
+String sampleString = &quot;Hello, Processing!&quot;;
 // String can be constructed from an array of char datatypes as well. We will
 // discuss array very soon.
-char source = {'H', 'E', 'L', 'L', 'O'};
+char source = {&#39;H&#39;, &#39;E&#39;, &#39;L&#39;, &#39;L&#39;, &#39;O&#39;};
 String stringFromSource = new String(source); // HELLO
-// As in Java, strings can be concatenated using the "+" operator.
-print("Hello " + "World!"); // Hello World!
+// As in Java, strings can be concatenated using the &quot;+&quot; operator.
+print(&quot;Hello &quot; + &quot;World!&quot;); // Hello World!
 
 // Array
 // Arrays in Processing can hold any datatypes including Objects themselves.
 // Since arrays are similar to objects, they must be created with the keyword
-// "new".
+// &quot;new&quot;.
 int[] intArray = new int[5];
 int[] intArrayWithValues = {1, 2, 3}; // You can also populate with data.
 
 // ArrayList
 // Functions are similar to those of array; arraylists can hold any datatypes.
 // The only difference is arraylists resize dynamically, as it is a form of
-// resizable-array implementation of the Java "List" interface.
+// resizable-array implementation of the Java &quot;List&quot; interface.
 ArrayList&lt;Integer&gt; intArrayList = new ArrayList&lt;Integer&gt;();
 
 // Object
@@ -258,15 +258,15 @@ float one = sin(PI/2); // one = 1.0
 
 // Conditional Statements
 // If Statements - The same syntax as if statements in Java.
-if (author.getAppearance().equals("hot")) {
-  print("Narcissism at its best!");
+if (author.getAppearance().equals(&quot;hot&quot;)) {
+  print(&quot;Narcissism at its best!&quot;);
 } else {
   // You can check for other conditions here.
-  print("Something is really wrong here!");
+  print(&quot;Something is really wrong here!&quot;);
 }
 // A shortcut for if-else statements can also be used.
 int i = 3;
-String value = (i &gt; 5) ? "Big" : "Small"; // "Small"
+String value = (i &gt; 5) ? &quot;Big&quot; : &quot;Small&quot;; // &quot;Small&quot;
 
 // Switch-case structure can be used to check multiple conditions concisely.
 // It is important to use the break statement. If the `break`-statement does 
@@ -274,16 +274,16 @@ String value = (i &gt; 5) ? "Big" : "Small"; // "Small"
 int value = 2;
 switch(value) {
   case 0:
-    print("Nought!"); // This does not get executed.
+    print(&quot;Nought!&quot;); // This does not get executed.
     break; // Jumps to the next statement
   case 1:
-    print("Getting there..."); // This again does not get executed.
+    print(&quot;Getting there...&quot;); // This again does not get executed.
     break;
   case 2:
-    print("Bravo!"); // This line gets executed.
+    print(&quot;Bravo!&quot;); // This line gets executed.
     break;
   default:
-    print("Not found!"); // This line gets executed if our value was some other value.
+    print(&quot;Not found!&quot;); // This line gets executed if our value was some other value.
     break;
 }
 
@@ -307,12 +307,12 @@ noLoop(); // only allows it to run once.
 redraw(); // runs the draw() method once more.
 exit(); // This stops the program. It is useful for programs with draw()
 // running continuously.
-</code></pre></div>
+</pre></div>
 <h2>Drawing with Processing</h2>
 
 <p>Since you will have understood the basics of the language by now, we will now
 look into the best part of Processing - DRAWING.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>/* ------
+<div class="highlight"><pre><span></span>/* ------
    Shapes
    ------
 */
@@ -366,7 +366,7 @@ arc(x, y, width, height, start, stop, [mode]);
 
 // 3D Shapes
 
-// 3D space can be configured by setting "P3D" to the renderer parameter in
+// 3D space can be configured by setting &quot;P3D&quot; to the renderer parameter in
 // size() method.
 size(width, height, P3D);
 // In 3D space, you will have to translate to the particular coordinate to
@@ -446,12 +446,12 @@ stroke(255, 255, 0, 200); // stroke colour set to yellow with transparency
 // PImage datatype.
 filter(shader); // Processing supports several filter functions for image manipulation.
 texture(image); // PImage can be passed into arguments for texture-mapping the shapes.
-</code></pre></div>
+</pre></div>
 <p>If you want to take things further, there are more things Processing is powered
 for. Rendering models, shaders and whatnot. There&rsquo;s too much to cover in a
 short documentation, so I will leave them out here. Should you be interested,
 please check out the references.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Before we move on, I will touch a little bit more on how to import libraries
+<div class="highlight"><pre><span></span>// Before we move on, I will touch a little bit more on how to import libraries
 // so you can extend Processing functionality to another horizon.
 
 /* -------
@@ -463,7 +463,7 @@ please check out the references.</p>
 // and packages into our sketches.
 // Import statement can be written as below at the top of the source code.
 import processing.something.*;
-</code></pre></div>
+</pre></div>
 <h2>DTC?</h2>
 
 <p>Down To Code? Let&rsquo;s get our hands dirty!</p>
@@ -472,7 +472,7 @@ import processing.something.*;
 capable of within few lines of code.</p>
 
 <p>Copy the code below into your Processing IDE and see the magic.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Disclaimer: I did not write this program since I currently am occupied with
+<div class="highlight"><pre><span></span>// Disclaimer: I did not write this program since I currently am occupied with
 // internship and this sketch is adapted from openprocessing since it shows
 // something cool with simple codes.
 // Retrieved from: (https://www.openprocessing.org/sketch/559769)
@@ -523,7 +523,7 @@ void branch(float len) {
 
   }
 }
-</code></pre></div>
+</pre></div>
 <p>Processing is easy to learn and is particularly useful to create multimedia
 contents (even in 3D) without having to type a lot of codes. It is so simple
 that you can read through the code and get a rough idea of the program flow.</p>

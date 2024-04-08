@@ -93,344 +93,344 @@
 <p>Du kan utvärdera Nix uttryck genom att använda
 <a href="https://nixos.org/nix/manual/#sec-nix-instantiate">nix-instantiate</a>
 eller <a href="https://github.com/edolstra/nix-repl"><code>nix-repl</code></a>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>with builtins; [
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">builtins</span><span class="p">;</span> <span class="p">[</span>
 
-  #  Kommentarer
-  #=========================================
+  <span class="c1">#  Kommentarer</span>
+  <span class="c1">#=========================================</span>
 
-  # Inlinekommentarer ser ut såhär.
+  <span class="c1"># Inlinekommentarer ser ut såhär.</span>
 
-  /* Flerradskommentarer ser ut
-     såhär. */
+  <span class="cm">/* Flerradskommentarer ser ut</span>
+<span class="cm">     såhär. */</span>
 
 
-  #  Booleaner
-  #=========================================
+  <span class="c1">#  Booleaner</span>
+  <span class="c1">#=========================================</span>
 
-  (true &amp;&amp; false)               # Och
-  #=&gt; false
+  <span class="p">(</span><span class="no">true</span> <span class="o">&amp;&amp;</span> <span class="no">false</span><span class="p">)</span>               <span class="c1"># Och</span>
+  <span class="c1">#=&gt; false</span>
 
-  (true || false)               # Eller
-  #=&gt; true
+  <span class="p">(</span><span class="no">true</span> <span class="o">||</span> <span class="no">false</span><span class="p">)</span>               <span class="c1"># Eller</span>
+  <span class="c1">#=&gt; true</span>
 
-  (if 3 &lt; 4 then "a" else "b")  # Villkorlig
-  #=&gt; "a"
+  <span class="p">(</span><span class="k">if</span> <span class="mi">3</span> <span class="err">&lt;</span> <span class="mi">4</span> <span class="k">then</span> <span class="s2">&quot;a&quot;</span> <span class="k">else</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>  <span class="c1"># Villkorlig</span>
+  <span class="c1">#=&gt; &quot;a&quot;</span>
 
 
-  #  Heltal
-  #=========================================
+  <span class="c1">#  Heltal</span>
+  <span class="c1">#=========================================</span>
 
-  # Heltal är den enda numeriska typen.
+  <span class="c1"># Heltal är den enda numeriska typen.</span>
 
-  1 0 42 (-3)       # Några heltal
+  <span class="mi">1</span> <span class="mi">0</span> <span class="mi">42</span> <span class="p">(</span><span class="err">-</span><span class="mi">3</span><span class="p">)</span>       <span class="c1"># Några heltal</span>
 
-  (4 + 6 + 12 - 2)  # Addition
-  #=&gt; 20
+  <span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">12</span> <span class="err">-</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Addition</span>
+  <span class="c1">#=&gt; 20</span>
 
-  (7 / 2)           # Division
-  #=&gt; 3
+  <span class="p">(</span><span class="mi">7</span> <span class="err">/</span> <span class="mi">2</span><span class="p">)</span>           <span class="c1"># Division</span>
+  <span class="c1">#=&gt; 3</span>
 
 
-  #  Strängar
-  #=========================================
+  <span class="c1">#  Strängar</span>
+  <span class="c1">#=========================================</span>
 
-  "Stränglitteraler omgärdas av raka citationstecken."
+  <span class="s2">&quot;Stränglitteraler omgärdas av raka citationstecken.&quot;</span>
 
-  "
-    Stränglitteraler kan sträcka sig
-    över flera rader.
-  "
+  <span class="s2">&quot;</span>
+<span class="s2">    Stränglitteraler kan sträcka sig</span>
+<span class="s2">    över flera rader.</span>
+<span class="s2">  &quot;</span>
 
-  ''
-    Detta kallas för en indenterad strängliteral, omgärdad av dubbla apostrofer
-    Den plockar intelligent bort ledande blanktecken.
-  ''
+  <span class="s1">&#39;&#39;</span>
+<span class="s1">    Detta kallas för en indenterad strängliteral, omgärdad av dubbla apostrofer</span>
+<span class="s1">    Den plockar intelligent bort ledande blanktecken.</span>
+<span class="s1">  </span><span class="se">&#39;&#39;</span>
 
-  ''
-    a
-      b
-  ''
-  #=&gt; "a\n  b"
+<span class="s1">  </span><span class="se">&#39;&#39;</span>
+<span class="s1">    a</span>
+<span class="s1">      b</span>
+<span class="s1">  </span><span class="se">&#39;&#39;</span>
+<span class="s1">  #=&gt; &quot;a\n  b&quot;</span>
 
-  ("ab" + "cd")   # Strängkonkatenering
-  #=&gt; "abcd"
+<span class="s1">  (&quot;ab&quot; + &quot;cd&quot;)   # Strängkonkatenering</span>
+<span class="s1">  #=&gt; &quot;abcd&quot;</span>
 
-  # Antikvotering låter dig bädda in språkvärden i strängar.
-  ("Din hemkatalog är ${getEnv "HOME"}")
-  #=&gt; "Din hemkatalog är /home/alice"
+<span class="s1">  # Antikvotering låter dig bädda in språkvärden i strängar.</span>
+<span class="s1">  (&quot;Din hemkatalog är </span><span class="si">${</span>getEnv <span class="s2">&quot;HOME&quot;</span><span class="si">}</span><span class="s1">&quot;)</span>
+<span class="s1">  #=&gt; &quot;Din hemkatalog är /home/alice&quot;</span>
 
 
-  #  Sökvägar
-  #=========================================
+<span class="s1">  #  Sökvägar</span>
+<span class="s1">  #=========================================</span>
 
-  # Nix har en primitiv, inbyggd, typ för sökvägar.
-  /tmp/tutorials/learn.nix
+<span class="s1">  # Nix har en primitiv, inbyggd, typ för sökvägar.</span>
+<span class="s1">  /tmp/tutorials/learn.nix</span>
 
-  # Relativa sökvägar förenas med sökvägen till dess definerande fils sökväg
-  # vid tolkningstillfället för att skapa dess absoluta sökväg.
+<span class="s1">  # Relativa sökvägar förenas med sökvägen till dess definerande fils sökväg</span>
+<span class="s1">  # vid tolkningstillfället för att skapa dess absoluta sökväg.</span>
 
-  tutorials/learn.nix
-  #=&gt; /the-base-path/tutorials/learn.nix
+<span class="s1">  tutorials/learn.nix</span>
+<span class="s1">  #=&gt; /the-base-path/tutorials/learn.nix</span>
 
-  # En sökväg måste innehålla åtminstonde ett snedstreck, så en relativ sökväg
-  # till en fil i samma katalog måste ges ett "./" prefix
+<span class="s1">  # En sökväg måste innehålla åtminstonde ett snedstreck, så en relativ sökväg</span>
+<span class="s1">  # till en fil i samma katalog måste ges ett &quot;./&quot; prefix</span>
 
-  ./learn.nix
-  #=&gt; /the-base-path/learn.nix
+<span class="s1">  ./learn.nix</span>
+<span class="s1">  #=&gt; /the-base-path/learn.nix</span>
 
-  # Divisionsoperatorn / måste omges av blanksteg om man vill att det skall
-  # tolkas som heltalsdivision
+<span class="s1">  # Divisionsoperatorn / måste omges av blanksteg om man vill att det skall</span>
+<span class="s1">  # tolkas som heltalsdivision</span>
 
-  7/2        # Detta är en sökväg
-  (7 / 2)    # Detta är heltalsdivision
+<span class="s1">  7/2        # Detta är en sökväg</span>
+<span class="s1">  (7 / 2)    # Detta är heltalsdivision</span>
 
 
-  #  Importer
-  #=========================================
+<span class="s1">  #  Importer</span>
+<span class="s1">  #=========================================</span>
 
-  # En nix fil innehåller ett enstaka topnivåuttryck utan fria variabler.
-  # Ett importuttryck evalueras till värdet på filen som den importerar.
-  (import /tmp/foo.nix)
+<span class="s1">  # En nix fil innehåller ett enstaka topnivåuttryck utan fria variabler.</span>
+<span class="s1">  # Ett importuttryck evalueras till värdet på filen som den importerar.</span>
+<span class="s1">  (import /tmp/foo.nix)</span>
 
-  # Importer kan också specificeras med hjälp av strängar.
-  (import "/tmp/foo.nix")
+<span class="s1">  # Importer kan också specificeras med hjälp av strängar.</span>
+<span class="s1">  (import &quot;/tmp/foo.nix&quot;)</span>
 
-  # Importsökvägar måste vara absoluta. Sökvägslitteraler härleds vid
-  # tolkningstillfället så följande är ok.
-  (import ./foo.nix)
+<span class="s1">  # Importsökvägar måste vara absoluta. Sökvägslitteraler härleds vid</span>
+<span class="s1">  # tolkningstillfället så följande är ok.</span>
+<span class="s1">  (import ./foo.nix)</span>
 
-  # Men detta är inte något som sker med strängar.
-  (import "./foo.nix")
-  #=&gt; error: string ‘foo.nix’ doesn't represent an absolute path
+<span class="s1">  # Men detta är inte något som sker med strängar.</span>
+<span class="s1">  (import &quot;./foo.nix&quot;)</span>
+<span class="s1">  #=&gt; error: string ‘foo.nix’ doesn&#39;t represent an absolute path</span>
 
 
-  #  Let
-  #=========================================
+<span class="s1">  #  Let</span>
+<span class="s1">  #=========================================</span>
 
-  # `let` block tillåter oss att binda värden till namn.
-  (let x = "a"; in
-    x + x + x)
-  #=&gt; "aaa"
+<span class="s1">  # `let` block tillåter oss att binda värden till namn.</span>
+<span class="s1">  (let x = &quot;a&quot;; in</span>
+<span class="s1">    x + x + x)</span>
+<span class="s1">  #=&gt; &quot;aaa&quot;</span>
 
-  # Bindingar kan referera till varandra och deras ordning sinsemellan spelar
-  # ingen roll.
-  (let y = x + "b";
-       x = "a"; in
-    y + "c")
-  #=&gt; "abc"
+<span class="s1">  # Bindingar kan referera till varandra och deras ordning sinsemellan spelar</span>
+<span class="s1">  # ingen roll.</span>
+<span class="s1">  (let y = x + &quot;b&quot;;</span>
+<span class="s1">       x = &quot;a&quot;; in</span>
+<span class="s1">    y + &quot;c&quot;)</span>
+<span class="s1">  #=&gt; &quot;abc&quot;</span>
 
-  # Innre bindningar skuggar utanpåliggande bindingar.
-  (let a = 1; in
-    let a = 2; in
-      a)
-  #=&gt; 2
+<span class="s1">  # Innre bindningar skuggar utanpåliggande bindingar.</span>
+<span class="s1">  (let a = 1; in</span>
+<span class="s1">    let a = 2; in</span>
+<span class="s1">      a)</span>
+<span class="s1">  #=&gt; 2</span>
 
 
-  #  Funktioner
-  #=========================================
+<span class="s1">  #  Funktioner</span>
+<span class="s1">  #=========================================</span>
 
-  (n: n + 1)      # En lambdafunktion som lägger till 1
+<span class="s1">  (n: n + 1)      # En lambdafunktion som lägger till 1</span>
 
-  ((n: n + 1) 5)  # Samma funktion applicerad på 5
-  #=&gt; 6
+<span class="s1">  ((n: n + 1) 5)  # Samma funktion applicerad på 5</span>
+<span class="s1">  #=&gt; 6</span>
 
-  # Det finns ingen syntax för direkt namngivna funktioner, istället binder man
-  # dessa med `let` block som andra värden.
-  (let succ = (n: n + 1); in succ 5)
-  #=&gt; 6
+<span class="s1">  # Det finns ingen syntax för direkt namngivna funktioner, istället binder man</span>
+<span class="s1">  # dessa med `let` block som andra värden.</span>
+<span class="s1">  (let succ = (n: n + 1); in succ 5)</span>
+<span class="s1">  #=&gt; 6</span>
 
-  # En funktion är en lambda med en parameter. Flera parameterar kan ges med
-  # hjälp av currying.
-  ((x: y: x + "-" + y) "a" "b")
-  #=&gt; "a-b"
+<span class="s1">  # En funktion är en lambda med en parameter. Flera parameterar kan ges med</span>
+<span class="s1">  # hjälp av currying.</span>
+<span class="s1">  ((x: y: x + &quot;-&quot; + y) &quot;a&quot; &quot;b&quot;)</span>
+<span class="s1">  #=&gt; &quot;a-b&quot;</span>
 
-  # Vi kan också ha namngivna funktionsparametrar, vilket vi kommer komma till
-  # senare, efter att vi introducerat attributset.
-
-  #  Listor
-  #=========================================
+<span class="s1">  # Vi kan också ha namngivna funktionsparametrar, vilket vi kommer komma till</span>
+<span class="s1">  # senare, efter att vi introducerat attributset.</span>
+
+<span class="s1">  #  Listor</span>
+<span class="s1">  #=========================================</span>
 
-  # Listor noteras med hakparenteser.
+<span class="s1">  # Listor noteras med hakparenteser.</span>
 
-  (length [1 2 3 "x"])
-  #=&gt; 4
+<span class="s1">  (length [1 2 3 &quot;x&quot;])</span>
+<span class="s1">  #=&gt; 4</span>
 
-  ([1 2 3] ++ [4 5])
-  #=&gt; [1 2 3 4 5]
+<span class="s1">  ([1 2 3] ++ [4 5])</span>
+<span class="s1">  #=&gt; [1 2 3 4 5]</span>
 
-  (concatLists [[1 2] [3 4] [5]])
-  #=&gt; [1 2 3 4 5]
+<span class="s1">  (concatLists [[1 2] [3 4] [5]])</span>
+<span class="s1">  #=&gt; [1 2 3 4 5]</span>
 
-  (head [1 2 3])
-  #=&gt; 1
-  (tail [1 2 3])
-  #=&gt; [2 3]
+<span class="s1">  (head [1 2 3])</span>
+<span class="s1">  #=&gt; 1</span>
+<span class="s1">  (tail [1 2 3])</span>
+<span class="s1">  #=&gt; [2 3]</span>
 
-  (elemAt ["a" "b" "c" "d"] 2)
-  #=&gt; "c"
+<span class="s1">  (elemAt [&quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;] 2)</span>
+<span class="s1">  #=&gt; &quot;c&quot;</span>
 
-  (elem 2 [1 2 3])
-  #=&gt; true
-  (elem 5 [1 2 3])
-  #=&gt; false
+<span class="s1">  (elem 2 [1 2 3])</span>
+<span class="s1">  #=&gt; true</span>
+<span class="s1">  (elem 5 [1 2 3])</span>
+<span class="s1">  #=&gt; false</span>
 
-  (filter (n: n &lt; 3) [1 2 3 4])
-  #=&gt; [ 1 2 ]
+<span class="s1">  (filter (n: n &lt; 3) [1 2 3 4])</span>
+<span class="s1">  #=&gt; [ 1 2 ]</span>
 
 
-  #  Mängder
-  #=========================================
+<span class="s1">  #  Mängder</span>
+<span class="s1">  #=========================================</span>
 
-  # Ett attributset är en oordnad mappning av strängnycklar och värden.
-  { foo = [1 2]; bar = "x"; }
+<span class="s1">  # Ett attributset är en oordnad mappning av strängnycklar och värden.</span>
+<span class="s1">  { foo = [1 2]; bar = &quot;x&quot;; }</span>
 
-  # Punktoperatorn . väljer ett värde från attributset:et
-  { a = 1; b = 2; }.a
-  #=&gt; 1
+<span class="s1">  # Punktoperatorn . väljer ett värde från attributset:et</span>
+<span class="s1">  { a = 1; b = 2; }.a</span>
+<span class="s1">  #=&gt; 1</span>
 
-  # Frågeoperatorn ? testar om en nyckel är närvarande i ett attributset
-  ({ a = 1; b = 2; } ? a)
-  #=&gt; true
-  ({ a = 1; b = 2; } ? c)
-  #=&gt; false
+<span class="s1">  # Frågeoperatorn ? testar om en nyckel är närvarande i ett attributset</span>
+<span class="s1">  ({ a = 1; b = 2; } ? a)</span>
+<span class="s1">  #=&gt; true</span>
+<span class="s1">  ({ a = 1; b = 2; } ? c)</span>
+<span class="s1">  #=&gt; false</span>
 
-  # Snedstrecksoperatorn // slår ihop två attributset:ar.
-  ({ a = 1; } // { b = 2; })
-  #=&gt; { a = 1; b = 2; }
+<span class="s1">  # Snedstrecksoperatorn // slår ihop två attributset:ar.</span>
+<span class="s1">  ({ a = 1; } // { b = 2; })</span>
+<span class="s1">  #=&gt; { a = 1; b = 2; }</span>
 
-  # Värden på höger skriver över värden till vänster.
-  ({ a = 1; b = 2; } // { a = 3; c = 4; })
-  #=&gt; { a = 3; b = 2; c = 4; }
+<span class="s1">  # Värden på höger skriver över värden till vänster.</span>
+<span class="s1">  ({ a = 1; b = 2; } // { a = 3; c = 4; })</span>
+<span class="s1">  #=&gt; { a = 3; b = 2; c = 4; }</span>
 
-  # Recursionsnyckelordet rec noterar ett rekursivt attributset (en fixpunkt)
-  # i vilket attributen kan referera till varandra.
-  (let a = 1; in     { a = 2; b = a; }.b)
-  #=&gt; 1
-  (let a = 1; in rec { a = 2; b = a; }.b)
-  #=&gt; 2
+<span class="s1">  # Recursionsnyckelordet rec noterar ett rekursivt attributset (en fixpunkt)</span>
+<span class="s1">  # i vilket attributen kan referera till varandra.</span>
+<span class="s1">  (let a = 1; in     { a = 2; b = a; }.b)</span>
+<span class="s1">  #=&gt; 1</span>
+<span class="s1">  (let a = 1; in rec { a = 2; b = a; }.b)</span>
+<span class="s1">  #=&gt; 2</span>
 
-  # Nästlade attributset:ar kan definieras bit för bit.
-  {
-    a.b   = 1;
-    a.c.d = 2;
-    a.c.e = 3;
-  }.a.c
-  #=&gt; { d = 2; e = 3; }
+<span class="s1">  # Nästlade attributset:ar kan definieras bit för bit.</span>
+<span class="s1">  {</span>
+<span class="s1">    a.b   = 1;</span>
+<span class="s1">    a.c.d = 2;</span>
+<span class="s1">    a.c.e = 3;</span>
+<span class="s1">  }.a.c</span>
+<span class="s1">  #=&gt; { d = 2; e = 3; }</span>
 
-  # Ett attributsets barn kan inte tilldelas på detta vis om attributsetet
-  # självt blivit direkt tilldelat.
-  {
-    a = { b = 1; };
-    a.c = 2;
-  }
-  #=&gt; error: attribute ‘a’ already defined
-
+<span class="s1">  # Ett attributsets barn kan inte tilldelas på detta vis om attributsetet</span>
+<span class="s1">  # självt blivit direkt tilldelat.</span>
+<span class="s1">  {</span>
+<span class="s1">    a = { b = 1; };</span>
+<span class="s1">    a.c = 2;</span>
+<span class="s1">  }</span>
+<span class="s1">  #=&gt; error: attribute ‘a’ already defined</span>
+
 
-  #  Bindningsintroduktion, `with`
-  #=========================================
-
-  # Det attributset vilket återfinns i ett `with` uttryck kommer få sina
-  # värdebindningar introducerade i efterkommande uttryck.
-  (with { a = 1; b = 2; };
-    a + b)
-  # =&gt; 3
-
-  # Innre bindningar skuggar yttre bindningar.
-  (with { a = 1; b = 2; };
-    (with { a = 5; };
-      a + b))
-  #=&gt; 7
-
-  # Första raden av detta exempel börjar med "with builtins;" eftersom builtins
-  # är ett attributset innehållande alla inbyggda hjälpfunktioner såsom
-  # (length, head, tail, filter, etc.). Detta sparar oss från att hela tiden
-  # referera in i det attributset:et , alltså du kan använda bara "length"
-  # istället för "builtins.length".
-
-
-  #  Attributsetmönster
-  #=========================================
-
-  # Attributset är användbara när vi skall skicka med flera värden till en
-  # funktion.
-  (args: args.x + "-" + args.y) { x = "a"; y = "b"; }
-  #=&gt; "a-b"
-
-  # Man kan använda attributsetmönster för ökad tydlighet.
-  ({x, y}: x + "-" + y) { x = "a"; y = "b"; }
-  #=&gt; "a-b"
-
-  # Attributmönster misslyckas dock om det medskickade attributmönstret
-  # innehåller extra nycklar.
-  ({x, y}: x + "-" + y) { x = "a"; y = "b"; z = "c"; }
-  #=&gt; error: anonymous function called with unexpected argument ‘z’
-
-  # Genom att lägga till ", ..." kan vi ignorera ytterliggare nycklar.
-  ({x, y, ...}: x + "-" + y) { x = "a"; y = "b"; z = "c"; }
-  #=&gt; "a-b"
-
-
-  #  Felmeddelanden
-  #=========================================
-
-  # `throw` gör att programtolken gör abort med dess tillhörande felmeddelande
-  causes evaluation to abort with an error message.
-  (2 + (throw "foo"))
-  #=&gt; error: foo
-
-  # `tryEval` fångar kastade fel `throw`.
-  (tryEval 42)
-  #=&gt; { success = true; value = 42; }
-  (tryEval (2 + (throw "foo")))
-  #=&gt; { success = false; value = false; }
-
-  # `abort` fungerar som `throw`, men är kritiskt och kan inte fångas.
-  (tryEval (abort "foo"))
-  #=&gt; error: evaluation aborted with the following error message: ‘foo’
-
-  # `assert` utvärderas till det givna värdet om dess predikat är sant.
-  # annars skickar den ett fångbart fel.
-  (assert 1 &lt; 2; 42)
-  #=&gt; 42
-  (assert 1 &gt; 2; 42)
-  #=&gt; error: assertion failed at (string):1:1
-  (tryEval (assert 1 &gt; 2; 42))
-  #=&gt; { success = false; value = false; }
-
-
-  #  Orenhet
-  #=========================================
-
-  # Eftersom repeterbarhet för byggen är en kritisk egenskap för
-  # Nix-pakethanteraren betonas funktionell renhet i Nix-programmeringsspråket.
-  # Men med det sagt existerar det källor till orenhet
-
-  # Man kan referera till miljövariabler.
-  (getEnv "HOME")
-  #=&gt; "/home/alice"
-
-  # `trace` funktionen används för att debugga. Den skriver ut första argumentet
-  # till stderr och reduceras samtidigt till det andra argumentet.
-  (trace 1 2)
-  #=&gt; trace: 1
-  #=&gt; 2
-
-  # Man kan skriva filer till Nix-store, lagringsplatsen för alla Nix-uttryck.
-  # Även om detta är orent beteende är det hyfsat säkert eftersom filens
-  # lagringsplats är härledd från dess innehåll och beroenden. Man kan läsa
-  # filer från precis överallt. I nedanstående exempel skriver vi en fil till
-  # Nix-store och sedan läser tillbaka den.
-
-  (let filename = toFile "foo.txt" "hello!"; in
-    [filename (builtins.readFile filename)])
-  #=&gt; [ "/nix/store/ayh05aay2anx135prqp0cy34h891247x-foo.txt" "hello!" ]
-
-  # Vi kan också ladda ned filer till Nix-store.
-  (fetchurl "https://example.com/package-1.2.3.tgz")
-  #=&gt; "/nix/store/2drvlh8r57f19s9il42zg89rdr33m2rm-package-1.2.3.tgz"
-
-]
-</code></pre></div>
+<span class="s1">  #  Bindningsintroduktion, `with`</span>
+<span class="s1">  #=========================================</span>
+
+<span class="s1">  # Det attributset vilket återfinns i ett `with` uttryck kommer få sina</span>
+<span class="s1">  # värdebindningar introducerade i efterkommande uttryck.</span>
+<span class="s1">  (with { a = 1; b = 2; };</span>
+<span class="s1">    a + b)</span>
+<span class="s1">  # =&gt; 3</span>
+
+<span class="s1">  # Innre bindningar skuggar yttre bindningar.</span>
+<span class="s1">  (with { a = 1; b = 2; };</span>
+<span class="s1">    (with { a = 5; };</span>
+<span class="s1">      a + b))</span>
+<span class="s1">  #=&gt; 7</span>
+
+<span class="s1">  # Första raden av detta exempel börjar med &quot;with builtins;&quot; eftersom builtins</span>
+<span class="s1">  # är ett attributset innehållande alla inbyggda hjälpfunktioner såsom</span>
+<span class="s1">  # (length, head, tail, filter, etc.). Detta sparar oss från att hela tiden</span>
+<span class="s1">  # referera in i det attributset:et , alltså du kan använda bara &quot;length&quot;</span>
+<span class="s1">  # istället för &quot;builtins.length&quot;.</span>
+
+
+<span class="s1">  #  Attributsetmönster</span>
+<span class="s1">  #=========================================</span>
+
+<span class="s1">  # Attributset är användbara när vi skall skicka med flera värden till en</span>
+<span class="s1">  # funktion.</span>
+<span class="s1">  (args: args.x + &quot;-&quot; + args.y) { x = &quot;a&quot;; y = &quot;b&quot;; }</span>
+<span class="s1">  #=&gt; &quot;a-b&quot;</span>
+
+<span class="s1">  # Man kan använda attributsetmönster för ökad tydlighet.</span>
+<span class="s1">  ({x, y}: x + &quot;-&quot; + y) { x = &quot;a&quot;; y = &quot;b&quot;; }</span>
+<span class="s1">  #=&gt; &quot;a-b&quot;</span>
+
+<span class="s1">  # Attributmönster misslyckas dock om det medskickade attributmönstret</span>
+<span class="s1">  # innehåller extra nycklar.</span>
+<span class="s1">  ({x, y}: x + &quot;-&quot; + y) { x = &quot;a&quot;; y = &quot;b&quot;; z = &quot;c&quot;; }</span>
+<span class="s1">  #=&gt; error: anonymous function called with unexpected argument ‘z’</span>
+
+<span class="s1">  # Genom att lägga till &quot;, ...&quot; kan vi ignorera ytterliggare nycklar.</span>
+<span class="s1">  ({x, y, ...}: x + &quot;-&quot; + y) { x = &quot;a&quot;; y = &quot;b&quot;; z = &quot;c&quot;; }</span>
+<span class="s1">  #=&gt; &quot;a-b&quot;</span>
+
+
+<span class="s1">  #  Felmeddelanden</span>
+<span class="s1">  #=========================================</span>
+
+<span class="s1">  # `throw` gör att programtolken gör abort med dess tillhörande felmeddelande</span>
+<span class="s1">  causes evaluation to abort with an error message.</span>
+<span class="s1">  (2 + (throw &quot;foo&quot;))</span>
+<span class="s1">  #=&gt; error: foo</span>
+
+<span class="s1">  # `tryEval` fångar kastade fel `throw`.</span>
+<span class="s1">  (tryEval 42)</span>
+<span class="s1">  #=&gt; { success = true; value = 42; }</span>
+<span class="s1">  (tryEval (2 + (throw &quot;foo&quot;)))</span>
+<span class="s1">  #=&gt; { success = false; value = false; }</span>
+
+<span class="s1">  # `abort` fungerar som `throw`, men är kritiskt och kan inte fångas.</span>
+<span class="s1">  (tryEval (abort &quot;foo&quot;))</span>
+<span class="s1">  #=&gt; error: evaluation aborted with the following error message: ‘foo’</span>
+
+<span class="s1">  # `assert` utvärderas till det givna värdet om dess predikat är sant.</span>
+<span class="s1">  # annars skickar den ett fångbart fel.</span>
+<span class="s1">  (assert 1 &lt; 2; 42)</span>
+<span class="s1">  #=&gt; 42</span>
+<span class="s1">  (assert 1 &gt; 2; 42)</span>
+<span class="s1">  #=&gt; error: assertion failed at (string):1:1</span>
+<span class="s1">  (tryEval (assert 1 &gt; 2; 42))</span>
+<span class="s1">  #=&gt; { success = false; value = false; }</span>
+
+
+<span class="s1">  #  Orenhet</span>
+<span class="s1">  #=========================================</span>
+
+<span class="s1">  # Eftersom repeterbarhet för byggen är en kritisk egenskap för</span>
+<span class="s1">  # Nix-pakethanteraren betonas funktionell renhet i Nix-programmeringsspråket.</span>
+<span class="s1">  # Men med det sagt existerar det källor till orenhet</span>
+
+<span class="s1">  # Man kan referera till miljövariabler.</span>
+<span class="s1">  (getEnv &quot;HOME&quot;)</span>
+<span class="s1">  #=&gt; &quot;/home/alice&quot;</span>
+
+<span class="s1">  # `trace` funktionen används för att debugga. Den skriver ut första argumentet</span>
+<span class="s1">  # till stderr och reduceras samtidigt till det andra argumentet.</span>
+<span class="s1">  (trace 1 2)</span>
+<span class="s1">  #=&gt; trace: 1</span>
+<span class="s1">  #=&gt; 2</span>
+
+<span class="s1">  # Man kan skriva filer till Nix-store, lagringsplatsen för alla Nix-uttryck.</span>
+<span class="s1">  # Även om detta är orent beteende är det hyfsat säkert eftersom filens</span>
+<span class="s1">  # lagringsplats är härledd från dess innehåll och beroenden. Man kan läsa</span>
+<span class="s1">  # filer från precis överallt. I nedanstående exempel skriver vi en fil till</span>
+<span class="s1">  # Nix-store och sedan läser tillbaka den.</span>
+
+<span class="s1">  (let filename = toFile &quot;foo.txt&quot; &quot;hello!&quot;; in</span>
+<span class="s1">    [filename (builtins.readFile filename)])</span>
+<span class="s1">  #=&gt; [ &quot;/nix/store/ayh05aay2anx135prqp0cy34h891247x-foo.txt&quot; &quot;hello!&quot; ]</span>
+
+<span class="s1">  # Vi kan också ladda ned filer till Nix-store.</span>
+<span class="s1">  (fetchurl &quot;https://example.com/package-1.2.3.tgz&quot;)</span>
+<span class="s1">  #=&gt; &quot;/nix/store/2drvlh8r57f19s9il42zg89rdr33m2rm-package-1.2.3.tgz&quot;</span>
+
+<span class="s1">]</span>
+</pre></div>
 <h3>Vidare Läsning (eng)</h3>
 
 <ul>
@@ -445,7 +445,7 @@ eller <a href="https://github.com/edolstra/nix-repl"><code>nix-repl</code></a>.<
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the Github Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/sv-se/nix-sv.html.markdown">pull request</a> yourself!
     </p>
     <p class="contributed">
-    Originally contributed by Chris Martin, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/sv-se/nix-sv.html.markdown">3 contributor(s)</a>.
+    Originally contributed by Chris Martin, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/sv-se/nix-sv.html.markdown">4 contributor(s)</a>.
     </p>
 
     <footer>

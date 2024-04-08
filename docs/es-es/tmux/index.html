@@ -90,16 +90,16 @@
 multiples terminales desde una sola ventana.  Puede desconectarse una sesión de
 la ventana, seguir corriendo en segundo plano y volver a conectar otra ventana
 más tarde.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>  tmux [command]     # Correr un comando de tmux
-                     # 'tmux' sin comando crea una nueva sesión.
+<div class="highlight"><pre><span></span>  tmux [command]     # Correr un comando de tmux
+                     # &#39;tmux&#39; sin comando crea una nueva sesión.
 
     new              # Crear una nueva sesión
-     -s "Session"    # Crear una sesión con nombre
-     -n "Window"     # Crear una ventana con nombre
-     -c "/dir"       # Empezar en el directorio "/dir"
+     -s &quot;Session&quot;    # Crear una sesión con nombre
+     -n &quot;Window&quot;     # Crear una ventana con nombre
+     -c &quot;/dir&quot;       # Empezar en el directorio &quot;/dir&quot;
 
     attach           # Atar la ventana a la ultima sesión iniciada
-     -t "#"          # Atar la ventana a la sesión "#"
+     -t &quot;#&quot;          # Atar la ventana a la sesión &quot;#&quot;
      -d              # Desatar la ventana de la sesión
 
     ls               # Listar las sesiones abiertas
@@ -115,20 +115,20 @@ más tarde.</p>
      -t              # Listar paneles de la aplicación en el target
 
     kill-window      # Eliminar la ventana actual
-     -t "#"          # Eliminar la ventana "#"
+     -t &quot;#&quot;          # Eliminar la ventana &quot;#&quot;
      -a              # Eliminar todas las ventanas
-     -a -t "#"       # Eliminar todas las ventanas menos la "#"
+     -a -t &quot;#&quot;       # Eliminar todas las ventanas menos la &quot;#&quot;
 
     kill-session     # Eliminar la sesión actual
-     -t "#"          # Eliminar la sesión "#"
+     -t &quot;#&quot;          # Eliminar la sesión &quot;#&quot;
      -a              # Eliminar todas las sessiones
-     -a -t "#"       # Eliminar todas las sessiones menos la "#"
-</code></pre></div>
+     -a -t &quot;#&quot;       # Eliminar todas las sessiones menos la &quot;#&quot;
+</pre></div>
 <h3>Atajos de teclado</h3>
 
 <p>Para controlar una sesión atada se usa la combinación llamada &lsquo;Prefijo&rsquo; + atajo.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>----------------------------------------------------------------------
-  (C-b) = Ctrl + b    # 'Prefijo' por defecto requerido para usar los atajos
+<div class="highlight"><pre><span></span>----------------------------------------------------------------------
+  (C-b) = Ctrl + b    # &#39;Prefijo&#39; por defecto requerido para usar los atajos
 
   (M-1) = Meta + 1 -o- Alt + 1
 ----------------------------------------------------------------------
@@ -140,7 +140,7 @@ más tarde.</p>
 
   !                  # Quitar el panel actual de la ventana
   %                  # Dividir el panel actual en dos (derecha e izquierda)
-  "                  # Dividir el panel actual en dos (arriba y abajo)
+  &quot;                  # Dividir el panel actual en dos (arriba y abajo)
 
   n                  # Cambiar a la siguiente ventana
   p                  # Cambiar a la ventana anterior
@@ -168,12 +168,12 @@ más tarde.</p>
 
   M-Up, M-Down       # Dimensionar el panel actual en pasos de cinco celdas
   M-Left, M-Right
-</code></pre></div>
+</pre></div>
 <h3>Configurar ~/.tmux.conf</h3>
 
 <p>El fichero tmux.conf se puede configurar para establecer unas opciones por
 defecto, igual que .vimrc o init.el para vim o emacs.</p>
-<div class="highlight"><pre class="highlight plaintext"><code># Ejemplo tmux.conf
+<div class="highlight"><pre><span></span># Ejemplo tmux.conf
 # 2014.10
 
 
@@ -234,7 +234,7 @@ bind F swap-window -t +1
 # Divisiones de paneles
 bind = split-window -h
 bind - split-window -v
-unbind '"'
+unbind &#39;&quot;&#39;
 unbind %
 
 ### Tema de colores
@@ -279,16 +279,16 @@ set-option -g visual-bell off
 
 # Titulos de las ventanas
 set-option -g set-titles on
-set-option -g set-titles-string '#H:#S.#I.#P #W #T' # window number,program name,active (or not)
+set-option -g set-titles-string &#39;#H:#S.#I.#P #W #T&#39; # window number,program name,active (or not)
 
 # Formato de la barra de estado
-set -g status-left "#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]"
+set -g status-left &quot;#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]&quot;
 
 # Mostrar estadisticas de rendimiento en la barra de estado
 # Requiere https://github.com/thewtex/tmux-mem-cpu-load/
 set -g status-interval 4
-set -g status-right "#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]"
-</code></pre></div>
+set -g status-right &quot;#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]&quot;
+</pre></div>
 <h3>Referencias</h3>
 
 <p><a href="http://tmux.sourceforge.net">Tmux | Home</a></p>

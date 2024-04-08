@@ -156,7 +156,7 @@ Você pode encadear vários relacionamentos. Este path descreve o amigo de um am
 Uma encadeamento também pode ser direcionada. Este path descreve que <strong>a</strong> é o chefe de <strong>b</strong> e o grande chefe de <strong>c</strong>.</p>
 
 <p>Padrões frequentemente usados ​​(do Neo4j doc) :</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Amigo de um amigo
+<div class="highlight"><pre><span></span>// Amigo de um amigo
 (user)-[:KNOWS]-(friend)-[:KNOWS]-(foaf)
 
 // Path mais curto
@@ -167,97 +167,97 @@ path = shortestPath( (user)-[:KNOWS*..5]-(other) )
 
 // Navegação de árvore
 (root)&lt;-[:PARENT*]-(leaf:Category)-[:ITEM]-&gt;(data:Product)
-</code></pre></div>
+</pre></div>
 <h2>Crie consultas</h2>
 
 <p>Crie um novo nó</p>
-<div class="highlight"><pre class="highlight plaintext"><code>CREATE (a:Person {name:"Théo Gauchoux"})
+<div class="highlight"><pre><span></span>CREATE (a:Person {name:&quot;Théo Gauchoux&quot;})
 RETURN a
-</code></pre></div>
+</pre></div>
 <p><em><code>RETURN</code> permite ter um resultado após a consulta. Pode ser múltiplo, como <code>RETURN a, b</code>.</em></p>
 
 <p>Crie um novo relacionamento (com 2 novos nós)</p>
-<div class="highlight"><pre class="highlight plaintext"><code>CREATE (a:Person)-[k:KNOWS]-(b:Person)
+<div class="highlight"><pre><span></span>CREATE (a:Person)-[k:KNOWS]-(b:Person)
 RETURN a,k,b
-</code></pre></div>
+</pre></div>
 <h2>Consultas que casam</h2>
 
 <p>Casam todos os nós</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (n)
+<div class="highlight"><pre><span></span>MATCH (n)
 RETURN n
-</code></pre></div>
+</pre></div>
 <p>Casam nós por label</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a:Person)
+<div class="highlight"><pre><span></span>MATCH (a:Person)
 RETURN a
-</code></pre></div>
+</pre></div>
 <p>Casam nós por label e propriedade</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a:Person {name:"Théo Gauchoux"})
+<div class="highlight"><pre><span></span>MATCH (a:Person {name:&quot;Théo Gauchoux&quot;})
 RETURN a
-</code></pre></div>
+</pre></div>
 <p>Casam nós de acordo com os relacionamentos (não direcionados)</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a)-[:KNOWS]-(b)
+<div class="highlight"><pre><span></span>MATCH (a)-[:KNOWS]-(b)
 RETURN a,b
-</code></pre></div>
+</pre></div>
 <p>Casam nós de acordo com os relacionamentos (direcionados)</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a)-[:MANAGES]-&gt;(b)
+<div class="highlight"><pre><span></span>MATCH (a)-[:MANAGES]-&gt;(b)
 RETURN a,b
-</code></pre></div>
+</pre></div>
 <p>Casam nós com um cláusula <code>WHERE</code></p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person {name:"Théo Gauchoux"})-[s:LIVES_IN]-&gt;(city:City)
+<div class="highlight"><pre><span></span>MATCH (p:Person {name:&quot;Théo Gauchoux&quot;})-[s:LIVES_IN]-&gt;(city:City)
 WHERE s.since = 2015
 RETURN p,state
-</code></pre></div>
+</pre></div>
 <p>Você pode usa a cláusula <code>MATCH WHERE</code> com a cláusula <code>CREATE</code></p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a), (b)
-WHERE a.name = "Jacquie" AND b.name = "Michel"
+<div class="highlight"><pre><span></span>MATCH (a), (b)
+WHERE a.name = &quot;Jacquie&quot; AND b.name = &quot;Michel&quot;
 CREATE (a)-[:KNOWS]-(b)
-</code></pre></div>
+</pre></div>
 <h2>Atualizar consultas</h2>
 
 <p>Atualizar uma propriedade específica de um nó</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 SET p.age = 23
-</code></pre></div>
+</pre></div>
 <p>Substituir todas as propriedades de um nó</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
-SET p = {name: "Michel", age: 23}
-</code></pre></div>
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
+SET p = {name: &quot;Michel&quot;, age: 23}
+</pre></div>
 <p>Adicionar nova propriedade a um nó</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
-SET p + = {studies: "IT Engineering"}
-</code></pre></div>
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
+SET p + = {studies: &quot;IT Engineering&quot;}
+</pre></div>
 <p>Adicione um label a um nó</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 SET p:Internship
-</code></pre></div>
+</pre></div>
 <h2>Excluir consultas</h2>
 
 <p>Excluir um nó específico (os relacionamentos vinculados devem ser excluídos antes)</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)-[relationship]-()
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)-[relationship]-()
+WHERE p.name = &quot;Théo Gauchoux&quot;
 DELETE relationship, p
-</code></pre></div>
+</pre></div>
 <p>Remover uma propriedade em um nó específico</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 REMOVE p.age
-</code></pre></div>
+</pre></div>
 <p><em>Prestar atenção à palavra chave <code>REMOVE</code>, não é <code>DELETE</code> !</em></p>
 
 <p>Remover um label de um nó específico</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 DELETE p:Person
-</code></pre></div>
+</pre></div>
 <p>Excluir o banco de dados inteiro</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (n)
+<div class="highlight"><pre><span></span>MATCH (n)
 OPTIONAL MATCH (n)-[r]-()
 DELETE n, r
-</code></pre></div>
+</pre></div>
 <p><em>Sério, é o <code>rm -rf /</code> do Cypher !</em></p>
 
 <h2>Outras cláusulas úteis</h2>

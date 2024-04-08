@@ -90,7 +90,7 @@
 lenguaje de programación extremadamente pequeño, Turing completo con sólo 8 comandos.</p>
 
 <p>Puedes probar brainfuck en tu navegador con <a href="http://fatiherikli.github.io/brainfuck-visualizer/">brainfuck-visualizer</a>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Cualquier caracter que no sea "&gt;&lt;+-.,[]" (sin incluir las comillas)
+<div class="highlight"><pre><span></span>Cualquier caracter que no sea &quot;&gt;&lt;+-.,[]&quot; (sin incluir las comillas)
 será ignorado.
 
 Brainfuck es representado por un arreglo de 30,000 celdas inicializadas
@@ -102,14 +102,14 @@ Existen ocho comandos:
 - : Decrementa 1 al valor de la celda actual.
 &gt; : Mueve el apuntador a la siguiente celda. (a la derecha)
 &lt; : Mueve el apuntador a la celda anterior. (a la izquierda)
-. : Imprime el valor en ASCII de la celda actual (p.e. 65 = 'A')
+. : Imprime el valor en ASCII de la celda actual (p.e. 65 = &#39;A&#39;)
 , : Lee un caracter como input y lo escribe en la celda actual.
 [ : Si el valor en la celda actual es cero mueve el apuntador
-    hasta el primer ']' que encuentre. Si no es cero sigue a la
+    hasta el primer &#39;]&#39; que encuentre. Si no es cero sigue a la
     siguiente instrucción.
 ] : Si el valor en la celda actual es cero, entonces sigue con 
     la siguiente instrucción. Si no entonces mueve el apuntador
-    hacia atrás    hasta encontrar el primer '['.
+    hacia atrás    hasta encontrar el primer &#39;[&#39;.
 
 [ y ] forman un while. Obviamente, deben estar balanceados.
 
@@ -117,7 +117,7 @@ Estos son algunos ejemplos de programas escritos con brainfuck.
 
 ++++++ [ &gt; ++++++++++ &lt; - ] &gt; +++++ .
 
-Este programa imprime la letra 'A'. Primero, incrementa la celda #1 a 
+Este programa imprime la letra &#39;A&#39;. Primero, incrementa la celda #1 a 
 6. La celda #1 será usada para hacer los ciclos. Después entra al ciclo
 ([) y se mueve a la celda #2 (&gt;). Después incrementa la celda #2 10 veces,
 y se regresa a la celda #1 (&lt;), para después decrementarla en 1 (-).
@@ -127,7 +127,7 @@ cuando esto pasa se salta a (]) y continúa.
 En este punto estamos en la celda #1, que tiene un valor de 0, mientras
 que la celda #2 tiene un valor de 60. Nos movemos a la celda #2 (&gt;),
 la incrementamos 5 veces para tener un valor de 65 y luego imprimimos
-el valor de la celda #2 (.). 65 es 'A' en ASCII así que la letra 'A'
+el valor de la celda #2 (.). 65 es &#39;A&#39; en ASCII así que la letra &#39;A&#39;
 se imprime.
 
 , [ &gt; + &lt; - ] &gt; .
@@ -156,7 +156,7 @@ Sin embargo viene un problema: El ciclo interior no funcionará nuevamente
 hasta la próxima vez. Para resolver este problema también incrementamos la
 celda #4 y luego copiamos la celda #4 a la celda #2. La celda #3 contiene
 el resultado.
-</code></pre></div>
+</pre></div>
 <p>Y eso es brainfuck. No es tan difícil, ¿verdad? Como diversión, puedes escribir
 tu propio intérprete de brainfuck o tu propio programa en brainfuck. El
 intérprete es relativamente sencillo de hacer, pero si eres masoquista,

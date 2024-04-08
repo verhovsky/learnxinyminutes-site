@@ -89,17 +89,17 @@
     <p>Brainfuck (schrijf je niet met een hoofdletter behalve aan het begin van een
 zin) is een extreem
 minimalistische Turing-complete programmeertaal met maar acht commando&rsquo;s.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Elk karakter behalve "&gt;&lt;+-.,[]" (en de quotes) wordt genegeerd.
+<div class="highlight"><pre><span></span>Elk karakter behalve &quot;&gt;&lt;+-.,[]&quot; (en de quotes) wordt genegeerd.
 
 Brainfuck wordt gerepresenteerd door een array met 30.000 cellen die initieel
 gevuld is met nullen en een pointer die wijst naar de huidige cel.
 
-Dit zijn de acht commando's:
+Dit zijn de acht commando&#39;s:
 + : Verhoog de huidige cell met 1.
 - : Verminder de huidige cell met 1.
 &gt; : Beweeg de pointer naar de volgende cell (één naar rechts).
 &lt; : Beweeg de pointer naar de vorige cell (één naar links).
-. : Print de huidige cell als een ASCII karakter(d.w.z. 65 = 'A').
+. : Print de huidige cell als een ASCII karakter(d.w.z. 65 = &#39;A&#39;).
 , : Lees een karakter in de huidige cell.
 [ : Als de huidige cell nul is ga dan naar de bijbehorende ] .
     Als het geen nul is, ga dan gewoon verder.
@@ -108,11 +108,11 @@ Dit zijn de acht commando's:
 
 [ en ] maken een while loop. Ze moeten uiteraard wel gebalanceerd zijn
 
-Laten we een kijkje nemen naar een paar brainfuck programma's.
+Laten we een kijkje nemen naar een paar brainfuck programma&#39;s.
 
 ++++++ [ &gt; ++++++++++ &lt; - ] &gt; +++++ .
 
-Dit programma print het karakter 'A'. Eerst verhoogt het cell #1 tot 6.
+Dit programma print het karakter &#39;A&#39;. Eerst verhoogt het cell #1 tot 6.
 Cell #1 wordt gebruikt om te loopen. Dan begint het de loop ([) en gaat
 naar cell #2. Het verhoogt cell #2 tien keer, gaat terug naar cell #1, en
 verlaagt cell #1. Deze loop gebeurt zes keer (na zes keer staat cell #1
@@ -122,7 +122,7 @@ verder gaat).
 De pointer staat nu weer op cell #1, deze heeft een waarde van 0, en cell #2
 heeft een waarde van 60. &gt; beweegt de pointer naar cell #2, daarna verhoogt
 het de cell vijf keer, waardoor het een waarde van 65 bevat, en print dan
-de waarde van cell #2. 65 is 'A' in ASCII, dus 'A' wordt geprint in de terminal.
+de waarde van cell #2. 65 is &#39;A&#39; in ASCII, dus &#39;A&#39; wordt geprint in de terminal.
 
 
 , [ &gt; + &lt; - ] &gt; .
@@ -152,7 +152,7 @@ dan is er een probleem als cel #2 nul wordt aan het einde van de binnenste loop.
 Om dit op te lossen wordt ook cel #4 verhoogd naar het oorspronkelijke getal
 uit cel #2 en daarna wordt cel #4 weer gekopieerd naar cell #2.
 Het resultaat komt in cel #3 te staan.
-</code></pre></div>
+</pre></div>
 <p>En dat is dan brainfuck. Niet heel moeilijk, toch? Je kan zelf voor de lol
 brainfuck programma&rsquo;s gaan schrijven, of je kan een interpreter schrijven
 voor brainfuck in een andere taal. Het is namelijk redelijk makkelijk om te

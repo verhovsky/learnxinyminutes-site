@@ -101,10 +101,10 @@ acordo com a quantidade ou número de dados. Por exemplo, iniciando do elemento
 mais a esquerda de arr[] e um a um comparar x com cada elemento de arr[], se x 
 coincide com um elemento, retornar seu índice. Se x não coincide com nenhum dos 
 elementos, retornar -1.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Busca Linear: O (n)               Tempo Linear
+<div class="highlight"><pre><span></span>Busca Linear: O (n)               Tempo Linear
 
 Busca Binária: O ( log(n) )           Tempo Logarítmico
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>def busca(arr, x):
+</pre></div><div class="highlight"><pre><span></span>def busca(arr, x):
 
     for i in range(len(arr)):
 
@@ -112,14 +112,14 @@ Busca Binária: O ( log(n) )           Tempo Logarítmico
             return i
 
     return -1
-</code></pre></div>
+</pre></div>
 <h2>Algoritmo de Busca Binária</h2>
 
 <p>O pré-requisito básico para que uma busca binária funcione é que os dados que se
 desejam buscar devem estar ordenados (em qualquer ordem).</p>
 
 <h3>Pseudocódigo</h3>
-<div class="highlight"><pre class="highlight plaintext"><code>A ideia da busca binária é usar a informação de que o array está ordenado e 
+<div class="highlight"><pre><span></span>A ideia da busca binária é usar a informação de que o array está ordenado e 
 reduzir a complexidade de tempo para O(Log n). Nós basicamente ignoramos metade 
 dos elementos após uma comparação.
 
@@ -130,7 +130,7 @@ direito do elemento do meio. Portanto nós pulamos para a metade direita.
 4) Senão (x é menor) pulamos para a metade esquerda.
 
 Essa é a ideia da implementação recursiva da busca binária.
-</code></pre></div>
+</pre></div>
 <h3>Considerações Finais</h3>
 
 <p>Existem outras formas de busca binária que são muito úteis.</p>

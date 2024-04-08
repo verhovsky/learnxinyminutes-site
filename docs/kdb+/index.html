@@ -107,7 +107,7 @@ separable so this distinction is not really useful.</p>
 at jonny.press@aquaq.co.uk</p>
 
 <p>To learn more about kdb+ you can join the <a href="https://groups.google.com/forum/#!forum/personal-kdbplus">Personal kdb+</a> or <a href="https://groups.google.com/forum/#!forum/kdbtorq">TorQ kdb+</a> group.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>/ Single line comments start with a forward-slash
+<div class="highlight"><pre><span></span>/ Single line comments start with a forward-slash
 / These can also be used in-line, so long as at least one whitespace character
 / separates it from text to the left
 /
@@ -160,7 +160,7 @@ abs -3.14159 / =&gt; 3.14159
 / so results like this might take some getting used to
 2*1+1 / =&gt; 4 / (no operator precedence tables to remember!)
 
-/ Precedence can be modified with parentheses (restoring the 'normal' result)
+/ Precedence can be modified with parentheses (restoring the &#39;normal&#39; result)
 (2*1)+1 / =&gt; 3
 
 / Assignment uses colon (:) instead of equals (=)
@@ -170,7 +170,7 @@ a / =&gt; 3
 
 / Variables can also be assigned in-line
 / this does not affect the value passed on
-c:3+b:2+a:1 / (data "flows" from right to left)
+c:3+b:2+a:1 / (data &quot;flows&quot; from right to left)
 a / =&gt; 1
 b / =&gt; 3
 c / =&gt; 6
@@ -179,12 +179,12 @@ c / =&gt; 6
 a+:2
 a / =&gt; 3
 
-/ There are no "true" or "false" keywords in q
+/ There are no &quot;true&quot; or &quot;false&quot; keywords in q
 / boolean values are indicated by the bit value followed by b
 1b / =&gt; true value
 0b / =&gt; false value
 
-/ Equality comparisons use equals (=) (since we don't need it for assignment)
+/ Equality comparisons use equals (=) (since we don&#39;t need it for assignment)
 1=1 / =&gt; 1b
 2=1 / =&gt; 0b
 
@@ -211,21 +211,21 @@ not 1b / =&gt; 0b
 not 42 / =&gt; 0b
 not 0.0 / =&gt; 1b
 
-/ The max operator (|) reduces to logical "or" for bools
+/ The max operator (|) reduces to logical &quot;or&quot; for bools
 42|2.0 / =&gt; 42f
 1b|0b / =&gt; 1b
 
-/ The min operator (&amp;) reduces to logical "and" for bools
+/ The min operator (&amp;) reduces to logical &quot;and&quot; for bools
 42&amp;2.0 / =&gt; 2f
 1b&amp;0b / =&gt; 0b
 
 / q provides two ways to store character data
-/ Chars in q are stored in a single byte and use double-quotes (")
-ch:"a"
+/ Chars in q are stored in a single byte and use double-quotes (&quot;)
+ch:&quot;a&quot;
 / Strings are simply lists of char (more on lists later)
-str:"This is a string"
+str:&quot;This is a string&quot;
 / Escape characters work as normal
-str:"This is a string with \"quotes\""
+str:&quot;This is a string with \&quot;quotes\&quot;&quot;
 
 / Char data can also be stored as symbols using backtick (`)
 symbol:`sym
@@ -235,8 +235,8 @@ symbol:`sym
 / this can be more space and speed efficient as these are constant width
 
 / The string function converts to strings
-string `symbol / =&gt; "symbol"
-string 1.2345 / =&gt; "1.2345"
+string `symbol / =&gt; &quot;symbol&quot;
+string 1.2345 / =&gt; &quot;1.2345&quot;
 
 / q has a time type...
 t:01:00:00.000
@@ -265,14 +265,14 @@ d.dd / =&gt; 25i
 
 / q has standard control structures
 / if is as you might expect (; separates the condition and instructions)
-if[1=1;a:"hi"]
-a / =&gt; "hi"
+if[1=1;a:&quot;hi&quot;]
+a / =&gt; &quot;hi&quot;
 / if-else uses $ (and unlike if, returns a value)
-$[1=0;a:"hi";a:"bye"] / =&gt; "bye"
-a / =&gt; "bye"
+$[1=0;a:&quot;hi&quot;;a:&quot;bye&quot;] / =&gt; &quot;bye&quot;
+a / =&gt; &quot;bye&quot;
 / if-else can be extended to multiple clauses by adding args separated by ;
-$[1=0;a:"hi";0=1;a:"bye";a:"hello again"]
-a / =&gt; "hello again"
+$[1=0;a:&quot;hi&quot;;0=1;a:&quot;bye&quot;;a:&quot;hello again&quot;]
+a / =&gt; &quot;hello again&quot;
 
 
 ////////////////////////////////////
@@ -286,12 +286,12 @@ a / =&gt; "hello again"
 / Lists (or arrays if you prefer) are simple ordered collections
 / they are defined using parentheses () and semi-colons (;)
 (1;2;3) / =&gt; 1 2 3
-(-10.0;3.14159e;1b;`abc;"c")
+(-10.0;3.14159e;1b;`abc;&quot;c&quot;)
 / =&gt; -10f
 / =&gt; 3.14159e
 / =&gt; 1b
 / =&gt; `abc
-/ =&gt; "c"  (mixed type lists are displayed on multiple lines)
+/ =&gt; &quot;c&quot;  (mixed type lists are displayed on multiple lines)
 ((1;2;3);(4;5;6);(7;8;9))
 / =&gt; 1 2 3
 / =&gt; 4 5 6
@@ -304,7 +304,7 @@ a / =&gt; "hello again"
 
 / List length
 count (1;2;3) / =&gt; 3
-count "I am a string" / =&gt; 13 (string are lists of char)
+count &quot;I am a string&quot; / =&gt; 13 (string are lists of char)
 
 / Empty lists are defined with parentheses
 l:()
@@ -321,7 +321,7 @@ singleton:(),1
 
 / Speaking of appending, comma (,) is used for this, not plus (+)
 1 2 3,4 5 6 / =&gt; 1 2 3 4 5 6
-"hello ","there" / =&gt; "hello there"
+&quot;hello &quot;,&quot;there&quot; / =&gt; &quot;hello there&quot;
 
 / Indexing uses square brackets []
 l:1 2 3 4
@@ -527,15 +527,15 @@ f[2] / =&gt; 4
 
 / Functions are first class in q, so can be returned, stored in lists etc.
 {:{x+y}}[] / =&gt; {x+y}
-(1;"hi";{x+y})
+(1;&quot;hi&quot;;{x+y})
 / =&gt; 1
-/ =&gt; "hi"
+/ =&gt; &quot;hi&quot;
 / =&gt; {x+y}
 
 / There is no overloading and no keyword arguments for custom q functions
 / however using a dictionary as a single argument can overcome this
 / allows for optional arguments or differing functionality
-d:`arg1`arg2`arg3!(1.0;2;"my function argument")
+d:`arg1`arg2`arg3!(1.0;2;&quot;my function argument&quot;)
 {x[`arg1]+x[`arg2]}[d] / =&gt; 3f
 
 / Functions in q see the global scope
@@ -631,7 +631,7 @@ select from t where (age&lt;40)&amp;(height=min height)
 / =&gt; -------------------
 
 / The by clause falls between select and from
-/ and is equivalent to SQL's GROUP BY
+/ and is equivalent to SQL&#39;s GROUP BY
 select avg height by sex from t
 / =&gt; sex| height
 / =&gt; ---| ------
@@ -677,7 +677,7 @@ t
 / =&gt; Polly  52  160    f
 / =&gt; John   25  178    m
 
-/ Upsert is similar (but doesn't have to be in-place)
+/ Upsert is similar (but doesn&#39;t have to be in-place)
 t upsert (`Chester;58;179;`m)
 / =&gt; name    age height sex
 / =&gt; ----------------------
@@ -761,7 +761,7 @@ aj[`time`sym;trades;quotes]
 / adverbs supplement this, modifying the behaviour of functions
 / and providing loop type functionality when required
 / (in q functions are sometimes referred to as verbs, hence adverbs)
-/ the "each" adverb modifies a function to treat a list as individual variables
+/ the &quot;each&quot; adverb modifies a function to treat a list as individual variables
 first each (1 2 3;4 5 6;7 8 9)
 / =&gt; 1 4 7
 
@@ -778,16 +778,16 @@ first each (1 2 3;4 5 6;7 8 9)
 
 / The true alternatives to loops in q are the adverbs scan (\) and over (/)
 / their behaviour differs based on the number of arguments the function they
-/ are modifying receives.  Here I'll summarise some of the most useful cases
-/ a single argument function modified by scan given 2 args behaves like "do"
+/ are modifying receives.  Here I&#39;ll summarise some of the most useful cases
+/ a single argument function modified by scan given 2 args behaves like &quot;do&quot;
 {x * 2}\[5;1] / =&gt; 1 2 4 8 16 32 (i.e. multiply by 2, 5 times)
 {x * 2}/[5;1] / =&gt; 32 (using over only the final result is shown)
 
-/ If the first argument is a function, we have the equivalent of "while"
+/ If the first argument is a function, we have the equivalent of &quot;while&quot;
 {x * 2}\[{x&lt;100};1] / =&gt; 1 2 4 8 16 32 64 128 (iterates until returns 0b)
 {x * 2}/[{x&lt;100};1] / =&gt; 128 (again returns only the final result)
 
-/ If the function takes two arguments, and we pass a list, we have "for"
+/ If the function takes two arguments, and we pass a list, we have &quot;for&quot;
 / where the result of the previous execution is passed back into the next loop
 / along with the next member of the list
 {x + y}\[1 2 3 4 5] / =&gt; 1 3 6 10 15 (i.e. the running sum)
@@ -797,10 +797,10 @@ first each (1 2 3;4 5 6;7 8 9)
 / http://code.kx.com/q4m3/6_Functions/#67-adverbs
 
 ////// Scripts //////
-/ q scripts can be loaded from a q session using the "\l" command
-/ for example "\l learnkdb.q" will load this script
+/ q scripts can be loaded from a q session using the &quot;\l&quot; command
+/ for example &quot;\l learnkdb.q&quot; will load this script
 / or from the command prompt passing the script as an argument
-/ for example "q learnkdb.q"
+/ for example &quot;q learnkdb.q&quot;
 
 ////// On-disk data //////
 / Tables can be persisted to disk in several formats
@@ -843,7 +843,7 @@ select from splayed / (the columns are read from disk on request)
 / and configuration of this architecture and add additional functionality
 / such as disaster recovery, logging, access, load balancing etc.
 / https://github.com/AquaQAnalytics/TorQ
-</code></pre></div>
+</pre></div>
 <h2>Want to know more?</h2>
 
 <ul>

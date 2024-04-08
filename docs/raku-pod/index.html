@@ -140,12 +140,12 @@ variant of the <code>Pod::To</code> modules (e.g. <code>Pod::To::HTML</code> for
 <p>Every Pod document has to begin with <code>=begin pod</code> and end with <code>=end pod</code>.
 Everything between these two delimiters will be processed and used to
 generate documentation.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin pod
+<div class="highlight"><pre><span></span>=begin pod
 
 A very simple Raku Pod document. All the other directives go here!
 
 =end pod
-</code></pre></div>
+</pre></div>
 <p>Pod documents usually coexist with Raku code. If by themselves,
 Pod files often have the <code>.pod6</code> suffix. Moving forward, it&rsquo;s assumed that
 the constructs being discussed are surrounded by the <code>=begin pod ... =end pod</code>
@@ -158,14 +158,14 @@ directives.</p>
 <p>Text can be easily styled as bold, italic, underlined or verbatim (for code
 formatting) using the following formatting codes: <code>B&lt;&gt;</code>, <code>I&lt;&gt;</code>, <code>U&lt;&gt;</code>
 and <code>C&lt;&gt;</code>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>B&lt;This text is in Bold.&gt;
+<div class="highlight"><pre><span></span>B&lt;This text is in Bold.&gt;
 
 I&lt;This text is in Italics.&gt;
 
 U&lt;This text is Underlined.&gt;
 
 The function C&lt;sub sum { $^x + $^y}&gt; is treated as verbatim.
-</code></pre></div>
+</pre></div>
 <p>There are more formatting codes (e.g., <code>L&lt;&gt;</code>, <code>T&lt;&gt;</code>, etc.) but they&rsquo;ll be
 discussed later throughout the document. You&rsquo;ll recognize them because they&rsquo;re
 just a single capital letter followed immediately by a set of single or double
@@ -176,19 +176,19 @@ used.</p>
 
 <p>Headings are created by using the <code>=headN</code> directive where <code>N</code> is the
 heading level.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=head1 This is level 1
+<div class="highlight"><pre><span></span>=head1 This is level 1
 =head2 This is level 2
 =head3 This is level 3
 =head4 This is level 4
 =head5 This is level 5
 =head6 This is level 6
-</code></pre></div>
+</pre></div>
 <h3>Ordinary Paragraphs</h3>
 
 <p>Ordinary paragraphs consist of one or more adjacent lines of text, each of
 which starts with a non-whitespace character. Any paragraph is terminated
 by the first blank line or block directive.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=head1 First level heading block
+<div class="highlight"><pre><span></span>=head1 First level heading block
 
 =head2 Paragraph 1
 
@@ -198,10 +198,10 @@ short lines filled. It is terminated by the first blank line.
 =head2 Paragraph 2
 
 This is another ordinary paragraph albeit shorter.
-</code></pre></div>
+</pre></div>
 <p>Alternatively, the <code>=para</code> directive can be used to explicitly mark adjacent
 lines of text as a paragraph.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=head1 First level heading block
+<div class="highlight"><pre><span></span>=head1 First level heading block
 
 =head2 Paragraph 1
 
@@ -213,27 +213,27 @@ short lines filled. It is terminated by the first blank line.
 
 =para
 This is another ordinary paragraph albeit shorter.
-</code></pre></div>
+</pre></div>
 <h3>Lists</h3>
 
 <p>Unordered lists can be created using the <code>=item</code> directive.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=item Item
+<div class="highlight"><pre><span></span>=item Item
 =item Item
 =item Another item
-</code></pre></div>
+</pre></div>
 <p>Sublists are achieved with items at each level specified using the <code>=item1</code>,
 <code>=item2</code>, <code>=item3</code>, <code>...</code>, <code>=itemN</code> etc. directives. The <code>=item</code> directive
 defaults to <code>=item1</code>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=item1 Item one
+<div class="highlight"><pre><span></span>=item1 Item one
 =item1 Item two
 =item1 Item three
     =item2 Sub-item
     =item2 Sub-item
 =item1 Item four
-</code></pre></div>
+</pre></div>
 <p>Definition lists that define terms or commands use the <code>=defn</code> directive.
 This is equivalent to the <code>&lt;dl&gt;</code> element in HTML.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=defn Beast of Bodmin
+<div class="highlight"><pre><span></span>=defn Beast of Bodmin
 A large feline inhabiting Bodmin Moor.
 
 =defn Morgawr
@@ -241,33 +241,33 @@ A sea serpent.
 
 =defn Owlman
 A giant owl-like creature.
-</code></pre></div>
+</pre></div>
 <h3>Code Blocks</h3>
 
 <p>A code block is created (which uses the HTML <code>&lt;code&gt;</code> element) by starting each
 line with one or more whitespace characters.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    #`( this is comment )
+<div class="highlight"><pre><span></span>    #`( this is comment )
     my $sum = -&gt; $x, $y { $x + $y }
     say $sum(12, 5);
-</code></pre></div>
+</pre></div>
 <p>As shown in the <a href="#basic-text-formatting">Basic Text Formatting</a> section,
 inline code can be created using the <code>C&lt;&gt;</code> code.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>In Raku, there are several functions/methods to output text. Some of them
+<div class="highlight"><pre><span></span>In Raku, there are several functions/methods to output text. Some of them
 are C&lt;print&gt;, C&lt;put&gt; and C&lt;say&gt;.
-</code></pre></div>
+</pre></div>
 <h3>Comments</h3>
 
 <p>Although Pod blocks are ignored by the Rakudo Raku compiler, everything
 identified as a Pod block will be read and interpreted by Pod renderers. In
 order to prevent Pod blocks from being rendered by any renderer, use the
 <code>=comment</code> directive.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=comment Add more here about the algorithm.
+<div class="highlight"><pre><span></span>=comment Add more here about the algorithm.
 
 =comment Pod comments are great for documenting the documentation.
-</code></pre></div>
+</pre></div>
 <p>To create inline comments, use the <code>Z&lt;&gt;</code> code.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Pod is awesome Z&lt;Of course it is!&gt;. And Raku too!
-</code></pre></div>
+<div class="highlight"><pre><span></span>Pod is awesome Z&lt;Of course it is!&gt;. And Raku too!
+</pre></div>
 <p>Given that the Raku interpreter never executes embedded Pod blocks,
 comment blocks can also be used as an alternative form of nestable block
 comments.</p>
@@ -277,15 +277,15 @@ comments.</p>
 <p>Creating links in Pod is quite easy and is done by enclosing them in
 a <code>L&lt;&gt;</code> code. The general format is <code>L&lt;Label|Url&gt;</code> with <code>Label</code>
 being optional.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Raku homepage is L&lt;https://raku.org&gt;.
+<div class="highlight"><pre><span></span>Raku homepage is L&lt;https://raku.org&gt;.
 L&lt;Click me!|http://link.org/&gt;.
-</code></pre></div>
+</pre></div>
 <p>Relative paths work too.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>L&lt;Go to music|/music/&gt;.
-</code></pre></div>
+<div class="highlight"><pre><span></span>L&lt;Go to music|/music/&gt;.
+</pre></div>
 <p>Linking to a section in the same document works as well.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>L&lt;Link to Headings|#Headings&gt;
-</code></pre></div>
+<div class="highlight"><pre><span></span>L&lt;Link to Headings|#Headings&gt;
+</pre></div>
 <h3>Tables</h3>
 
 <p>The Pod specifications are not completely handled properly yet and this
@@ -293,14 +293,14 @@ includes the handling of table. For simplicity&rsquo;s sake, only one way of
 constructing tables is shown here. To learn about good practices and see
 examples of both good and bad tables, please visit
 <a href="https://docs.raku.org/language/tables">https://docs.raku.org/language/tables</a>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin table
+<div class="highlight"><pre><span></span>=begin table
 Option      | Description     
 ============|================  
 data        | path to data files.
 engine      | engine to be used for processing templates.
 ext         | extension to be used for dest files.
 =end table
-</code></pre></div>
+</pre></div>
 <h2>Block Structures</h2>
 
 <p>As mentioned earlier, Pod documents are specified using directives, which are
@@ -320,41 +320,41 @@ is followed immediately by the <code>typename</code> of the block and then the c
 The rest of the line is treated as block data, rather than as configuration.
 The content terminates at the next Pod directive or the first blank line
 (which is not part of the block data). The general syntax is</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=BLOCK_TYPE  BLOCK_DATA
-</code></pre></div>
+<div class="highlight"><pre><span></span>=BLOCK_TYPE  BLOCK_DATA
+</pre></div>
 <p>For example:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=head1 Top level heading
-</code></pre></div>
+<div class="highlight"><pre><span></span>=head1 Top level heading
+</pre></div>
 <h3>Delimited Blocks</h3>
 
 <p>Delimited blocks are bounded by <code>=begin</code> and <code>=end</code> markers, both of which are
 followed by a valid Pod identifier, which is the <code>typename</code> of the block.
 The general syntax is</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin BLOCK_TYPE
+<div class="highlight"><pre><span></span>=begin BLOCK_TYPE
 BLOCK_DATA
 =end BLOCK_TYPE
-</code></pre></div>
+</pre></div>
 <p>For example:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin head1
+<div class="highlight"><pre><span></span>=begin head1
 Top level heading
 =end head1
-</code></pre></div>
+</pre></div>
 <p>This type of blocks is useful for creating headings, list items, code blocks,
 etc. with multiple paragraphs. For example,</p>
 
 <ul>
 <li>a multiline item of a list</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin item
+<div class="highlight"><pre><span></span>=begin item
 This is a paragraph in list item.
 
 This is another paragraph in the same list item.
 =end item
-</code></pre></div>
+</pre></div>
 <ul>
 <li>a code block</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin code
+<div class="highlight"><pre><span></span>=begin code
 #`(
 A non-efficient recursive implementation of a power function using multi subs.
 )
@@ -373,20 +373,20 @@ say pow(3, 0);   #=&gt; 1
 say pow(4.2, 2); #=&gt; 17.64
 say pow(6);      #=&gt; 36
 =end code
-</code></pre></div>
+</pre></div>
 <h3>Paragraph Blocks</h3>
 
 <p>Paragraph blocks are introduced by a <code>=for</code> marker and terminated by
 the next Pod directive or the first blank line (which is not considered to
 be part of the block&rsquo;s contents). The <code>=for</code> marker is followed by the
 <code>typename</code> of the block. The general syntax is</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=for BLOCK_TYPE
+<div class="highlight"><pre><span></span>=for BLOCK_TYPE
 BLOCK DATA
-</code></pre></div>
+</pre></div>
 <p>For example:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=for head1
+<div class="highlight"><pre><span></span>=for head1
 Top level heading
-</code></pre></div>
+</pre></div>
 <h2>Configuration Data</h2>
 
 <p>Except for abbreviated blocks, both delimited blocks and paragraph
@@ -397,18 +397,18 @@ are more general syntaxes for these blocks:</p>
 <ul>
 <li>Delimited blocks</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin BLOCK_TYPE OPTIONAL_CONFIG_INFO
+<div class="highlight"><pre><span></span>=begin BLOCK_TYPE OPTIONAL_CONFIG_INFO
 =                 ADDITIONAL_CONFIG_INFO
 BLOCK_DATA
 =end BLOCK_TYPE
-</code></pre></div>
+</pre></div>
 <ul>
 <li>Paragraph blocks</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>=for BLOCK_TYPE OPTIONAL_CONFIG_INFO
+<div class="highlight"><pre><span></span>=for BLOCK_TYPE OPTIONAL_CONFIG_INFO
 =               ADDITIONAL_CONFIG_INFO
 BLOCK DATA
-</code></pre></div>
+</pre></div>
 <p>The configuration information is provided in a format akin to the
 <a href="https://docs.raku.org/language/glossary#index-entry-Colon_Pair">&ldquo;colon pair&rdquo;</a>
 syntax in Raku. The following table is a simplified version of the
@@ -469,7 +469,7 @@ use of this option is to create numbered headings and ordered lists, but it
 can be applied to any block.</p>
 
 <p>For example:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=for head1 :numbered
+<div class="highlight"><pre><span></span>=for head1 :numbered
 The Problem
 =for head1 :numbered
 The Solution
@@ -477,7 +477,7 @@ The Solution
 Analysis
 =for head3 :numbered
 Overview
-</code></pre></div>
+</pre></div>
 <ul>
 <li><code>:allow</code></li>
 </ul>
@@ -489,12 +489,12 @@ mark-up within those otherwise verbatim blocks, though it can be used in any
 block that contains verbatim text.</p>
 
 <p>Given the following snippet:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=begin code :allow('B', 'I')
+<div class="highlight"><pre><span></span>=begin code :allow(&#39;B&#39;, &#39;I&#39;)
 B&lt;sub&gt; greet( $name ) {
-    B&lt;say&gt; "Hello, $nameI&lt;!&gt;";
+    B&lt;say&gt; &quot;Hello, $nameI&lt;!&gt;&quot;;
 }
 =end code
-</code></pre></div>
+</pre></div>
 <p>we get the following output:</p>
 
 <pre><strong>sub</strong> greet( $name ) {
@@ -511,29 +511,29 @@ to Markdown.</p>
 <p>The <code>=config</code> directive allows you to prespecify standard configuration
 information that is applied to every block of a particular type.
 The general syntax for configuration directives is:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=config BLOCK_TYPE  CONFIG OPTIONS
+<div class="highlight"><pre><span></span>=config BLOCK_TYPE  CONFIG OPTIONS
 =                  ADDITIONAL_CONFIG_INFO
-</code></pre></div>
+</pre></div>
 <p>For example, to specify that every heading level 1 be numbered, bold
 and underlined, you preconfigure the <code>=head1</code> as follows:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=config head1 :formatted('B', 'U') :numbered
-</code></pre></div>
+<div class="highlight"><pre><span></span>=config head1 :formatted(&#39;B&#39;, &#39;U&#39;) :numbered
+</pre></div>
 <h2>Semantic Blocks</h2>
 
 <p>All uppercase block typenames are reserved for specifying standard
 documentation, publishing, source components, or meta-information.
 Some of them are:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=NAME
+<div class="highlight"><pre><span></span>=NAME
 =AUTHOR
 =VERSION
 =CREATED
 =SYNOPSIS
 =DESCRIPTION
 =USAGE
-</code></pre></div>
+</pre></div>
 <p>Most of these blocks would typically be used in their full
 delimited forms. For example,</p>
-<div class="highlight"><pre class="highlight plaintext"><code>=NAME B&lt;Doc::Magic&gt;
+<div class="highlight"><pre><span></span>=NAME B&lt;Doc::Magic&gt;
 
 =begin DESCRIPTION
 This module helps you generate documentation automagically.
@@ -552,36 +552,36 @@ Not source code needed! Most of it is outsourced from a black hole.
 
 =AUTHOR Authorius Docus
 =VERSION 42
-</code></pre></div>
+</pre></div>
 <h2>Miscellaneous</h2>
 
 <h3>Notes</h3>
 
 <p>Notes are rendered as footnotes and created by enclosing a note in a
 <code>N&lt;&gt;</code> code.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>In addition, the language is also multi-paradigmatic N&lt;According to Wikipedia,
+<div class="highlight"><pre><span></span>In addition, the language is also multi-paradigmatic N&lt;According to Wikipedia,
 this means that it supports procedural, object-oriented, and functional
 programming.&gt;
-</code></pre></div>
+</pre></div>
 <h3>Keyboard Input</h3>
 
 <p>To flag text as keyboard input enclose it in a <code>K&lt;&gt;</code> code.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Enter your name K&lt;John Doe&gt;
-</code></pre></div>
+<div class="highlight"><pre><span></span>Enter your name K&lt;John Doe&gt;
+</pre></div>
 <h3>Terminal Output</h3>
 
 <p>To flag text as terminal output enclose it in <code>T&lt;&gt;</code> code.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Hello, T&lt;John Doe&gt;
-</code></pre></div>
+<div class="highlight"><pre><span></span>Hello, T&lt;John Doe&gt;
+</pre></div>
 <h3>Unicode</h3>
 
 <p>To include Unicode code points or HTML5 character references in
 a Pod document, enclose them in a <code>E&lt;&gt;</code> code.</p>
 
 <p>For example:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Raku makes considerable use of the E&lt;171&gt; and E&lt;187&gt; characters.
+<div class="highlight"><pre><span></span>Raku makes considerable use of the E&lt;171&gt; and E&lt;187&gt; characters.
 Raku makes considerable use of the E&lt;laquo&gt; and E&lt;raquo&gt; characters.
-</code></pre></div>
+</pre></div>
 <p>is rendered as:</p>
 
 <p>Raku makes considerable use of the « and » characters.
@@ -598,12 +598,12 @@ that generates your desired output from Pod.</p>
 <a href="https://raku.org/downloads/">look here</a>.</p>
 
 <p>Run the following command to generate a certain output:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>raku --doc=TARGET input.pod6 &gt; output.html
-</code></pre></div>
+<div class="highlight"><pre><span></span>raku --doc=TARGET input.pod6 &gt; output.html
+</pre></div>
 <p>with <code>TARGET</code> being <code>Markdown</code>, <code>HTML</code>, <code>Text</code>, etc. Thus to generate
 Markdown from Pod, run this:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>raku --doc=Markdown input.pod6 &gt; output.html
-</code></pre></div>
+<div class="highlight"><pre><span></span>raku --doc=Markdown input.pod6 &gt; output.html
+</pre></div>
 <h2>Accessing Pod</h2>
 
 <p>In order to access Pod documentation from within a Raku program,
@@ -615,7 +615,7 @@ the whole structure of the Pod document.</p>
 
 <p>If we place the following piece of Raku code and the Pod documentation
 in the section <a href="#semantic-blocks">Semantic blocks</a> in the same file:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>my %used-directives;
+<div class="highlight"><pre><span></span>my %used-directives;
 for $=pod -&gt; $pod-item {
     for $pod-item.contents -&gt; $pod-block {
         next unless $pod-block ~~ Pod::Block::Named;
@@ -623,15 +623,15 @@ for $=pod -&gt; $pod-item {
     }
 }
 
-say %used-directives.keys.join("\n");
-</code></pre></div>
+say %used-directives.keys.join(&quot;\n&quot;);
+</pre></div>
 <p>we get the following output:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>SYNOPSIS
+<div class="highlight"><pre><span></span>SYNOPSIS
 NAME
 VERSION
 AUTHOR
 DESCRIPTION
-</code></pre></div>
+</pre></div>
 <h2>Additional Information</h2>
 
 <ul>

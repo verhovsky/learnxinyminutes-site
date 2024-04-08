@@ -157,7 +157,7 @@
 Ланцюг, аналогічно, також може бути направленим. Шлях описує, що <strong>a</strong> -  бос <strong>b</strong> і супер бос для <strong>c</strong>.</p>
 
 <p>Шаблони, які часто використовуються (з документації Neo4j):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Друг-мого-друга 
+<div class="highlight"><pre><span></span>// Друг-мого-друга 
 (user)-[:KNOWS]-(friend)-[:KNOWS]-(foaf)
 
 // Найкоротший шлях
@@ -168,97 +168,97 @@ path = shortestPath( (user)-[:KNOWS*..5]-(other) )
 
 // Навігація по дереву
 (root)&lt;-[:PARENT*]-(leaf:Category)-[:ITEM]-&gt;(data:Product)
-</code></pre></div>
+</pre></div>
 <h2>Запити на створення</h2>
 
 <p>Створити нову вершину:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>CREATE (a:Person {name:"Théo Gauchoux"})
+<div class="highlight"><pre><span></span>CREATE (a:Person {name:&quot;Théo Gauchoux&quot;})
 RETURN a
-</code></pre></div>
+</pre></div>
 <p><em><code>RETURN</code>  дозволяє повернути результат після виконання запиту. Можна повертати кілька значень, наприклад, <code>RETURN a, b</code>.</em></p>
 
 <p>Створити новий зв&#39;язок (із двома вершинами):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>CREATE (a:Person)-[k:KNOWS]-(b:Person)
+<div class="highlight"><pre><span></span>CREATE (a:Person)-[k:KNOWS]-(b:Person)
 RETURN a,k,b
-</code></pre></div>
+</pre></div>
 <h2>Запити на знаходження</h2>
 
 <p>Знайти всі вершини:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (n)
+<div class="highlight"><pre><span></span>MATCH (n)
 RETURN n
-</code></pre></div>
+</pre></div>
 <p>Знайти вершини за ярликом:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a:Person)
+<div class="highlight"><pre><span></span>MATCH (a:Person)
 RETURN a
-</code></pre></div>
+</pre></div>
 <p>Знайти вершини за ярликом та властивістю:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a:Person {name:"Théo Gauchoux"})
+<div class="highlight"><pre><span></span>MATCH (a:Person {name:&quot;Théo Gauchoux&quot;})
 RETURN a
-</code></pre></div>
+</pre></div>
 <p>Знайти вершини відповідно до зв&#39;язків (ненаправлених):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a)-[:KNOWS]-(b)
+<div class="highlight"><pre><span></span>MATCH (a)-[:KNOWS]-(b)
 RETURN a,b
-</code></pre></div>
+</pre></div>
 <p>Знайти вершини відповідно до зв&#39;язків (направлених):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a)-[:MANAGES]-&gt;(b)
+<div class="highlight"><pre><span></span>MATCH (a)-[:MANAGES]-&gt;(b)
 RETURN a,b
-</code></pre></div>
+</pre></div>
 <p>Знайти вершини за допомогою <code>WHERE</code>:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person {name:"Théo Gauchoux"})-[s:LIVES_IN]-&gt;(city:City)
+<div class="highlight"><pre><span></span>MATCH (p:Person {name:&quot;Théo Gauchoux&quot;})-[s:LIVES_IN]-&gt;(city:City)
 WHERE s.since = 2015
 RETURN p,state
-</code></pre></div>
+</pre></div>
 <p>Можна використовувати вираз <code>MATCH WHERE</code> разом із операцією <code>CREATE</code>:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (a), (b)
-WHERE a.name = "Jacquie" AND b.name = "Michel"
+<div class="highlight"><pre><span></span>MATCH (a), (b)
+WHERE a.name = &quot;Jacquie&quot; AND b.name = &quot;Michel&quot;
 CREATE (a)-[:KNOWS]-(b)
-</code></pre></div>
+</pre></div>
 <h2>Запити на оновлення</h2>
 
 <p>Оновити окрему властивість вершини:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 SET p.age = 23
-</code></pre></div>
+</pre></div>
 <p>Оновити всі властивості вершини:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
-SET p = {name: "Michel", age: 23}
-</code></pre></div>
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
+SET p = {name: &quot;Michel&quot;, age: 23}
+</pre></div>
 <p>Додати нову властивіcть до вершини:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
-SET p + = {studies: "IT Engineering"}
-</code></pre></div>
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
+SET p + = {studies: &quot;IT Engineering&quot;}
+</pre></div>
 <p>Повісити ярлик на вершину:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 SET p:Internship
-</code></pre></div>
+</pre></div>
 <h2>Запити на видалення</h2>
 
 <p>Видалити окрему вершину (пов&#39;язані ребра повинні бути видалені перед цим):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)-[relationship]-()
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)-[relationship]-()
+WHERE p.name = &quot;Théo Gauchoux&quot;
 DELETE relationship, p
-</code></pre></div>
+</pre></div>
 <p>Видалити властивість певної вершини:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 REMOVE p.age
-</code></pre></div>
+</pre></div>
 <p><em>Зверніть увагу, що ключове слово <code>REMOVE</code> це не те саме, що й  <code>DELETE</code>!</em></p>
 
 <p>Видалити ярлик певної вершини: </p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (p:Person)
-WHERE p.name = "Théo Gauchoux"
+<div class="highlight"><pre><span></span>MATCH (p:Person)
+WHERE p.name = &quot;Théo Gauchoux&quot;
 DELETE p:Person
-</code></pre></div>
+</pre></div>
 <p>Видалити всю базу даних: </p>
-<div class="highlight"><pre class="highlight plaintext"><code>MATCH (n)
+<div class="highlight"><pre><span></span>MATCH (n)
 OPTIONAL MATCH (n)-[r]-()
 DELETE n, r
-</code></pre></div>
+</pre></div>
 <p><em>Так, це <code>rm -rf /</code> на мові Cypher !</em></p>
 
 <h2>Інші корисні запити</h2>

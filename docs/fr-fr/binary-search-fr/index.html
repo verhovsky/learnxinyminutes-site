@@ -91,10 +91,10 @@
 <h2>Introduction</h2>
 
 <p>Une façon simple d&#39;implémenter la recherche est de faire une recherche linéaire. Cependant, cette approche prend beaucoup de temps, et ce temps augmente linéairement avec la quantité de données. Par exemple, partons du premier élément d&#39;un tableau t[], et un par un, comparons x avec chaque élément de t[]. Si x est égal à un élément, nous retournons l&#39;index, si x n&#39;égale aucun élément, nous retournons -1.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Recherche Linéaire: O (n)               Temps Linéaire
+<div class="highlight"><pre><span></span>Recherche Linéaire: O (n)               Temps Linéaire
 
 Recherche Binaire:  O ( log(n) )        Temps Logarithmique
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>def search(arr, x):
+</pre></div><div class="highlight"><pre><span></span>def search(arr, x):
 
     for i in range(len(arr)):
 
@@ -102,19 +102,19 @@ Recherche Binaire:  O ( log(n) )        Temps Logarithmique
             return i
 
     return -1
-</code></pre></div>
+</pre></div>
 <h2>L&#39;Algorithme de Recherche Binaire</h2>
 
 <p>Le prérequis fondamental de la recherche binaire est que les éléments soient triés.</p>
 
 <h3>Algo</h3>
-<div class="highlight"><pre class="highlight plaintext"><code>L'idée derrière la recherche binaire est d'utiliser le fait que le tableau est trié afin de réduire la complexité à O(Log(n)). Nous pouvons ignorer la moitié des éléments après la première comparaison.
-1) Comparons x avec l'élément du milieu.
-2) Si x est égal à cet élément, nous retournons l'index du milieu.
-3) Sinon, si x est plus grand que l'élément du milieu, alors x peut seulement être dans la dernière moitié du tableau. Donc, nous recommençons la procédure avec cette dernière moitié.
+<div class="highlight"><pre><span></span>L&#39;idée derrière la recherche binaire est d&#39;utiliser le fait que le tableau est trié afin de réduire la complexité à O(Log(n)). Nous pouvons ignorer la moitié des éléments après la première comparaison.
+1) Comparons x avec l&#39;élément du milieu.
+2) Si x est égal à cet élément, nous retournons l&#39;index du milieu.
+3) Sinon, si x est plus grand que l&#39;élément du milieu, alors x peut seulement être dans la dernière moitié du tableau. Donc, nous recommençons la procédure avec cette dernière moitié.
 4) Sinon (x est plus petit), nous recommençons la procédure avec la première moitié du tableau.
 Ensuite nous avons une implémentation récursive de la recherche binaire.
-</code></pre></div>
+</pre></div>
 <h3>Note de la fin</h3>
 
 <p>Partie en construction.</p>

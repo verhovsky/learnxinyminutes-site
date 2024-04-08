@@ -91,16 +91,16 @@ es un terminal multiplexor: habilita la creación, acceso y control
 de múltiples terminales controlados desde una sola pantalla. tmux
 puede ser separado de una pantalla y continuar corriendo en el fondo
 y luego ser insertado nuevamente.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>  tmux [command]     # Corre un comando
-                     # 'tmux' sin comandos creará una nueva sesión
+<div class="highlight"><pre><span></span>  tmux [command]     # Corre un comando
+                     # &#39;tmux&#39; sin comandos creará una nueva sesión
 
     new              # Crea una nueva sesión
-     -s "Session"    # Crea sesión con nombre
-     -n "Window"     # Crea ventana con nombre
-     -c "/dir"       # Comienza en el directorio destino 
+     -s &quot;Session&quot;    # Crea sesión con nombre
+     -n &quot;Window&quot;     # Crea ventana con nombre
+     -c &quot;/dir&quot;       # Comienza en el directorio destino 
 
     attach           # Adjunta sesión última/disponible
-     -t "#"          # Adjunta sesión destino
+     -t &quot;#&quot;          # Adjunta sesión destino
      -d              # Separa la sesión de otras instancias
 
     ls               # Lista las sesiones abiertas
@@ -116,21 +116,21 @@ y luego ser insertado nuevamente.</p>
      -t              # Lista los páneles de aplicación en el destino
 
     kill-window      # Cierra la ventana actual
-     -t "#"          # Cierra la ventana destino
+     -t &quot;#&quot;          # Cierra la ventana destino
      -a              # Cierra todas las ventanas
-     -a -t "#"       # Cierra todas las ventanas menos el destino
+     -a -t &quot;#&quot;       # Cierra todas las ventanas menos el destino
 
     kill-session     # Cierra la sesión actual
-     -t "#"          # Cierra la sesión destino
+     -t &quot;#&quot;          # Cierra la sesión destino
      -a              # Cierra todas las sesiones
-     -a -t "#"       # Cierra todas las sesiones menos el destino
-</code></pre></div>
+     -a -t &quot;#&quot;       # Cierra todas las sesiones menos el destino
+</pre></div>
 <h3>Atajos de Teclado</h3>
 
 <p>El método para controlar una sesión adjunta tmux es mediante
 combinaciones de teclas llamadas teclas &lsquo;Prefijo&rsquo;.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>----------------------------------------------------------------------
-  (C-b) = Ctrl + b    # combinación 'Prefijo' necesaria para usar atajos
+<div class="highlight"><pre><span></span>----------------------------------------------------------------------
+  (C-b) = Ctrl + b    # combinación &#39;Prefijo&#39; necesaria para usar atajos
 
   (M-1) = Meta + 1 -o- Alt + 1
 ----------------------------------------------------------------------
@@ -142,7 +142,7 @@ combinaciones de teclas llamadas teclas &lsquo;Prefijo&rsquo;.</p>
 
   !                  # Separa el panel actual fuera de la ventana.
   %                  # Separa el panel actual en dos, izquierdo y derecho
-  "                  # Separa el panel actual en dos, superior e inferior
+  &quot;                  # Separa el panel actual en dos, superior e inferior
 
   n                  # Cambia a la siguiente ventana
   p                  # Cambia a la ventana previa
@@ -175,11 +175,11 @@ combinaciones de teclas llamadas teclas &lsquo;Prefijo&rsquo;.</p>
 
   M-Up, M-Down       # Redimensiona el panel actual en pasos de cinco celdas
   M-Left, M-Right
-</code></pre></div>
+</pre></div>
 <h3>Configurando ~/.tmux.conf</h3>
 
 <p>tmux.conf puede usarse para establecer opciones automáticas al arrancar, parecido a como .vimrc o init.el hacen.</p>
-<div class="highlight"><pre class="highlight plaintext"><code># Ejemplo de tmux.conf
+<div class="highlight"><pre><span></span># Ejemplo de tmux.conf
 # 2014.10
 
 
@@ -240,7 +240,7 @@ bind F swap-window -t +1
 # División rápida de paneles
 bind = split-window -h
 bind - split-window -v
-unbind '"'
+unbind &#39;&quot;&#39;
 unbind %
 
 # Activar sesión mas interna (cuando se anida tmux) para enviar comandos
@@ -289,16 +289,16 @@ set-option -g visual-bell off
 
 # Establece automáticamente títulos de ventanas
 set-option -g set-titles on
-set-option -g set-titles-string '#H:#S.#I.#P #W #T' # window number,program name,active (or not)
+set-option -g set-titles-string &#39;#H:#S.#I.#P #W #T&#39; # window number,program name,active (or not)
 
 # Ajustes de barra de estado
-set -g status-left "#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]"
+set -g status-left &quot;#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]&quot;
 
 # Muestra indicadores de rendimiento en barra de estado
 # Requiere https://github.com/thewtex/tmux-mem-cpu-load/
 set -g status-interval 4
-set -g status-right "#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]"
-</code></pre></div>
+set -g status-right &quot;#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]&quot;
+</pre></div>
 <h3>Referencias</h3>
 
 <p><a href="http://tmux.sourceforge.net">Tmux | Inicio</a></p>

@@ -86,12 +86,12 @@
     <a href="/docs/files/learn-wasm.wast">learn-wasm.wast</a>
     </p>
   <div id="doc">
-    <div class="highlight"><pre class="highlight plaintext"><code>;; learn-wasm.wast
+    <div class="highlight"><pre><span></span>;; learn-wasm.wast
 
 (module
   ;; In WebAssembly, everything is included in a module. Moreover, everything
   ;; can be expressed as an s-expression. Alternatively, there is the
-  ;; "stack machine" syntax, but that is not compatible with Binaryen
+  ;; &quot;stack machine&quot; syntax, but that is not compatible with Binaryen
   ;; intermediate representation (IR) syntax.
 
   ;; The Binaryen IR format is *mostly* compatible with WebAssembly text format.
@@ -109,7 +109,7 @@
     ;; f32 - 32 bit floating point
     ;; f64 - 64 bit floating point
 
-    ;; We can declare local variables with the "local" keyword
+    ;; We can declare local variables with the &quot;local&quot; keyword
     ;; We have to declare all variables before we start doing anything
     ;; inside the function
 
@@ -155,7 +155,7 @@
   ;; with the `result` keyword
   ;; The current value on the stack is the return value of a function
 
-  ;; We can call other functions we've defined with the `call` keyword
+  ;; We can call other functions we&#39;ve defined with the `call` keyword
 
   (func $get_16 (result i32)
     (i32.const 16)
@@ -174,14 +174,14 @@
       (call $get_16))
   )
 
-  ;; Up until now, we haven't be able to print anything out, nor do we have
+  ;; Up until now, we haven&#39;t be able to print anything out, nor do we have
   ;; access to higher level math functions (pow, exp, or trig functions).
-  ;; Moreover, we haven't been able to use any of the WASM functions in Javascript!
+  ;; Moreover, we haven&#39;t been able to use any of the WASM functions in Javascript!
   ;; The way we get those functions into WebAssembly
-  ;; looks different whether we're in a Node.js or browser environment.
+  ;; looks different whether we&#39;re in a Node.js or browser environment.
 
-  ;; If we're in Node.js we have to do two steps. First we have to convert the
-  ;; WASM text representation into actual webassembly. If we're using Binyaren,
+  ;; If we&#39;re in Node.js we have to do two steps. First we have to convert the
+  ;; WASM text representation into actual webassembly. If we&#39;re using Binyaren,
   ;; we can do that with a command like the following:
 
   ;; wasm-as learn-wasm.wast -o learn-wasm.wasm
@@ -192,7 +192,7 @@
   ;; wasm-opt learn-wasm.wasm -o learn-wasm.opt.wasm -O3 --rse
 
   ;; With our compiled WebAssembly, we can now load it into Node.js:
-  ;; const fs = require('fs')
+  ;; const fs = require(&#39;fs&#39;)
   ;; const instantiate = async function (inFilePath, _importObject) {
   ;;  var importObject = {
   ;;     console: {
@@ -211,22 +211,22 @@
   ;; }
   ;;
   ;; const main = function () {
-  ;;   var wasmExports = await instantiate('learn-wasm.wasm')
+  ;;   var wasmExports = await instantiate(&#39;learn-wasm.wasm&#39;)
   ;;   wasmExports.print_args(1, 0)
   ;; }
 
   ;; The following snippet gets the functions from the importObject we defined
   ;; in the JavaScript instantiate async function, and then exports a function
-  ;; "print_args" that we can call from Node.js
+  ;; &quot;print_args&quot; that we can call from Node.js
 
-  (import "console" "log" (func $print_i32 (param i32)))
-  (import "math" "cos" (func $cos (param f64) (result f64)))
+  (import &quot;console&quot; &quot;log&quot; (func $print_i32 (param i32)))
+  (import &quot;math&quot; &quot;cos&quot; (func $cos (param f64) (result f64)))
 
   (func $print_args (param $arg0 i32) (param $arg1 i32)
     (call $print_i32 (local.get $arg0))
     (call $print_i32 (local.get $arg1))
   )
-  (export "print_args" (func $print_args))
+  (export &quot;print_args&quot; (func $print_args))
 
   ;; Loading in data from WebAssembly memory.
   ;; Say that we want to apply the cosine function to a Javascript array.
@@ -240,7 +240,7 @@
   ;; (using the instantiate function from earlier):
   ;;
   ;; const main = function () {
-  ;;   var wasm = await instantiate('learn-wasm.wasm')
+  ;;   var wasm = await instantiate(&#39;learn-wasm.wasm&#39;)
   ;;   var n = 100
   ;;   const memory = new Float64Array(wasm.memory.buffer, 0, n)
   ;;   for (var i=0; i&lt;n; i++) {
@@ -252,7 +252,7 @@
   ;; This function will not work if we allocate a Float32Array on the JavaScript
   ;; side.
 
-  (memory (export "memory") 100)
+  (memory (export &quot;memory&quot;) 100)
 
   (func $apply_cos64 (param $array_length i32)
     ;; declare the loop counter
@@ -271,7 +271,7 @@
 
     (block
       (loop
-        ;; this sets idx_bytes to bytes offset of the value we're interested in.
+        ;; this sets idx_bytes to bytes offset of the value we&#39;re interested in.
         (local.set $idx_bytes (i32.mul (local.get $idx) (local.get $bytes_per_double)))
 
         ;; get the value of the array from memory:
@@ -301,7 +301,7 @@
       )
     )
   )
-  (export "apply_cos64" (func $apply_cos64))
+  (export &quot;apply_cos64&quot; (func $apply_cos64))
 
   ;; Wasm is a stack-based language, but for returning values more complicated
   ;; than an int/float, a separate memory stack has to be manually managed. One
@@ -386,9 +386,9 @@
       (get_local $var$sum_struct$b)
     )
   )
-  (export "sum_local" (func $sum_local))
+  (export &quot;sum_local&quot; (func $sum_local))
 )
-</code></pre></div>
+</pre></div>
     <hr>
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the Github Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/wasm.html.markdown">pull request</a> yourself!
     </p>

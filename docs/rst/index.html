@@ -95,15 +95,15 @@
 <p>To use Restructured Text, you will have to install <a href="http://www.python.org">Python</a> and the <code>docutils</code> package.</p>
 
 <p><code>docutils</code> can be installed using the commandline:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>easy_install docutils
-</code></pre></div>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>easy_install<span class="w"> </span>docutils
+</pre></div>
 <p>If your system has <code>pip</code>, you can use it too:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>pip <span class="nb">install </span>docutils
-</code></pre></div>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docutils
+</pre></div>
 <h2>File syntax</h2>
 
 <p>A simple example of the file syntax:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>.. Lines starting with two dots are special commands. But if no command can be found, the line is considered as a comment.
+<div class="highlight"><pre><span></span>.. Lines starting with two dots are special commands. But if no command can be found, the line is considered as a comment.
 
 =========================================================
 Main titles are written using equals signs over and under
@@ -117,7 +117,7 @@ Titles also use equals signs but are only underneath
 Subtitles with dashes
 ---------------------
 
-You can put text in *italic* or in **bold**, you can "mark" text as code with double backquote ``print()``.
+You can put text in *italic* or in **bold**, you can &quot;mark&quot; text as code with double backquote ``print()``.
 
 Special characters can be escaped using a backslash, e.g. \\ or \*.
 
@@ -159,12 +159,12 @@ There are multiple ways to make links:
 - By making a more Markdown-like link: `GitHub &lt;https://github.com/&gt;`_ .
 
 .. _GitHub: https://github.com/
-</code></pre></div>
+</pre></div>
 <h2>How to Use It</h2>
 
 <p>RST comes with docutils where you have <code>rst2html</code>, for example:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rst2html myfile.rst output.html
-</code></pre></div>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>rst2html<span class="w"> </span>myfile.rst<span class="w"> </span>output.html
+</pre></div>
 <p><em>Note : On some systems the command could be rst2html.py</em></p>
 
 <p>But there are more complex applications that use the RST format:</p>

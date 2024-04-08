@@ -127,8 +127,8 @@ Protostar version displayed on the screen.</p>
 <p>Protostar similar to Truffle for solidity development can be installed once and
 used for multiple projects. To initialize a new Protostar project, run the
 following command:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>protostar init
-</code></pre></div>
+<div class="highlight"><pre><span></span>protostar init
+</pre></div>
 <p>It would then request the project&rsquo;s name and the library&rsquo;s directory name,
 you&rsquo;d need to fill in this, and a new project will be initialized successfully.</p>
 
@@ -143,8 +143,8 @@ compiling, declaring and deploying this contract.</p>
 <p>To compile a Cairo contract using Protostar, ensure a path to the contract is
 specified in the <code>[contracts]</code> section of the <code>protostar.toml</code> file. Once
 you&rsquo;ve done that, open your terminal and run the command:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>protostar build
-</code></pre></div>
+<div class="highlight"><pre><span></span>protostar build
+</pre></div>
 <p>And you should get an output similar to what you see below, with a <code>main.json</code>
 and <code>main_abi.json</code> files created in the <code>build</code> folder.
 <img src="./images/cairo/build.png" alt="building your contract"></p>
@@ -159,15 +159,15 @@ a Contract to obtain the class hash, then deploy the declared contract using the
 <p>Before declaring or deploying your contract using Protostar, you should set the
 private key associated with the specified account address in a file, or in the
 terminal. To set your private key in the terminal, run the command:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>export PROTOSTAR_ACCOUNT_PRIVATE_KEY=[YOUR PRIVATE KEY HERE]
-</code></pre></div>
+<div class="highlight"><pre><span></span>export PROTOSTAR_ACCOUNT_PRIVATE_KEY=[YOUR PRIVATE KEY HERE]
+</pre></div>
 <p>Then to declare our contract using Protostar run the following command (for
 visual clarity, the backslash sign symbolizes the continuing line):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>protostar declare ./build/main.json \
+<div class="highlight"><pre><span></span>protostar declare ./build/main.json \
   --network testnet \
   --account 0x0691622bBFD29e835bA4004e7425A4e9630840EbD11c5269DE51C16774585b16 \
   --max-fee auto
-</code></pre></div>
+</pre></div>
 <p>where <code>network</code> specifies the network we are deploying to, <code>account</code> specifies
 account whose private key we are using, <code>max-fee</code> specifies the maximum fee to
 be paid for the transaction. You should get the class hash outputted as seen
@@ -178,12 +178,12 @@ below:
 
 <p>After obtaining our class hash from declaring, we can now deploy using the
 command below:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>protostar \
+<div class="highlight"><pre><span></span>protostar \
   deploy 0x02a5de1b145e18dfeb31c7cd7ff403714ededf5f3fdf75f8b0ac96f2017541bc \
   --network testnet \
   --account 0x0691622bBFD29e835bA4004e7425A4e9630840EbD11c5269DE51C16774585b16 \
   --max-fee auto
-</code></pre></div>
+</pre></div>
 <p>where <code>0x02a5de1b145e18dfeb31c7cd7ff403714ededf5f3fdf75f8b0ac96f2017541bc</code> is
 the class hash of our contract.
 <img src="./images/cairo/deploy.png" alt="deploying your contract"></p>
@@ -212,7 +212,7 @@ sequence:</p>
 
 <p>First let&rsquo;s look at a default contract that comes with Protostar which allows
 you to set balance on deployment, increase, and get the balance.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// Language directive - instructs compiler its a StarkNet contract
+<div class="highlight"><pre><span></span>// Language directive - instructs compiler its a StarkNet contract
 %lang starknet
 
 // Library imports from the Cairo-lang library
@@ -241,7 +241,7 @@ range_check_ptr}() {
 @external
 func increase_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
 range_check_ptr}(amount: felt){
-  with_attr error_message("Amount must be positive. Got: {amount}.") {
+  with_attr error_message(&quot;Amount must be positive. Got: {amount}.&quot;) {
     assert_nn(amount);
   }
 
@@ -258,7 +258,7 @@ range_check_ptr}() -&gt; (res: felt) {
   let (res) = balance.read();
   return (res,);
 }
-</code></pre></div>
+</pre></div>
 <p>Before proceeding to the main lessons, try to build, deploy and interact with
 this contract.
 NB: You should be at <code>main.cairo</code> if you are using Protostar.</p>
@@ -269,30 +269,30 @@ NB: You should be at <code>main.cairo</code> if you are using Protostar.</p>
 just a single data type <code>..felts</code>. Felts stands for Field elements, and are a
 252 bit integer in the range <code>0&lt;=x&lt;=P</code> where <code>P</code> is a prime number. You can
 create a <code>Uint256</code> in Cairo by utlizing a struct of two 128 bits felts.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>struct Uint256 {
+<div class="highlight"><pre><span></span>struct Uint256 {
   low: felt, // The low 128 bits of the value.
   high: felt, // The high 128 bits of the value.
 }
-</code></pre></div>
+</pre></div>
 <p>To avoid running into issues with divisions, it&rsquo;s safer to work with the
 <code>unsigned_div_rem</code> method from Cairo-lang&rsquo;s library.</p>
 
 <h3>2. Lang Directive and Imports</h3>
 
 <p>To get started with writing a StarkNet contract, you must specify the directive:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>%lang starknet
-</code></pre></div>
+<div class="highlight"><pre><span></span>%lang starknet
+</pre></div>
 <p>This directive informs the compiler you are writing a contract and not a
 program. The difference between both is contracts have access to StarkNet&rsquo;s
 storage, programs don&rsquo;t and as such are stateless.</p>
 
 <p>There are important functions you might need to import from the official
 Cairo-lang library or Openzeppelin&rsquo;s, e.g.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>from starkware.cairo.common.cairo_builtins import HashBuiltin
+<div class="highlight"><pre><span></span>from starkware.cairo.common.cairo_builtins import HashBuiltin
 from cairo_contracts.src.openzeppelin.token.erc20.library import ERC20
 from starkware.cairo.common.uint256 import Uint256
 from starkware.cairo.common.bool import TRUE
-</code></pre></div>
+</pre></div>
 <h3>3. Data Structures</h3>
 
 <ul>
@@ -300,73 +300,73 @@ from starkware.cairo.common.bool import TRUE
 slot is a felt which is initialized to <code>0</code>. You create one using the
 <code>@storage_var</code> decorator.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  @storage_var
+<div class="highlight"><pre><span></span>  @storage_var
   func names() -&gt; (name: felt) {}
-</code></pre></div>
+</pre></div>
 <ul>
 <li>Storage mappings: Unlike Solidity where mappings have a separate keyword, in
 Cairo you create mappings using storage variables.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  @storage_var
+<div class="highlight"><pre><span></span>  @storage_var
   func names(address: felt) -&gt; (name: felt) {}
-</code></pre></div>
+</pre></div>
 <ul>
 <li>Structs: are a means to create custom data types in Cairo. A <code>struct</code> has a
 size, which is the sum of the sizes of its members. The size can be
 retrieved using <code>MyStruct.SIZE</code>. You create a struct in Cairo using the
 <code>struct</code> keyword.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  struct Person {
+<div class="highlight"><pre><span></span>  struct Person {
     name: felt,
     age: felt,
     address: felt,
   }
-</code></pre></div>
+</pre></div>
 <ul>
 <li>Constants: Constants are fixed and as such can&rsquo;t be altered after being set.
 They evaluate to an integer (field element) at compile time. To create a
 constant in Cairo, you use the <code>const</code> keyword. It&rsquo;s proper practice to
 capitalize constant names.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  const USER = 0x01C6cfC1DB2ae90dACEA243F0a8C2F4e32560F7cDD398e4dA2Cc56B733774E9b
-</code></pre></div>
+<div class="highlight"><pre><span></span>  const USER = 0x01C6cfC1DB2ae90dACEA243F0a8C2F4e32560F7cDD398e4dA2Cc56B733774E9b
+</pre></div>
 <ul>
 <li>Arrays: Arrays can be defined as a <code>pointer(felt*)</code> to the first element of
 the array. As an array is populated, its elements take up contigous memory
 cells. The <code>alloc</code> keyword can be used to dynamically allocate a new memory
 segment, which can be used to store an array:</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  let (myArray: felt*) = alloc ();
+<div class="highlight"><pre><span></span>  let (myArray: felt*) = alloc ();
   assert myArray[0] = 1;
   assert myArray[1] = 2;
   assert myArray[3] = 3;
-</code></pre></div>
+</pre></div>
 <p>You can also use the <code>new</code> operator to create fixed-size arrays using
   tuples. The new operator is useful as it enables you allocate memory and
   initialize the object in one instruction</p>
-<div class="highlight"><pre class="highlight plaintext"><code>  func foo() {
+<div class="highlight"><pre><span></span>  func foo() {
     tempvar arr: felt* = new (1, 1, 2, 3, 5);
     assert arr[4] = 5;
     return ();
   }
-</code></pre></div>
+</pre></div>
 <ul>
 <li>Tuples: A tuple is a finite, ordered, unchangeable list of elements. It is
 represented as a comma-separated list of elements enclosed by parentheses.
 Their elements may be of any combination of valid types.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  local tuple0: (felt, felt, felt) = (7, 9, 13);
-</code></pre></div>
+<div class="highlight"><pre><span></span>  local tuple0: (felt, felt, felt) = (7, 9, 13);
+</pre></div>
 <ul>
 <li>Events: Events allows a contract emit information during the course of its
 execution, that can be used outside of StarkNet. An event can be created,
 subsequently emitted:</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  @event
+<div class="highlight"><pre><span></span>  @event
   func name_stored(address, name) {}
 
   name_stored.emit(address, name);
-</code></pre></div>
+</pre></div>
 <h3>4. Constructors, External and View functions</h3>
 
 <ul>
@@ -374,20 +374,20 @@ subsequently emitted:</li>
 contract deployment. You create a constructor using the <code>@constructor</code>
 decorator.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  @constructor
+<div class="highlight"><pre><span></span>  @constructor
   func constructor{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
   range_check_ptr}(_name: felt) {
     let (caller) = get_caller_address();
     names.write(caller, _name);
     return ();
   }
-</code></pre></div>
+</pre></div>
 <ul>
 <li>External functions: External functions are functions that modifies the state
 of the network. You create an external function using the <code>@external</code>
 decorator:</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  @external
+<div class="highlight"><pre><span></span>  @external
   func store_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
   range_check_ptr}(_name: felt){
     let (caller) = get_caller_address();
@@ -395,21 +395,21 @@ decorator:</li>
     stored_name.emit(caller, _name);
     return ();
   }
-</code></pre></div>
+</pre></div>
 <ul>
 <li>View functions: View functions do not modify the state of the blockchain.
 You can create a view function using the <code>@view</code> decorator.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  @view
+<div class="highlight"><pre><span></span>  @view
   func get_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
   range_check_ptr}(_address: felt) -&gt; (name: felt){
     let (name) = names.read(_address);
     return (name,);
   }
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>NB: Unlike Solidity, Cairo supports just External and View function types.
+</pre></div><div class="highlight"><pre><span></span>NB: Unlike Solidity, Cairo supports just External and View function types.
 You can alternatively also create an internal function by not adding any
 decorator to the function.
-</code></pre></div>
+</pre></div>
 <h3>5. Decorators</h3>
 
 <p>All functions in Cairo are specified by the <code>func</code> keyword, which can be
@@ -441,7 +441,7 @@ specify them using the <code>%builtins</code> directive</li>
 </ul>
 
 <p>Here is a list of available builtins in Cairo:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>+ `output` — the output builtin is used for writing program outputs
+<div class="highlight"><pre><span></span>+ `output` — the output builtin is used for writing program outputs
 + `pedersen` — the pedersen builtin is used for pedersen hashing
   computations
 + `range_check` — This builtin is mostly used for integer comparisons,
@@ -450,7 +450,7 @@ specify them using the <code>%builtins</code> directive</li>
 + `ecdsa` — the ecdsa builtin is used for verifying ECDSA signatures
 + `bitwise` — the bitwise builtin is used for carrying out bitwise
   operations on felts
-</code></pre></div>
+</pre></div>
 <ul>
 <li><code>HINTS</code> are pieces of Python codes, which contains instructions that only
 the prover sees and executes. From the point of view of the verifier these
@@ -459,50 +459,50 @@ within <code>%{</code> and <code>%}</code>. It is good practice to avoid using h
 you can in your contracts, as hints are not added to the bytecode, and thus
 do not count in the total number of execution steps.</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  %{
+<div class="highlight"><pre><span></span>  %{
     # Python hint goes here
   %}
-</code></pre></div>
+</pre></div>
 <ul>
 <li><code>IMPLICIT ARGUMENTS</code> are not restricted to the function body, but can be
 inherited by other functions calls that require them. Implicit arguments are
 passed in between curly bracelets, like you can see below:</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  func store_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
+<div class="highlight"><pre><span></span>  func store_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
   range_check_ptr}(_name: felt){
     let (caller) = get_caller_address();
     names.write(caller, _name);
     stored_name.emit(caller, _name);
     return ();
   }
-</code></pre></div>
+</pre></div>
 <h3>7. Error Messages and Access Controls</h3>
 
 <p>You can create custom errors in Cairo which is outputted to the user upon failed
 execution. This can be very useful for implementing checks and proper access
 control mechanisms. An example is preventing a user to call a function except
 user is <code>admin</code>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// imports
+<div class="highlight"><pre><span></span>// imports
 from starkware.starknet.common.syscalls import get_caller_address
 
 // create an admin constant
 const ADMIN = 0x01C6cfC1DB2ae90dACEA243F0a8C2F4e32560F7cDD398e4dA2Cc56B733774E9b
 
 // implement access control
-with_attr error_message("You do not have access to make this action!"){
+with_attr error_message(&quot;You do not have access to make this action!&quot;){
   let (caller) = get_caller_address();
   assert ADMIN = caller;
 }
 
 // using an assert statement throws if condition is not true, thus
 // returning the specified error.
-</code></pre></div>
+</pre></div>
 <h3>8. Contract Interfaces</h3>
 
 <p>Contract interfaces provide a means for one contract to invoke or call the
 external function of another contract. To create a contract interface, you use
 the <code>@contract_interface</code> keyword:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>@contract_interface
+<div class="highlight"><pre><span></span>@contract_interface
   namespace IENS {
     func store_name(_name: felt) {
     }
@@ -510,11 +510,11 @@ the <code>@contract_interface</code> keyword:</p>
     func get_name(_address: felt) -&gt; (name: felt) {
     }
   }
-</code></pre></div>
+</pre></div>
 <p>Once a contract interface is specified, any contract can make calls to that
 contract passing in the contract address as the first parameter like this:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>IENS.store_name(contract_address, _name);
-</code></pre></div>
+<div class="highlight"><pre><span></span>IENS.store_name(contract_address, _name);
+</pre></div>
 <p>Note that Interfaces exclude the function body/logic and the implicit
 arguments.</p>
 
@@ -526,7 +526,7 @@ repeatedly.</p>
 
 <p>A good example to demonstrate this is writing a function for getting the nth
 fibonacci number:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>@external
+<div class="highlight"><pre><span></span>@external
 func fibonacci{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
 range_check_ptr}(n : felt) -&gt; (result : felt){
   alloc_locals;
@@ -540,7 +540,7 @@ range_check_ptr}(n : felt) -&gt; (result : felt){
   let (local y) = fibonacci(n - 2);
   return (result=(x + y));
 }
-</code></pre></div>
+</pre></div>
 <p>The nth fibonacci term is the sum of the <code>nth - 1</code> and the <code>nth - 2</code> numbers,
 that&rsquo;s why we get these two as <code>(x,y)</code> using recursion.</p>
 
@@ -571,7 +571,7 @@ the change of <code>ap</code> (as one may jump to the label from another place i
 program, or call a function that might change ap in an unknown way).</p>
 
 <p>Here is an example to demonstrate what I mean:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>@external
+<div class="highlight"><pre><span></span>@external
 func get_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
 range_check_ptr}() -&gt; (res: felt) {
   return (res=100);
@@ -585,7 +585,7 @@ range_check_ptr}() -&gt; (res: felt) {
   let new_balance = balance * multiplier;
   return (res=new_balance);
 }
-</code></pre></div>
+</pre></div>
 <p>If you run that code, you&rsquo;ll run into the revoked reference error as we are
 trying to access the <code>multiplier</code> variable after calling the <code>get_balance</code>
 function.</p>
@@ -593,7 +593,7 @@ function.</p>
 <p>In simple cases you can resolve revoked references by adding the keyword
 <code>alloc_locals</code> within function scopes. In more complex cases you might need to
 create a local variable to resolve it.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>// resolving the `double_balance` function:
+<div class="highlight"><pre><span></span>// resolving the `double_balance` function:
 @external
 func double_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
 range_check_ptr}() -&gt; (res: felt) {
@@ -603,7 +603,7 @@ range_check_ptr}() -&gt; (res: felt) {
   let new_balance = balance * multiplier;
   return (res=new_balance);
 }
-</code></pre></div>
+</pre></div>
 <h3>12. Understanding Cairo&rsquo;s Punctuations</h3>
 
 <ul>
@@ -628,7 +628,7 @@ unused function return value.</li>
 
 <p>Below is a simple automated market maker contract example that implements most
 of what we just learnt! Re-write, deploy, have fun!</p>
-<div class="highlight"><pre class="highlight plaintext"><code>%lang starknet
+<div class="highlight"><pre><span></span>%lang starknet
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin
 from starkware.cairo.common.hash import hash2
@@ -647,7 +647,7 @@ const BALANCE_UPPER_BOUND = 2 ** 64;
 const TOKEN_TYPE_A = 1;
 const TOKEN_TYPE_B = 2;
 
-// @dev Ensure the user's balances are much smaller than the pool's balance
+// @dev Ensure the user&#39;s balances are much smaller than the pool&#39;s balance
 const POOL_UPPER_BOUND = 2 ** 30;
 const ACCOUNT_BALANCE_BOUND = 1073741; // (2 ** 30 / 1000)
 
@@ -676,7 +676,7 @@ HashBuiltin*, range_check_ptr}(
   return account_balance.read(account_id, token_type);
 }
 
-// @dev return the pool's balance
+// @dev return the pool&#39;s balance
 // @param token_type Token type to get pool balance
 @view
 func get_pool_token_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
@@ -697,7 +697,7 @@ func set_pool_token_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
 range_check_ptr}(
   token_type: felt, balance: felt
   ) {
-  with_attr error_message("exceeds maximum allowed tokens!"){
+  with_attr error_message(&quot;exceeds maximum allowed tokens!&quot;){
     assert_nn_le(balance, BALANCE_UPPER_BOUND - 1);
   }
 
@@ -732,7 +732,7 @@ func init_pool{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*,
 range_check_ptr}(
   token_a: felt, token_b: felt
   ) {
-  with_attr error_message("exceeds maximum allowed tokens!"){
+  with_attr error_message(&quot;exceeds maximum allowed tokens!&quot;){
     assert_nn_le(token_a, POOL_UPPER_BOUND - 1);
     assert_nn_le(token_b, POOL_UPPER_BOUND - 1);
   }
@@ -756,19 +756,19 @@ func swap{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
   let (account_id) = get_caller_address();
 
   // verify token_from is TOKEN_TYPE_A or TOKEN_TYPE_B
-  with_attr error_message("token not allowed in pool!"){
+  with_attr error_message(&quot;token not allowed in pool!&quot;){
     assert (token_from - TOKEN_TYPE_A) * (token_from - TOKEN_TYPE_B) = 0;
     }
 
   // check requested amount_from is valid
-  with_attr error_message("exceeds maximum allowed tokens!"){
+  with_attr error_message(&quot;exceeds maximum allowed tokens!&quot;){
     assert_nn_le(amount_from, BALANCE_UPPER_BOUND - 1);
     }
 
   // check user has enough funds
   let (account_from_balance) =
     get_account_token_balance(account_id=account_id, token_type=token_from);
-  with_attr error_message("insufficient balance!"){
+  with_attr error_message(&quot;insufficient balance!&quot;){
     assert_le(amount_from, account_from_balance);
     }
 
@@ -793,7 +793,7 @@ range_check_ptr}(
   let (current_balance) = account_balance.read(account_id, token_type);
   tempvar new_balance = current_balance + amount;
 
-  with_attr error_message("exceeds maximum allowed tokens!"){
+  with_attr error_message(&quot;exceeds maximum allowed tokens!&quot;){
     assert_nn_le(new_balance, BALANCE_UPPER_BOUND - 1);
     }
 
@@ -848,7 +848,7 @@ func get_opposite_token(token_type: felt) -&gt; (t: felt) {
     return (t=TOKEN_TYPE_A);
   }
 }
-</code></pre></div>
+</pre></div>
 <h2>Additional Resources</h2>
 
 <ul>

@@ -93,7 +93,7 @@ de los sistemas basados en UNIX. Cuenta con numerosas combinaciones de teclas
 para la navegación rápida a puntos especificos en un archivo y para rápida edición.</p>
 
 <h2>Fundamentos de la navegación en Vim</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>    vim &lt;archivo&gt;    # Abre &lt;archivo&gt; en vim
+<div class="highlight"><pre><span></span>    vim &lt;archivo&gt;    # Abre &lt;archivo&gt; en vim
     :q               # Salir de vim
     :w               # Guardar archivo actual
     :wq              # Guardar archivo y salir de vim
@@ -122,8 +122,8 @@ para la navegación rápida a puntos especificos en un archivo y para rápida ed
     n                # Desplaza el cursor a la siguiente ocurrencia de la palabra después de una búsqueda
     N                # Desplaza el cursor a la anterior ocurrencia de la palabra
 
-    :%s/foo/bar/g    # Cambia 'foo' a 'bar' en cada línea en el archivo
-    :s/foo/bar/g     # Cambia 'foo' a 'bar' en la línea actual
+    :%s/foo/bar/g    # Cambia &#39;foo&#39; a &#39;bar&#39; en cada línea en el archivo
+    :s/foo/bar/g     # Cambia &#39;foo&#39; a &#39;bar&#39; en la línea actual
 
     # Saltando caracteres
 
@@ -148,7 +148,7 @@ para la navegación rápida a puntos especificos en un archivo y para rápida ed
     H                # Desplazarse al principio de la pantalla
     M                # Desplazarse a la mitad de la pantalla
     L                # Desplazarse al final de la pantalla
-</code></pre></div>
+</pre></div>
 <h2>Modos:</h2>
 
 <p>Vim se basa en el concepto de <strong>modos</strong>.</p>
@@ -157,7 +157,7 @@ para la navegación rápida a puntos especificos en un archivo y para rápida ed
 Modo Inserción  - Utilizado para realizar cambios en el archivo<br>
 Modo Visual     - Utilizado para resaltar texto y operar en ellos<br>
 Modo Ex         - Utilizado para ir hacia la parte inferior con &lsquo;:&rsquo; para introducir comandos</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    i                # Pone a Vim en modo de inserción, antes de la posición del cursor
+<div class="highlight"><pre><span></span>    i                # Pone a Vim en modo de inserción, antes de la posición del cursor
     a                # Pone a Vim en modo de inserción, después de la posición del cursor
     v                # Pone a Vim en modo de visual
     :                # Pone a Vim en modo Ex
@@ -172,7 +172,7 @@ Modo Ex         - Utilizado para ir hacia la parte inferior con &lsquo;:&rsquo; 
     p                # Pega el texto copiado después de la posición del cursor
     P                # Pega el texto copiado antes de la posición del cursor
     x                # Elimina el carácter debajo de la posición del cursor
-</code></pre></div>
+</pre></div>
 <h2>La &ldquo;Gramática&rdquo; de vim</h2>
 
 <p>Vim puede ser pensado como un conjunto de comandos en un
@@ -183,14 +183,14 @@ Modificador - Como vas hacer la acción<br>
 Sustantivo  - el objeto al que se le va a aplicar la acción</p>
 
 <p>Algunos ejemplos importantes de &quot;Verbos&rdquo;, &ldquo;Modificadores&rdquo; y &ldquo;Sustantivos&rdquo;:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    # 'Verbos'
+<div class="highlight"><pre><span></span>    # &#39;Verbos&#39;
 
     d                # Eliminar
     c                # Cambiar
     y                # Copiar
     v                # Seleccionar visualmente
 
-    # 'Modificadores'
+    # &#39;Modificadores&#39;
 
     i                # Dentro
     a                # Alrededor
@@ -200,14 +200,14 @@ Sustantivo  - el objeto al que se le va a aplicar la acción</p>
     /                # Encuentra una cadena desde el cursor en adelante
     ?                # Encuentra una cadena antes del cursor
 
-    # 'Sustantivos'
+    # &#39;Sustantivos&#39;
 
     w                # Palabra
     s                # Oración
     p                # Párrafo
     b                # Bloque
 
-    # "Frases" de ejemplo o comandos
+    # &quot;Frases&quot; de ejemplo o comandos
 
     d2w              # Elimina 2 palabras
     cis              # Cambia dentro de una oración
@@ -215,15 +215,15 @@ Sustantivo  - el objeto al que se le va a aplicar la acción</p>
     ct&lt;              # Cambia para abrir un paréntesis
                      # Cambie el texto desde donde está a la siguiente paréntesis abierto
     d$               # Eliminar hasta el final de la línea
-</code></pre></div>
+</pre></div>
 <h2>Algunos accesos directos y trucos</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>    &gt;                # Sangrar la selección por un bloque
+<div class="highlight"><pre><span></span>    &gt;                # Sangrar la selección por un bloque
     &lt;                # Desangrar la selección por un bloque
     :earlier 15m     # Devuelve el documento de nuevo a como era hace 15 minutos
     :later 15m       # Deshace el comando anterior
     ddp              # Intercambia la posición de las lineas consecutivas, dd después p
     .                # Repite la acción previa
-</code></pre></div>
+</pre></div>
 <h2>Macros</h2>
 
 <p>Las macros son, básicamente, las acciones que se pueden grabar.
@@ -231,58 +231,58 @@ Cuando comienzas a grabar un macro, registra <strong>todas</strong> las acciones
 que se utilizan hasta que detenga la grabación. En la invocación de un macro,
 se aplica exactamente la misma secuencia de acciones y comandos de nuevo
 en la selección de texto.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    qa               # Comienza a grabar un macro llamada 'a'
+<div class="highlight"><pre><span></span>    qa               # Comienza a grabar un macro llamada &#39;a&#39;
     q                # Detiene la grabación
     @a               # Comienza la reproducción del macro
-</code></pre></div>
+</pre></div>
 <h3>Configurando ~/.vimrc</h3>
 
 <p>El archivo .vimrc puede ser usado para configurar Vim en el arranque.</p>
 
 <p>Aquí está un ejemplo de un archivo ~ / .vimrc:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>" Ejemplo ~/.vimrc
-" 2015.10 
+<div class="highlight"><pre><span></span>&quot; Ejemplo ~/.vimrc
+&quot; 2015.10 
 
-" Se requiere para que vim sea 'mejor'
+&quot; Se requiere para que vim sea &#39;mejor&#39;
 set nocompatible
 
-" Determina la extensión del archivo por el nombre para permitir el auto-indentado inteligente, etc...
+&quot; Determina la extensión del archivo por el nombre para permitir el auto-indentado inteligente, etc...
 filetype indent plugin on
 
-" Habilita el resaltado de sintaxis
+&quot; Habilita el resaltado de sintaxis
 syntax on
 
-" Mejor terminación de línea de comandos
+&quot; Mejor terminación de línea de comandos
 set wildmenu
 
-" Usa búsqueda sensible a mayúsculas excepto cuando se utilizan letras mayúsculas
+&quot; Usa búsqueda sensible a mayúsculas excepto cuando se utilizan letras mayúsculas
 set ignorecase
 set smartcase
 
-" Al abrir una nueva línea, si la sangría especifica del archivo no está habilitada,
-" mantén la misma sangría que la línea que estás actualmente
+&quot; Al abrir una nueva línea, si la sangría especifica del archivo no está habilitada,
+&quot; mantén la misma sangría que la línea que estás actualmente
 set autoindent
 
-" Despliega el número de línea a la izquierda
+&quot; Despliega el número de línea a la izquierda
 set number
 
-" Opciones de sangría, cambialas de acuerdo a tus preferencias personales
+&quot; Opciones de sangría, cambialas de acuerdo a tus preferencias personales
 
-" Número de espacios visuales por tabulación
+&quot; Número de espacios visuales por tabulación
 set tabstop=4
 
-" Número de espacios de las tabulaciones al editar
+&quot; Número de espacios de las tabulaciones al editar
 set softtabstop=4
 
-" Número de espacios sangrados cuando las operaciones de resangrado (&gt;&gt; y &lt;&lt;) son usadas
+&quot; Número de espacios sangrados cuando las operaciones de resangrado (&gt;&gt; y &lt;&lt;) son usadas
 set shiftwidth=4
 
-" Convertir tabulaciones en espacios
+&quot; Convertir tabulaciones en espacios
 set expandtab
 
-" Habilitar la tabulación inteligente y el espaciamiento para el sangrado y la alineación
+&quot; Habilitar la tabulación inteligente y el espaciamiento para el sangrado y la alineación
 set smarttab
-</code></pre></div>
+</pre></div>
 <h3>Referencias</h3>
 
 <p><a href="http://www.vim.org/index.php">Vim | Home (EN)</a></p>

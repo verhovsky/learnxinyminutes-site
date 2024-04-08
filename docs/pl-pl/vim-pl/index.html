@@ -94,7 +94,7 @@ do szybkiej nawigacji do wybranych miejsc w plikach oraz szybkiej edycji
 danych fragmentów.</p>
 
 <h2>Podstawy nawigacji w Vim</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>    vim &lt;nazwapliku&gt; # Otwórz &lt;nazwapliku&gt; w vim
+<div class="highlight"><pre><span></span>    vim &lt;nazwapliku&gt; # Otwórz &lt;nazwapliku&gt; w vim
     :q               # Zamknij vim
     :w               # Zapisz aktualny plik
     :wq              # Zapisz i wyjdź z vim
@@ -123,8 +123,8 @@ danych fragmentów.</p>
     n                # Przemieszcza kursor do następnego wystąpienia słowa
     N                # Przemieszcza kursor do poprzedniego wystąpenia słowa
 
-    :%s/foo/bar/g    # Zamień 'foo' na 'bar' w każdej linii tekstu
-    :s/foo/bar/g     # Zamień 'foo' na 'bar' w aktualnej linii
+    :%s/foo/bar/g    # Zamień &#39;foo&#39; na &#39;bar&#39; w każdej linii tekstu
+    :s/foo/bar/g     # Zamień &#39;foo&#39; na &#39;bar&#39; w aktualnej linii
 
     # Skoki do znaków
 
@@ -149,7 +149,7 @@ danych fragmentów.</p>
     H                # Skocz na górę ekranu
     M                # Skocz na środek ekranu
     L                # Skocz na dół ekranu
-</code></pre></div>
+</pre></div>
 <h2>Tryby:</h2>
 
 <p>Vim oparty jest na koncepcji <strong>trybów</strong>.</p>
@@ -158,7 +158,7 @@ danych fragmentów.</p>
 Insert Mode  - (Tryb wprowadzania) używany do wprowadzania zmian w pliku
 Visual Mode  - (Tryb wizualny) używany do zaznaczania tekstu i wykonywania komend na nim
 Ex Mode      - (Tryb Ex) </p>
-<div class="highlight"><pre class="highlight plaintext"><code>    i                # Przechodzi to trybu wprowadzania, przed pozycją kursora
+<div class="highlight"><pre><span></span>    i                # Przechodzi to trybu wprowadzania, przed pozycją kursora
     a                # Przechodzi do trybu wprowadzania, za pozycją kursora
     v                # Przechodzi do trybu wizualnego
     :                # Przechodzi do trybu ex
@@ -173,7 +173,7 @@ Ex Mode      - (Tryb Ex) </p>
     p                # Wklej skopiowany tekst za kursorem
     P                # Wklej skopiowany tekst przed kursorem
     x                # Usuń znak pod kursorem
-</code></pre></div>
+</pre></div>
 <h2>&lsquo;Gramatyka&rsquo; vim&#39;a</h2>
 
 <p>Vim można traktować jako zbiór komend w formacie &lsquo;Akcja-Modyfikator-Obiekt&rsquo;, gdzie:</p>
@@ -183,14 +183,14 @@ Modyfikator - w jaki sposób wykonywana jest akcja
 Obiekt      - obiekt na którym wykonywana jest akcja</p>
 
 <p>Kilka ważnych przykładów Akcji, Modyfikatorów i Obiektów:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    # 'Akcje'
+<div class="highlight"><pre><span></span>    # &#39;Akcje&#39;
 
     d                # Usuń
     c                # Zmień
     y                # Skopiuj
     v                # Zaznacz
 
-    # 'Modyfikatory'
+    # &#39;Modyfikatory&#39;
 
     i                # W środku
     a                # Dookoła
@@ -200,87 +200,87 @@ Obiekt      - obiekt na którym wykonywana jest akcja</p>
     /                # Znajduje napis od kursora naprzód
     ?                # Znajduje napis przed kursorem
 
-    # 'Obiekty'
+    # &#39;Obiekty&#39;
 
     w                # Słowo
     s                # Zdanie
     p                # Paragraf
     b                # Blok
 
-    # Przykładowe 'zdania'
+    # Przykładowe &#39;zdania&#39;
 
     d2w              # Usuń 2 słowa
     cis              # Zmień w zdaniu
     yip              # Skopiuj paragraf w którym jest kursor
     ct&lt;              # Zamień na &lt;
     d$               # Usuń tekst do końca linii
-</code></pre></div>
+</pre></div>
 <h2>Pewne skróty i triki</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>    &lt;!--TODO: Dodać więcej!--&gt;
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>    &gt;                # Zrób wcięcie zaznaczonego bloku
+<div class="highlight"><pre><span></span>    &lt;!--TODO: Dodać więcej!--&gt;
+</pre></div><div class="highlight"><pre><span></span>    &gt;                # Zrób wcięcie zaznaczonego bloku
     &lt;                # Usuń wcięcie zaznaczonego bloku
     :earlier 15m     # Przywróć dokument do stanu z przed 15 minut 
     :later 15m       # Odwróć efekt poprzedniej komendy
     ddp              # Zamień kolejnością kolejne linie, dd potem p
     .                # Powtórz poprzednią komendę
-</code></pre></div>
+</pre></div>
 <h2>Makra</h2>
 
 <p>Makra są właściwie nagrywanymi akcjami. Gdy zaczynasz nagrywać makro, nagrywa ono
 <strong>każdą</strong> akcję i komendę jaką wykonasz do momentu przerwania nagrywania.
 Wywołanie makra wykonuje dokładnie te same operacje w tej samej kolejności.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    qa               # Zacznij nagrywać makro 'a'
+<div class="highlight"><pre><span></span>    qa               # Zacznij nagrywać makro &#39;a&#39;
     q                # Przerwij nagrywanie
-    @a               # Odtwórz makro 'a'
-</code></pre></div>
+    @a               # Odtwórz makro &#39;a&#39;
+</pre></div>
 <h3>Konfiguracja ~/.vimrc</h3>
 
 <p>Plik .vimrc może być użyty do skonfigurowania Vim&#39;a przy jego starcie</p>
 
 <p>Poniżej zamieszczono przykładowy plik ~/.vimrc:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>" Przykładowy ~/.vimrc
-" 2016.10 
+<div class="highlight"><pre><span></span>&quot; Przykładowy ~/.vimrc
+&quot; 2016.10 
 
-" Wymagane aby korzystać z opcji iMproved
+&quot; Wymagane aby korzystać z opcji iMproved
 set nocompatible
 
-" Na podstawie typu pliku włącza inteligentne wcięcia i inne.
+&quot; Na podstawie typu pliku włącza inteligentne wcięcia i inne.
 filetype indent plugin on
 
-" Włącz podkreślanie składni
+&quot; Włącz podkreślanie składni
 syntax on
 
-" Lepsze uzupełnianie składni komend
+&quot; Lepsze uzupełnianie składni komend
 set wildmenu
 
-" Wyszukiwanie będzie ignorować wielkość liter poza przypadkami gdy użyjemy wielkich liter
+&quot; Wyszukiwanie będzie ignorować wielkość liter poza przypadkami gdy użyjemy wielkich liter
 set ignorecase
 set smartcase
 
-" Po otwarciu pliku gdzie nie jest zdefiniowane zachowanie wcięć
-" zostanie zachowane wcięcie takie samo jak w aktualnej linii
+&quot; Po otwarciu pliku gdzie nie jest zdefiniowane zachowanie wcięć
+&quot; zostanie zachowane wcięcie takie samo jak w aktualnej linii
 set autoindent
 
-" Wyświetlaj numer lini
+&quot; Wyświetlaj numer lini
 set number
 
-" Opcje wcięć, zmień w zależności od osobistych upodobań
+&quot; Opcje wcięć, zmień w zależności od osobistych upodobań
 
-" Szerokość TAB w spacjach
+&quot; Szerokość TAB w spacjach
 set tabstop=4
 
-" Liczba spacji w TAB podczas edycji
+&quot; Liczba spacji w TAB podczas edycji
 set softtabstop=4
 
-" Liczba spacji gdy wykonywane są operacje wcięcia (&gt;&gt; i &lt;&lt;)
+&quot; Liczba spacji gdy wykonywane są operacje wcięcia (&gt;&gt; i &lt;&lt;)
 set shiftwidth=4
 
-" Zamieniaj tabulatory na spacje
+&quot; Zamieniaj tabulatory na spacje
 set expandtab
 
-" Aktywuj inteligentne tabulatory i spacje do wcięć i wyrównań
+&quot; Aktywuj inteligentne tabulatory i spacje do wcięć i wyrównań
 set smarttab
-</code></pre></div>
+</pre></div>
 <h3>Odniesienia [ENG]</h3>
 
 <p><a href="http://www.vim.org/index.php">Vim | Home</a></p>

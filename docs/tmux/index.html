@@ -91,16 +91,16 @@ is a terminal multiplexer: it enables a number of terminals
 to be created, accessed, and controlled from a single screen. tmux
 may be detached from a screen and continue running in the background
 then later reattached.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>  tmux [command]     # Run a command
-                     # 'tmux' with no commands will create a new session
+<div class="highlight"><pre><span></span>  tmux [command]     # Run a command
+                     # &#39;tmux&#39; with no commands will create a new session
 
     new              # Create a new session
-     -s "Session"    # Create named session
-     -n "Window"     # Create named Window
-     -c "/dir"       # Start in target directory
+     -s &quot;Session&quot;    # Create named session
+     -n &quot;Window&quot;     # Create named Window
+     -c &quot;/dir&quot;       # Start in target directory
 
     attach           # Attach last/available session
-     -t "#"          # Attach target session
+     -t &quot;#&quot;          # Attach target session
      -d              # Detach the session from other instances
 
     ls               # List open sessions
@@ -116,21 +116,21 @@ then later reattached.</p>
      -t              # List all panes in target
 
     kill-window      # Kill current window
-     -t "#"          # Kill target window
+     -t &quot;#&quot;          # Kill target window
      -a              # Kill all windows
-     -a -t "#"       # Kill all windows but the target
+     -a -t &quot;#&quot;       # Kill all windows but the target
 
     kill-session     # Kill current session
-     -t "#"          # Kill target session
+     -t &quot;#&quot;          # Kill target session
      -a              # Kill all sessions
-     -a -t "#"       # Kill all sessions but the target
-</code></pre></div>
+     -a -t &quot;#&quot;       # Kill all sessions but the target
+</pre></div>
 <h3>Key Bindings</h3>
 
 <p>The method of controlling an attached tmux session is via key
 combinations called &lsquo;Prefix&rsquo; keys.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>----------------------------------------------------------------------
-  (C-b) = Ctrl + b    # 'Prefix' combination required to use keybinds
+<div class="highlight"><pre><span></span>----------------------------------------------------------------------
+  (C-b) = Ctrl + b    # &#39;Prefix&#39; combination required to use keybinds
 
   (M-1) = Meta + 1 -or- Alt + 1
 ----------------------------------------------------------------------
@@ -142,7 +142,7 @@ combinations called &lsquo;Prefix&rsquo; keys.</p>
 
   !                  # Break the current pane out of the window.
   %                  # Split the current pane into two, left and right
-  "                  # Split the current pane into two, top and bottom
+  &quot;                  # Split the current pane into two, top and bottom
 
   n                  # Change to the next window
   p                  # Change to the previous window
@@ -176,12 +176,12 @@ combinations called &lsquo;Prefix&rsquo; keys.</p>
 
   M-Up, M-Down       # Resize the current pane in steps of five cells
   M-Left, M-Right
-</code></pre></div>
+</pre></div>
 <h3>Configuring ~/.tmux.conf</h3>
 
 <p>tmux.conf can be used to set options automatically on start up, much
 like how .vimrc or init.el are used.</p>
-<div class="highlight"><pre class="highlight plaintext"><code># Example tmux.conf
+<div class="highlight"><pre><span></span># Example tmux.conf
 # 2015.12
 
 
@@ -238,7 +238,7 @@ bind F swap-window -t +1
 # Easy split pane commands
 bind = split-window -h
 bind - split-window -v
-unbind '"'
+unbind &#39;&quot;&#39;
 unbind %
 
 # Activate inner-most session (when nesting tmux) to send commands
@@ -285,16 +285,16 @@ set-option -g visual-bell off
 
 # Automatically set window titles
 set-option -g set-titles on
-set-option -g set-titles-string '#H:#S.#I.#P #W #T' # window number,program name,active (or not)
+set-option -g set-titles-string &#39;#H:#S.#I.#P #W #T&#39; # window number,program name,active (or not)
 
 # Statusbar Adjustments
-set -g status-left "#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]"
+set -g status-left &quot;#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] |#[default]&quot;
 
 # Show performance counters in statusbar
 # Requires https://github.com/thewtex/tmux-mem-cpu-load/
 set -g status-interval 4
-set -g status-right "#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]"
-</code></pre></div>
+set -g status-right &quot;#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]&quot;
+</pre></div>
 <h3>References</h3>
 
 <p><a href="http://tmux.github.io">Tmux | Home</a></p>

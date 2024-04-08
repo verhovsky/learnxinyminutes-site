@@ -91,10 +91,10 @@
 <h2>Introducción</h2>
 
 <p>Un método sencillo para poner en práctica la búsqueda es hacer una búsqueda lineal, pero este método requiere mucho tiempo y este crece linealmente con la cantidad o el número de datos. es decir, empezar desde el elemento a la izquierda de la matriz [] y uno por uno compara x con cada elemento de la matriz [], si x coincide con un elemento, devuelve el índice. Si x no coincide con ninguno de los elementos, devuelve -1.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Búsqueda Lineal: O (n)               Tiempo lineal
+<div class="highlight"><pre><span></span>Búsqueda Lineal: O (n)               Tiempo lineal
 
 Búsqueda Binaria: O ( log(n) )        Tiempo logarítmico
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>def search(arr, x):
+</pre></div><div class="highlight"><pre><span></span>def search(arr, x):
 
     for i in range(len(arr)):
 
@@ -102,19 +102,19 @@ Búsqueda Binaria: O ( log(n) )        Tiempo logarítmico
             return i
 
     return -1
-</code></pre></div>
+</pre></div>
 <h2>Algoritmo de Búsqueda Binaria</h2>
 
 <p>El requisito básico para que la búsqueda binaria funcione es que los datos a buscar deben estar ordenados (en cualquier orden).</p>
 
 <h3>Algo</h3>
-<div class="highlight"><pre class="highlight plaintext"><code>La idea de la búsqueda binaria es usar la información de que la matriz está ordenada y así reducir la complejidad del tiempo a O(Logn). Básicamente ignoramos la mitad de los elementos después de la primera comparación.
+<div class="highlight"><pre><span></span>La idea de la búsqueda binaria es usar la información de que la matriz está ordenada y así reducir la complejidad del tiempo a O(Logn). Básicamente ignoramos la mitad de los elementos después de la primera comparación.
 1) Compare x con el elemento del medio.
 2) si x coincide con el elemento del medio , retornamos el índice del elemento del medio.
 3) Si no coincide, si x es mayor que el elemento del medio, entonces x solo puede estar en la mitad derecha justo después del elemento del medio. Así que recurrimos a la mitad derecha. 
 4) Si no (x es más pequeño) recurrimos a la mitad izquierda.
 Siguiendo la implementación recursiva de búsqueda binaria.
-</code></pre></div>
+</pre></div>
 <h3>Notas finales</h3>
 
 <p>Hay otra forma de búsqueda binaria que es muy útil.</p>

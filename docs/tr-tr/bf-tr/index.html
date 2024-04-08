@@ -89,7 +89,7 @@
     <p>Brainfuck (normalde brainfuck olarak bütün harfleri küçük olarak yazılır.) 
 son derece minimal bir programlama dilidir. (Sadece 8 komut) ve tamamen 
 Turing&#39;dir.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>"&gt;&lt;+-.,[]" (tırnak işaretleri hariç) karakterleri dışındaki her karakter
+<div class="highlight"><pre><span></span>&quot;&gt;&lt;+-.,[]&quot; (tırnak işaretleri hariç) karakterleri dışındaki her karakter
 gözardı edilir.
 
 Brainfuck 30,000 hücresi olan ve ilk değerleri sıfır olarak atanmış bir
@@ -100,7 +100,7 @@ Sekiz komut vardır:
 - : Geçerli hücrenin değerini bir azaltır.
 &gt; : Veri işaretçisini bir sonraki hücreye hareket ettirir(sağdaki hücreye).
 &lt; : Veri işaretçisini bir önceki hücreye hareket ettirir(soldaki hücreye).
-. : Geçerli hücrenin ASCII değerini yazdırır (örn: 65 = 'A').
+. : Geçerli hücrenin ASCII değerini yazdırır (örn: 65 = &#39;A&#39;).
 , : Bir girdilik karakteri aktif hücre için okur.
 [ : Eğer geçerli hücredeki değer sıfır ise, ]ifadesine atlar.
     Diğer durumlarda bir sonraki yönergeye geçer.
@@ -113,16 +113,16 @@ Basit bir brainfuck programına göz atalım.
 
 ++++++ [ &gt; ++++++++++ &lt; - ] &gt; +++++ .
 
-Bu program 'A' karaterini ekrana basar. İlk olarak, #1'inci hücre 6'ya artırılır.
-#1'inci hücre döngü için kullanılacaktır. Sonra, ([) döngüsüne girilir ve
-#2'inci hücreye hareket edilir. #2'inci hücre 10 kez artırılır, #1'inci hücreye
+Bu program &#39;A&#39; karaterini ekrana basar. İlk olarak, #1&#39;inci hücre 6&#39;ya artırılır.
+#1&#39;inci hücre döngü için kullanılacaktır. Sonra, ([) döngüsüne girilir ve
+#2&#39;inci hücreye hareket edilir. #2&#39;inci hücre 10 kez artırılır, #1&#39;inci hücreye
 geri dönülür. #1 hücresini bir azaltır. Bu döngü 6 kez gerçekleşir. (Bu 6 kez
 azaltmak demektir, #1 hücresi 0 değerini alır ve bu noktada ] ifadesini atlar).
 
 Bu noktada, biz #1 hücresindeyiz, değeri şu anda 0 ve #2 hücresinin değeri
-60'tır. Biz #2 hücresine hareket diyoruz ve bu hücreyi 5 defa artırıyoruz.
-#2'nin şu anki değeri 65 olur. Sonra #2 hücresinin ASCII karşılığını
-yazdırıyoruz. 65 değerinin ASCII karşılığı 'A'dır. Ekrana 'A' yazılacaktır.
+60&#39;tır. Biz #2 hücresine hareket diyoruz ve bu hücreyi 5 defa artırıyoruz.
+#2&#39;nin şu anki değeri 65 olur. Sonra #2 hücresinin ASCII karşılığını
+yazdırıyoruz. 65 değerinin ASCII karşılığı &#39;A&#39;dır. Ekrana &#39;A&#39; yazılacaktır.
 
 
 , [ &gt; + &lt; - ] &gt; .
@@ -133,7 +133,7 @@ ve daha sonra aynı karakteri ekrana yazdırır.
 , ifadesi kullanıcıdan karakteri #1 hücresine okur. Sonra bir döngü
 başlar. #2 hücresine hareket edilir, #2 hücresinin değeri bir artırılır, #1
 hücresine geri dönülür, ve #1 hücresinin değer bir azaltılır. Bu #1 hücresinin
-değeri 0 olana kadar devam eder ve #2 hücresi #1'in eski değerini tutar. Çünkü
+değeri 0 olana kadar devam eder ve #2 hücresi #1&#39;in eski değerini tutar. Çünkü
 biz #1 hücresindeki verileri döngü süresince #2 hücresine taşıyoruz, ve sonunda
 #2 hücresinin ASCII değerini yazdırıyoruz.
 
@@ -152,10 +152,10 @@ Bu program 2 sayı alır, ve birbiri ile çarpar.
 Özetle, ilk olarak iki girdi alır. Sonra, #1 hücresinde şarta bağlı harici bir
 döngü başlar. Sonra #2 ye hareket edilir, ve içerde #2 hücresine bağlı bir döngü
 daha başlar ve #3 hücresinin değerini artırır. Ama, Bir problem vardır: iç
-döngünün sonunda #2'inci hücrenin değeri 0 olacaktır. Bunu çözmek için #4
-hücresinin de değerini yükseltiyoruz, ve sonra #4 hücresinin değerini #2'ye
+döngünün sonunda #2&#39;inci hücrenin değeri 0 olacaktır. Bunu çözmek için #4
+hücresinin de değerini yükseltiyoruz, ve sonra #4 hücresinin değerini #2&#39;ye
 kopyalıyoruz.
-</code></pre></div>
+</pre></div>
 <p>İşte brainfuck. Zor değil değil mi? Eğlenmek için kendi programınızı
 yazabilirsiniz, veya farklı bir dilde brainfuck yorumlayıcısı yazabilirsiniz.
 Yorumlayıcı oldukça basittir, ama mazoşist iseniz, brainfuck içerisinde bir

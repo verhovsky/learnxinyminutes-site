@@ -93,7 +93,7 @@ na maioria dos sistemas UNIX. O editor tem um grande número de atalhos de tecla
 para agilizar a navegação para pontos específicos no arquivo, além de edição rápida.</p>
 
 <h2>Navegação do Vim: o básico</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>    vim &lt;nome-do-arquivo&gt;   # Abre &lt;nome-do-arquivo&gt; no vim
+<div class="highlight"><pre><span></span>    vim &lt;nome-do-arquivo&gt;   # Abre &lt;nome-do-arquivo&gt; no vim
     :q               # Fecha o vim
     :w               # Salva o arquivo atual
     :wq              # Salva o arquivo e fecha o vim
@@ -118,13 +118,13 @@ para agilizar a navegação para pontos específicos no arquivo, além de ediç�
 
     # Pesquisa no texto
 
-    /palavra         # Destaca todas as ocorrências de 'palavra' após o cursor
-    ?palavra         # Destaca todas as ocorrências de 'palavra' antes do cursor
+    /palavra         # Destaca todas as ocorrências de &#39;palavra&#39; após o cursor
+    ?palavra         # Destaca todas as ocorrências de &#39;palavra&#39; antes do cursor
     n                # Move o cursor para a próxima ocorrência após a pesquisa
     N                # Move o cursor para a ocorrência anterior após a pesquisa
 
-    :%s/foo/bar/g    # Substitui 'foo' por 'bar' no arquivo inteiro
-    :s/foo/bar/g     # Substitui 'foo' por 'bar' na linha atual
+    :%s/foo/bar/g    # Substitui &#39;foo&#39; por &#39;bar&#39; no arquivo inteiro
+    :s/foo/bar/g     # Substitui &#39;foo&#39; por &#39;bar&#39; na linha atual
 
     # Pulando para caracteres específicos
 
@@ -149,7 +149,7 @@ para agilizar a navegação para pontos específicos no arquivo, além de ediç�
     H                # Move para o topo da tela visível
     M                # Move para o meio da tela visível
     L                # Move para o final da tela visível
-</code></pre></div>
+</pre></div>
 <h2>Modos:</h2>
 
 <p>O Vim é baseado no conceito de <strong>modos</strong>.</p>
@@ -158,7 +158,7 @@ para agilizar a navegação para pontos específicos no arquivo, além de ediç�
 Modo Inserção - usado para fazer alterações no arquivo
 Modo Visual   - usado para destacar textos e executar comandos neles
 Modo Ex       - usado para ir a linha com &lsquo;:&rsquo; no final da tela para executar comandos </p>
-<div class="highlight"><pre class="highlight plaintext"><code>    i                # Coloca o Vim no Modo Inserção, logo antes do cursor
+<div class="highlight"><pre><span></span>    i                # Coloca o Vim no Modo Inserção, logo antes do cursor
     a                # Coloca o Vim no Modo Inserção, logo após o cursor
     v                # Coloca o Vim no Modo Visual 
     :                # Coloca o Vim no Modo Ex
@@ -173,7 +173,7 @@ Modo Ex       - usado para ir a linha com &lsquo;:&rsquo; no final da tela para 
     p                # Cola o texto copiado após a posição do cursor
     P                # Cola o texto copiado antes da posição do cursor
     x                # Deleta o caractere que está na posição do cursor
-</code></pre></div>
+</pre></div>
 <h2>A &lsquo;Gramática&rsquo; do Vim</h2>
 
 <p>Podemos pensar no Vim como uma série de comendos
@@ -184,14 +184,14 @@ Modificador - como você executará sua ação
 Nome        - o objeto onde você vai executar sua acão</p>
 
 <p>Alguns exemplos importantes de &lsquo;Verbos&rsquo;, &lsquo;Modificadores&rsquo; e &lsquo;Nomes&rsquo;:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    # 'Verbos'
+<div class="highlight"><pre><span></span>    # &#39;Verbos&#39;
 
     d                # Apagar (Delete)
     c                # Alterar (Change)
     y                # Copiar (Yank)
     v                # Seleção Visual
 
-    # 'Modificadores'
+    # &#39;Modificadores&#39;
 
     i                # Dentro (Inside)
     a                # Em torno de (Around)
@@ -201,7 +201,7 @@ Nome        - o objeto onde você vai executar sua acão</p>
     /                # Encontra algo a frente do cursor
     ?                # Encontra algo antes do cursor
 
-    # 'Nomes'
+    # &#39;Nomes&#39;
 
     w                # Palavra (word)
     s                # Sentência
@@ -213,13 +213,13 @@ Nome        - o objeto onde você vai executar sua acão</p>
     d2w              # Apaga 2 palavras
     cis              # Altera dentro de uma sentência
     yip              # Coloca o parágrafo atual da área de transferência)
-    ct&lt;              # Altera para '&lt;'
-                     # Altera todo o texto a partir da posição do cursor até o próximo '&lt;'
+    ct&lt;              # Altera para &#39;&lt;&#39;
+                     # Altera todo o texto a partir da posição do cursor até o próximo &#39;&lt;&#39;
     d$               # Apaga tudo da posição do cursor até o final da linha
-</code></pre></div>
+</pre></div>
 <h2>Alguns atalhos e dicas</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>    &lt;!--TODO: Adicionar mais!--&gt;
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>    &gt;                # Adiciona um bloco de indentação
+<div class="highlight"><pre><span></span>    &lt;!--TODO: Adicionar mais!--&gt;
+</pre></div><div class="highlight"><pre><span></span>    &gt;                # Adiciona um bloco de indentação
     &lt;                # Remove um bloco de indentação
     :earlier 15m     # Reverte o documento para como ele estava há 15 minutos atrás
     :later 15m       # Reverte o comando acima
@@ -229,71 +229,71 @@ Nome        - o objeto onde você vai executar sua acão</p>
     .                # Repete a última ação
 
     # Em geral, o usuário pode associar um comando em maísculas (exemplo: D) com
-    # "executar este comando até o final da linha"
+    # &quot;executar este comando até o final da linha&quot;
 
     # Usar a tecla de um comando duas vezes geralmente significa executar este 
     # comando sobre toda a linha (exemplo: dd apaga a linha inteira)
-</code></pre></div>
+</pre></div>
 <h2>Macros</h2>
 
 <p>Macros, basicamente, são ações graváveis.
 Quando você começa a gravar uma macro, ele salva <strong>toda</strong> ação e comando
 que você usar, até que você pare de gravar. Ao executar uma macro, ele aplica
 exatamente a mesma sequencia de ações e comandos na seleção atual.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>    qa               # Inicia a gravação de uma macro chamado 'a'
+<div class="highlight"><pre><span></span>    qa               # Inicia a gravação de uma macro chamado &#39;a&#39;
     q                # Para a gravação
     @a               # Executa a macro
     @@               # Executa a última macro executada
-</code></pre></div>
+</pre></div>
 <h3>Configurando o ~/.vimrc</h3>
 
 <p>O arquivo .vimrc pode ser usado para configurar o Vim no seu início.</p>
 
 <p>Exemplo de arquivo ~/.vimrc</p>
-<div class="highlight"><pre class="highlight plaintext"><code>" Exemplo de ~/.vimrc
-" 2015.10 
+<div class="highlight"><pre><span></span>&quot; Exemplo de ~/.vimrc
+&quot; 2015.10 
 
-" Obrigatório para rodar apenas no Vim (Vi Improved)
+&quot; Obrigatório para rodar apenas no Vim (Vi Improved)
 set nocompatible
 
-" Determina o tipo de arquivo pelo nome para habilitar indentação automática, etc
+&quot; Determina o tipo de arquivo pelo nome para habilitar indentação automática, etc
 filetype indent plugin on
 
-" Habilita sintaxe colorida
+&quot; Habilita sintaxe colorida
 syntax on
 
-" Ativa um 'auto-completar' melhor para a linha de comando
+&quot; Ativa um &#39;auto-completar&#39; melhor para a linha de comando
 set wildmenu
 
-" Faz as buscas não diferenciarem maiúsculas-minúsculas (case insensitive)
-" Exceto quando você usar letras maiúsculas
+&quot; Faz as buscas não diferenciarem maiúsculas-minúsculas (case insensitive)
+&quot; Exceto quando você usar letras maiúsculas
 set ignorecase
 set smartcase
 
-" Quando criar uma nova linha e a indentação por tipo de arquivo estiver
-" desabilitada, mantem a mesma indentação da linha atual
+&quot; Quando criar uma nova linha e a indentação por tipo de arquivo estiver
+&quot; desabilitada, mantem a mesma indentação da linha atual
 set autoindent
 
-" Mostra o número das linhas à esquerda
+&quot; Mostra o número das linhas à esquerda
 set number
 
-" Opções de indentação, aqui você pode mudar como preferir
+&quot; Opções de indentação, aqui você pode mudar como preferir
 
-" Número de espaços visíveis por TAB
+&quot; Número de espaços visíveis por TAB
 set tabstop=4
 
-" Número de espaços por TAB ao editar um arquivo
+&quot; Número de espaços por TAB ao editar um arquivo
 set softtabstop=4
 
-" Número de espaços usados nas funções de indentação (&gt;&gt; e &lt;&lt;)
+&quot; Número de espaços usados nas funções de indentação (&gt;&gt; e &lt;&lt;)
 set shiftwidth=4
 
-" Converte TABs em espaços
+&quot; Converte TABs em espaços
 set expandtab
 
-" Habilita indentação/alinhamento inteligente
+&quot; Habilita indentação/alinhamento inteligente
 set smarttab
-</code></pre></div>
+</pre></div>
 <h3>Referências</h3>
 
 <p><a href="http://www.vim.org/index.php">Vim | Home</a> (EN)</p>

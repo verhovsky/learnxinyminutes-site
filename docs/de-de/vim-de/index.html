@@ -93,7 +93,7 @@ wurde. Vim hat viele Keybindings für ein schnelles navigieren und schnelles
 bearbeiten einer Datei.</p>
 
 <h2>Grundlagen, um in Vim zu navigieren</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>vim &lt;filename&gt;   # Öffne &lt;filename&gt; in Vim
+<div class="highlight"><pre><span></span>vim &lt;filename&gt;   # Öffne &lt;filename&gt; in Vim
 :help &lt;topic&gt;    # Öffne die eingebaute Hilfe zum Thema  &lt;topic&gt;, wenn
                  # es existiert
 :q               # Schließe vim
@@ -133,8 +133,8 @@ $                # Navigiere zum Ende der Zeile
 n                # Bewegt den Cursor zum nächsten Ergebnis nach der Suche
 N                # Bewegt den Cursor zum vorherigen Ergebnis der Suche
 
-:%s/foo/bar/g    # Ersetze "foo" durch "bar" in allen Zeilen
-:s/foo/bar/g     # Ersetze "foo" durch "bar" in der aktuellen Zeile
+:%s/foo/bar/g    # Ersetze &quot;foo&quot; durch &quot;bar&quot; in allen Zeilen
+:s/foo/bar/g     # Ersetze &quot;foo&quot; durch &quot;bar&quot; in der aktuellen Zeile
 :%s/\n/\r/g      # Ersetze das newline-Zeichen bei allen Zeilen durch
                  # ein carriage return
 
@@ -161,7 +161,7 @@ G                # Gehe an das Ende der Datei
 H                # Navigiere zum Start der aktuellen Bildschirmanzeige
 M                # Navigiere in die Mitte der aktuellen Bildschirmanzeige
 L                # Navigiere an das Ende der aktuellen Bildschirmanzeige
-</code></pre></div>
+</pre></div>
 <h2>Hilfsdokumente</h2>
 
 <p>Vim hat eine eingebaute Dokumentation, welche mit <code>:help &lt;topic&gt;</code> aufgerufen
@@ -181,7 +181,7 @@ Hilfsdialog an, welcher den Start mit vim einfacher macht.</p>
 <li>Visual Mode  - Wird verwendet, um Text zu markieren und diesen zu verändern</li>
 <li>Ex Mode      - Wird verwendet, um im &lsquo;:&rsquo;-Prompt Befehle einzugeben</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>i                # Führt vim in den Insert Mode, vor der Cursorposition
+<div class="highlight"><pre><span></span>i                # Führt vim in den Insert Mode, vor der Cursorposition
 a                # Führt vim in den Insert Mode, nach der Cursorposition
 v                # Führt vim in den Visual Mode
 :                # Führt vim in den Ex Mode
@@ -197,7 +197,7 @@ dd               # Löscht die aktuelle Zeile
 p                # Fügt den kopierten Text nach dem Cursor ein
 P                # Fügt den kopierten Text vor dem Cursor ein
 x                # Löscht das Zeichen unter dem Cursor
-</code></pre></div>
+</pre></div>
 <h2>Die &lsquo;Grammatik&rsquo; von Vim</h2>
 
 <p>Vim kann als Satz von Kommandos angesehen werden, welche im Format
@@ -210,14 +210,14 @@ x                # Löscht das Zeichen unter dem Cursor
 </ul>
 
 <p>Einige wichtige Beispiele von &lsquo;Verb&rsquo;, &lsquo;Modifier&rsquo; und &lsquo;Nouns&rsquo;:</p>
-<div class="highlight"><pre class="highlight plaintext"><code># 'Verb'
+<div class="highlight"><pre><span></span># &#39;Verb&#39;
 
 d                # löschen
 c                # ändern
 y                # kopieren
 v                # visuelles auswählen
 
-# 'Modifiers'
+# &#39;Modifiers&#39;
 
 i                # innerhalb
 a                # außerhalb
@@ -227,7 +227,7 @@ t                # Sucht nach etwas und stoppt davor
 /                # Suche eine Zeichenfolge ab dem Cursor
 ?                # Suche eine Zeichenfolge vor dem Cursor
 
-# 'Nouns'
+# &#39;Nouns&#39;
 
 w                # Wort
 s                # Satz
@@ -244,9 +244,9 @@ ct&lt;              # Ändere bis zur spitzen Klammer
                  # Ändere den Text von deiner aktuellen Cursorposition bis
                  # zur nächsten spitzen Klammer
 d$               # Lösche bis zum Ende der Zeile
-</code></pre></div>
+</pre></div>
 <h2>Einige Shortcuts und Tricks</h2>
-<div class="highlight"><pre class="highlight plaintext"><code>&gt;                # Rücke die Auswahl um einen Block ein
+<div class="highlight"><pre><span></span>&gt;                # Rücke die Auswahl um einen Block ein
 &lt;                # Lösche eine Einrückung der Auswahl
 :earlier 15m     # Stellt das Dokument so wieder her, wie es vor 15 Minuten war
 :later 15m       # den oberen Befehl rückgängig machen
@@ -254,7 +254,7 @@ ddp              # Vertauschen zweier aufeinanderfolgenden Zeilen
                  # Zuerst dd, dann p
 .                # Wiederhole die vorherige Aktion
 :w !sudo tee %   # Speichere die Datei als Root
-:set syntax=c    # Stelle das Syntax-Highlighting für 'C' ein
+:set syntax=c    # Stelle das Syntax-Highlighting für &#39;C&#39; ein
 :sort            # Alle Zeilen sortieren
 :sort!           # Alle Zeilen rückwärts sortieren
 :sort u          # Alle Zeilen sortieren und Duplikate entfernen
@@ -268,68 +268,68 @@ zo               # Öffne die aktuelle Faltung
 zc               # Schließe die aktuelle Faltung
 zR               # Öffne alle Faltungen
 zM               # Schließe alle Faltungen
-</code></pre></div>
+</pre></div>
 <h2>Makros</h2>
 
 <p>Makros sind grundsätzlich einfach aufgezeichnete Aktionen
 Wenn du mit dem Aufnehmen eines Makros beginnst, werden <strong>alle</strong> Aktionen und
 Kommandos, welche du braucht, aufgenommen bis die Aufnahme gestoppt wird.
 Wenn du ein Makro ausführst, werden exakt die gleichen Schritte gemacht.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>qa               # Starte das Aufnehmen des Makros 'a'
+<div class="highlight"><pre><span></span>qa               # Starte das Aufnehmen des Makros &#39;a&#39;
 q                # Beende das Aufnehmen
-@a               # Führe das Makro 'a' aus
-</code></pre></div>
+@a               # Führe das Makro &#39;a&#39; aus
+</pre></div>
 <h3>Konfigurieren mit ~/.vimrc</h3>
 
 <p>Die Datei .vimrc kann verwendet werden, um Vim beim Starten zu konfigurieren</p>
 
 <p>Hier ist eine Beispiel ~/.vimrc Datei:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>" Beispiel ~/.vimrc
+<div class="highlight"><pre><span></span>&quot; Beispiel ~/.vimrc
 
-" Erforderlich für vim, dass es iMproved ist.
+&quot; Erforderlich für vim, dass es iMproved ist.
 set nocompatible
 
-" Bestimme den Dateityp anhand des Namens, um ein intelligentes Einrücken etc.
-" zu ermöglichen
+&quot; Bestimme den Dateityp anhand des Namens, um ein intelligentes Einrücken etc.
+&quot; zu ermöglichen
 filetype indent plugin on
 
-" Aktiviere das Syntax-Highlighting
+&quot; Aktiviere das Syntax-Highlighting
 syntax on
 
-" Bessere Kommandozeilen-Vervollständigung
+&quot; Bessere Kommandozeilen-Vervollständigung
 set wildmenu
 
-" Verwende die Suche ohne die Berücksichtigung der Groß-/Kleinschreibung, außer
-" wenn mit Großbuchstaben gesucht wird.
+&quot; Verwende die Suche ohne die Berücksichtigung der Groß-/Kleinschreibung, außer
+&quot; wenn mit Großbuchstaben gesucht wird.
 set ignorecase
 set smartcase
 
-" Wenn eine neue Zeile erstellt wird und kein Dateispezifisches Einrücken
-" aktiviert ist, behält die neue Zeile die gleiche Einrückung wie die aktuelle
-" Zeile
+&quot; Wenn eine neue Zeile erstellt wird und kein Dateispezifisches Einrücken
+&quot; aktiviert ist, behält die neue Zeile die gleiche Einrückung wie die aktuelle
+&quot; Zeile
 set autoindent
 
-" Zeige links die Zeilennummern an
+&quot; Zeige links die Zeilennummern an
 set number
 
-" Einrückungsoptionen, ändere diese nach deinen Vorlieben
+&quot; Einrückungsoptionen, ändere diese nach deinen Vorlieben
 
-" Anzahl sichtbarer Leerzeichen bei einem TAB
+&quot; Anzahl sichtbarer Leerzeichen bei einem TAB
 set tabstop=4
 
-" Anzahl der Leerzeichen während des Bearbeitens bei einem TAB
+&quot; Anzahl der Leerzeichen während des Bearbeitens bei einem TAB
 set softtabstop=4
 
-" Anzahl der Einrückungstiefe bei den Operationen (&gt;&gt; und &lt;&lt;)
+&quot; Anzahl der Einrückungstiefe bei den Operationen (&gt;&gt; und &lt;&lt;)
 set shiftwidth=4
 
-" Konvertiere TABs zu Leerzeichen
+&quot; Konvertiere TABs zu Leerzeichen
 set expandtab
 
-" Enable intelligent tabbing and spacing for indentation and alignment
-" Aktiviere intelligente Tabs und Leerzeichen bei der Einrückung und Ausrichtung
+&quot; Enable intelligent tabbing and spacing for indentation and alignment
+&quot; Aktiviere intelligente Tabs und Leerzeichen bei der Einrückung und Ausrichtung
 set smarttab
-</code></pre></div>
+</pre></div>
 <h3>Verweise</h3>
 
 <ul>
