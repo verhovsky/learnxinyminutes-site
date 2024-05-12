@@ -52,7 +52,7 @@ fn main() {
     // Un `String` – una cadena en memoria dinámica (heap)
     let s: String = "hola mundo".to_string();
 
-    // Una porión de cadena (slice) – una vista inmutable a otra cadena
+    // Una porción de cadena (slice) – una vista inmutable a otra cadena
     // Esto es básicamente un puntero inmutable a un string string – en realidad
     // no contiene los caracteres de la cadena, solo un puntero a algo que los
     // tiene (en este caso, `s`)
@@ -242,7 +242,7 @@ fn main() {
     *ahora_es_mio += 2;
 
     println!("{}", ahora_es_mio); // 7
-    // println!("{}", mio); // esto no compilaría, porque `now_its_mine` es el
+    // println!("{}", mio); // esto no compilaría, porque `ahora_es_mio` es el
     // que posee el puntero
 
     // Referencia – un puntero inmutable que referencia a otro dato
