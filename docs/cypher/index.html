@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -117,7 +119,7 @@ This tutorial assumes that you already know graph concepts like nodes and relati
 
 <h2>Relationships (or Edges) connect two nodes</h2>
 
-<p><code>[:KNOWS]</code> is a <em>relationship</em> with the <em>label</em> <code>KNOWS</code>. It&rsquo;s a <em>label</em> as the node&rsquo;s label. It begins with uppercase and use UPPER_SNAKE_CASE.</p>
+<p><code>[:KNOWS]</code> is a <em>relationship</em> with the <em>label</em> <code>KNOWS</code>. It&rsquo;s a <em>label</em> as the node&rsquo;s label. It uses UPPER_SNAKE_CASE.</p>
 
 <p><code>[k:KNOWS]</code> - the same <em>relationship</em>, referred by the variable <code>k</code>, reusable in the query, but it&rsquo;s not necessary.</p>
 

@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -580,17 +582,17 @@ Google Chrome, становится все более популярной.</p>
 Кроме того, это вики. Поэтому, если вы знаете больше, вы можете помочь другим,
 делясь своими знаниями.</p>
 
-<p><a href="http://bonsaiden.github.io/JavaScript-Garden/ru/">JavaScript Garden</a> — это
+<p><a href="https://shamansir.github.io/JavaScript-Garden/ru/">JavaScript Garden</a> — это
 подробное руководство по всем неинтуитивным особенностей языка.</p>
 
-<p><a href="http://stackoverflow.com/questions/tagged/javascript">Stack Overflow</a> — можно
+<p><a href="https://stackoverflow.com/questions/tagged/javascript">Stack Overflow</a> — можно
 найти ответ почти на любой ваш вопрос, а если его нет, то задать вопрос самому.</p>
 
     <hr>
     <p>Хотите предложить свой перевод? Может быть, улучшение перевода? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Откройте Issue</a> в репозитории GitHub или сделайте <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/ru-ru/javascript-ru.html.markdown">pull request</a> сами!
     </p>
     <p class="contributed">
-    Первоначально предоставлено автором Leigh Brenecki, и обновлено <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/ru-ru/javascript-ru.html.markdown">10 авторами</a>.
+    Первоначально предоставлено автором Leigh Brenecki, и обновлено <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/ru-ru/javascript-ru.html.markdown">11 авторами</a>.
     </p>
 
     <footer>

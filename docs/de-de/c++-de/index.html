@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -1202,9 +1204,9 @@ weitverbreitesten Programmiersprachen.</p>
 <span class="o">!</span><span class="w"> </span><span class="nb">true</span><span class="w">        </span><span class="c1">// Führt **logisches nicht** aus.</span>
 
 <span class="c1">// Anstelle von Symbolen können auch Schlüsselwörter verwendet werden.</span>
-<span class="nb">true</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="c1">// Führt **logisches und** aus.</span>
-<span class="nb">true</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="nb">false</span><span class="w">  </span><span class="c1">// Führt **logisches oder** aus.</span>
-<span class="n">not</span><span class="w"> </span><span class="nb">true</span><span class="w">       </span><span class="c1">// Führt **logisches nicht** aus.</span>
+<span class="nb">true</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="c1">// Führt **logisches und** aus.</span>
+<span class="nb">true</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="nb">false</span><span class="w">  </span><span class="c1">// Führt **logisches oder** aus.</span>
+<span class="k">not</span><span class="w"> </span><span class="nb">true</span><span class="w">       </span><span class="c1">// Führt **logisches nicht** aus.</span>
 
 <span class="c1">// Bitoperationen</span>
 
@@ -1217,10 +1219,10 @@ weitverbreitesten Programmiersprachen.</p>
 <span class="mi">4</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c1">// Führt bitweises xor aus.</span>
 
 <span class="c1">// Gleichwertige Schlüsselwörter:</span>
-<span class="n">compl</span><span class="w"> </span><span class="mi">4</span><span class="w">    </span><span class="c1">// Führt bitweises nicht aus.</span>
-<span class="mi">4</span><span class="w"> </span><span class="n">bitor</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="c1">// Führt bitweises oder aus.</span>
-<span class="mi">4</span><span class="w"> </span><span class="n">bitand</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c1">// Führt bitweises und aus.</span>
-<span class="mi">4</span><span class="w"> </span><span class="n">xor</span><span class="w"> </span><span class="mi">3</span><span class="w">    </span><span class="c1">// Führt bitweises xor aus.</span>
+<span class="k">compl</span><span class="w"> </span><span class="mi">4</span><span class="w">    </span><span class="c1">// Führt bitweises nicht aus.</span>
+<span class="mi">4</span><span class="w"> </span><span class="k">bitor</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="c1">// Führt bitweises oder aus.</span>
+<span class="mi">4</span><span class="w"> </span><span class="k">bitand</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c1">// Führt bitweises und aus.</span>
+<span class="mi">4</span><span class="w"> </span><span class="k">xor</span><span class="w"> </span><span class="mi">3</span><span class="w">    </span><span class="c1">// Führt bitweises xor aus.</span>
 </pre></div>
 <p>Weiterführende Literatur:</p>
 

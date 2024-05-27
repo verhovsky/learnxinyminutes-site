@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -222,10 +224,10 @@ Sumácie a Integrály sa píšu príkazmi sum a int:
 <span class="c">% Niektoré prekladače LaTeXu sa môžu sťažovať na prázdne riadky (ak tam sú)</span>
 <span class="c">% v rovnicovom prostredí.</span>
 <span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span> 
-  <span class="k">\sum</span><span class="nb">_{</span>i=0<span class="nb">}^{</span>5<span class="nb">}</span> f<span class="nb">_{</span>i<span class="nb">}</span>
+  <span class="k">\sum_</span><span class="nb">{</span>i=0<span class="nb">}^{</span>5<span class="nb">}</span> f<span class="nb">_{</span>i<span class="nb">}</span>
 <span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span> 
 <span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span> 
-  <span class="k">\int</span><span class="nb">_{</span>0<span class="nb">}^{</span><span class="k">\infty</span><span class="nb">}</span> <span class="k">\mathrm</span><span class="nb">{</span>e<span class="nb">}^{</span>-x<span class="nb">}</span> <span class="k">\mathrm</span><span class="nb">{</span>d<span class="nb">}</span>x
+  <span class="k">\int_</span><span class="nb">{</span>0<span class="nb">}^{</span><span class="k">\infty</span><span class="nb">}</span> <span class="k">\mathrm</span><span class="nb">{</span>e<span class="nb">}^{</span>-x<span class="nb">}</span> <span class="k">\mathrm</span><span class="nb">{</span>d<span class="nb">}</span>x
 <span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span> 
 
 <span class="k">\section</span><span class="nb">{</span>Obrázky<span class="nb">}</span>

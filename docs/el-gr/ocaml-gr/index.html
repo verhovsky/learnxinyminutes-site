@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -224,7 +226,7 @@ val a : int
   <span class="n">is_even</span> <span class="o">=</span> <span class="k">function</span>
   <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="bp">true</span>
   <span class="o">|</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">is_odd</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
-<span class="ow">and</span>
+<span class="k">and</span>
   <span class="n">is_odd</span> <span class="o">=</span> <span class="k">function</span>
   <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="bp">false</span>
   <span class="o">|</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">is_even</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>

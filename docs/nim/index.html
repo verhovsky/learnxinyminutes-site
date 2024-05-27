@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -139,7 +141,10 @@ that gives the programmer power without compromises on runtime efficiency.</p>
 
 <span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Rudiger&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c"># Assign all at once with literal ()</span>
 <span class="n">today</span><span class="p">.</span><span class="n">sun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Overcast&quot;</span><span class="w">            </span><span class="c"># or individual fields.</span>
-<span class="n">today</span><span class="p">.</span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">70.1</span>
+<span class="n">today</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">70.1</span><span class="w">                   </span><span class="c"># or by index.</span>
+
+<span class="k">let</span><span class="w"> </span><span class="n">impostor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Rudiger&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c"># Two tuples are the same as long as they have</span>
+<span class="n">assert</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">impostor</span><span class="w">      </span><span class="c"># the same type and the same contents</span>
 
 <span class="c"># Sequences</span>
 
@@ -191,6 +196,21 @@ that gives the programmer power without compromises on runtime efficiency.</p>
 <span class="c">#</span>
 <span class="c"># More Types and Data Structures</span>
 <span class="c">#</span>
+
+<span class="c"># Objects are similar to tuples, but they *require* names of the fields</span>
+
+<span class="k">type</span>
+<span class="w">  </span><span class="n">Room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="c"># reference to an object, useful for big objects or</span>
+<span class="w">    </span><span class="n">windows</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="w">    </span><span class="c"># objects inside objects</span>
+<span class="w">    </span><span class="n">doors</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="c"># Change the default value of a field (since Nim 2.0)</span>
+<span class="w">  </span><span class="n">House</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">object</span>
+<span class="w">    </span><span class="n">address</span><span class="p">:</span><span class="w"> </span><span class="nb">string</span><span class="w">  </span>
+<span class="w">    </span><span class="n">rooms</span><span class="p">:</span><span class="w"> </span><span class="nb">seq</span><span class="o">[</span><span class="n">Room</span><span class="o">]</span>
+
+<span class="kd">var</span>
+<span class="w">  </span><span class="n">defaultHouse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">House</span><span class="p">()</span><span class="w"> </span><span class="c"># initialize with default values</span>
+<span class="w">  </span><span class="n">defaultRoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Room</span><span class="p">()</span><span class="w"> </span><span class="c"># create new instance of ref object</span>
+<span class="w">  </span><span class="n">sesameHouse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">House</span><span class="p">(</span><span class="n">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123 Sesame St.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rooms</span><span class="p">:</span><span class="w"> </span><span class="o">@[</span><span class="n">defaultRoom</span><span class="o">]</span><span class="p">)</span>
 
 <span class="c"># Enumerations allow a type to have one of a limited number of values</span>
 
@@ -266,7 +286,7 @@ that gives the programmer power without compromises on runtime efficiency.</p>
 <span class="k">let</span><span class="w"> </span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span>
 <span class="kd">var</span>
 <span class="w">  </span><span class="n">raw_guess</span><span class="p">:</span><span class="w"> </span><span class="nb">string</span>
-<span class="w">  </span><span class="n">guess</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span>
+<span class="w">  </span><span class="n">guess</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="c"># Variables in Nim are always initialized with a zero value</span>
 <span class="k">while</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">number</span><span class="p">:</span>
 <span class="w">  </span><span class="n">raw_guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readLine</span><span class="p">(</span><span class="n">stdin</span><span class="p">)</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">raw_guess</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">:</span><span class="w"> </span><span class="k">continue</span><span class="w"> </span><span class="c"># Skip this iteration</span>
@@ -364,7 +384,7 @@ performance, and compile-time features.</p>
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the GitHub Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/nim.html.markdown">pull request</a> yourself!
     </p>
     <p class="contributed">
-    Originally contributed by Jason J. Ayala P., and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/nim.html.markdown">12 contributors</a>.
+    Originally contributed by Jason J. Ayala P., and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/nim.html.markdown">14 contributors</a>.
     </p>
 
     <footer>

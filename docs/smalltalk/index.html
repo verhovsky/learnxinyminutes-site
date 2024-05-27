@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -518,8 +520,9 @@ We are sending the message &lsquo;doSomethingWith:&rsquo; to myObject. This happ
 <p>Fixed length collection
 - ByteArray:     Array limited to byte elements (0-255)
 - WordArray:     Array limited to word elements (0-2^32)</p>
-<div class="highlight"><pre><span></span><span class="o">|</span><span class="nv"> b x y sum max </span><span class="o">|</span>
+<div class="highlight"><pre><span></span><span class="o">|</span><span class="nv"> b x y z sum max </span><span class="o">|</span>
 <span class="nv">x</span> <span class="o">:=</span> <span class="ss">#(</span><span class="m">4</span> <span class="m">3</span> <span class="m">2</span> <span class="m">1</span><span class="ss">)</span><span class="p">.</span>                                 <span class="c">&quot;constant array&quot;</span>
+<span class="nv">z</span> <span class="o">:=</span> <span class="ss">#(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="s">&#39;hi&#39;</span><span class="ss">)</span><span class="p">.</span>                              <span class="c">&quot;mixed type array&quot;</span>
 <span class="nv">x</span> <span class="o">:=</span> <span class="nc">Array</span> <span class="nf">with:</span> <span class="m">5</span> <span class="nf">with:</span> <span class="m">4</span> <span class="nf">with:</span> <span class="m">3</span> <span class="nf">with:</span> <span class="m">2</span><span class="p">.</span>      <span class="c">&quot;create array with up to 4 elements&quot;</span>
 <span class="nv">x</span> <span class="o">:=</span> <span class="nc">Array</span> <span class="nf">new:</span> <span class="m">4</span><span class="p">.</span>                               <span class="c">&quot;allocate an array with specified size&quot;</span>
 <span class="nv">x</span>                                                <span class="c">&quot;set array elements&quot;</span>
@@ -1094,7 +1097,7 @@ We are sending the message &lsquo;doSomethingWith:&rsquo; to myObject. This happ
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the GitHub Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/smalltalk.html.markdown">pull request</a> yourself!
     </p>
     <p class="contributed">
-    Originally contributed by Jigyasa Grover, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/smalltalk.html.markdown">11 contributors</a>.
+    Originally contributed by Jigyasa Grover, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/smalltalk.html.markdown">12 contributors</a>.
     </p>
 
     <footer>

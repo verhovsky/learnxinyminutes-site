@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -81,6 +83,7 @@
       <option value="fa-ir">fa-ir</option>
       <option value="fi-fi">fi-fi</option>
       <option value="fr-fr">fr-fr</option>
+      <option value="he-he">he-he</option>
       <option value="hi-in">hi-in</option>
       <option value="hu-hu">hu-hu</option>
       <option value="id-id">id-id</option>
@@ -273,6 +276,13 @@
         </tr>
         <tr>
           <td class="name">
+            <a href="/docs/bqn/">BQN</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
             <a href="/docs/c/">C</a>
           </td>
           <td class="lang">
@@ -342,6 +352,9 @@
                   <a href="/docs/fr-fr/c++-fr/">fr-fr</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/hi-in/c++-hi/">hi-in</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/it-it/c++-it/">it-it</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -381,6 +394,9 @@
           </td>
           <td class="lang">
                 <span style="display: inline-block;">
+                  <a href="/docs/de-de/clojure-de/">de-de</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/es-es/clojure-es/">es-es</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -393,10 +409,10 @@
                   <a href="/docs/ms-my/clojure-my/">ms-my</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
-                  <a href="/docs/pt-br/clojure-macros-pt/">pt-br</a>&nbsp;
+                  <a href="/docs/pt-br/clojure-pt/">pt-br</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
-                  <a href="/docs/pt-br/clojure-pt/">pt-br</a>&nbsp;
+                  <a href="/docs/pt-br/clojure-macros-pt/">pt-br</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/ro-ro/clojure-ro/">ro-ro</a>&nbsp;
@@ -421,10 +437,13 @@
                   <a href="/docs/de-de/clojure-macros-de/">de-de</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/ko-kr/clojure-macros-kr/">ko-kr</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/ms-my/clojure-macros-my/">ms-my</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
-                  <a href="/docs/zh-cn/clojure-macro-cn/">zh-cn</a>&nbsp;
+                  <a href="/docs/zh-cn/clojure-macros-cn/">zh-cn</a>&nbsp;
                 </span>
           </td>
         </tr>
@@ -504,6 +523,9 @@
           <td class="lang">
                 <span style="display: inline-block;">
                   <a href="/docs/es-es/common-lisp-es/">es-es</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
+                  <a href="/docs/ko-kr/common-lisp-kr/">ko-kr</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/ms-my/common-lisp-my/">ms-my</a>&nbsp;
@@ -849,6 +871,13 @@
         </tr>
         <tr>
           <td class="name">
+            <a href="/docs/gleam/">Gleam</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
             <a href="/docs/go/">Go</a>
           </td>
           <td class="lang">
@@ -891,6 +920,13 @@
                 <span style="display: inline-block;">
                   <a href="/docs/zh-cn/go-cn/">zh-cn</a>&nbsp;
                 </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
+            <a href="/docs/golfscript/">GolfScript</a>
+          </td>
+          <td class="lang">
           </td>
         </tr>
         <tr>
@@ -1048,7 +1084,13 @@
                   <a href="/docs/es-es/html-es/">es-es</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/fa-ir/html-fa/">fa-ir</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/fr-fr/html-fr/">fr-fr</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
+                  <a href="/docs/he-he/html-he/">he-he</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/it-it/html-it/">it-it</a>&nbsp;
@@ -1188,6 +1230,9 @@
                   <a href="/docs/ta-in/javascript-ta/">ta-in</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/tr-tr/javascript-tr/">tr-tr</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/uk-ua/javascript-ua/">uk-ua</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -1242,9 +1287,6 @@
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/nl-nl/json-nl/">nl-nl</a>&nbsp;
-                </span>
-                <span style="display: inline-block;">
-                  <a href="/docs/nl-nl/json/">nl-nl</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/no-nb/json-no/">no-nb</a>&nbsp;
@@ -1329,6 +1371,9 @@
                   <a href="/docs/es-es/kotlin-es/">es-es</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/fr-fr/kotlin-fr/">fr-fr</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/ko-kr/kotlin-kr/">ko-kr</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -1392,6 +1437,13 @@
         </tr>
         <tr>
           <td class="name">
+            <a href="/docs/lean4/">Lean 4</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
             <a href="/docs/less/">less</a>
           </td>
           <td class="lang">
@@ -1441,6 +1493,9 @@
                   <a href="/docs/bg-bg/logtalk-bg/">bg-bg</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/es-es/logtalk-es/">es-es</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/it-it/logtalk-it/">it-it</a>&nbsp;
                 </span>
           </td>
@@ -1462,6 +1517,9 @@
           <td class="lang">
                 <span style="display: inline-block;">
                   <a href="/docs/de-de/lua-de/">de-de</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
+                  <a href="/docs/es-es/lua/">es-es</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/fr-fr/lua-fr/">fr-fr</a>&nbsp;
@@ -1564,6 +1622,13 @@
         </tr>
         <tr>
           <td class="name">
+            <a href="/docs/miniscript/">MiniScript</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
             <a href="/docs/mips/">MIPS Assembly</a>
           </td>
           <td class="lang">
@@ -1602,6 +1667,9 @@
           </td>
           <td class="lang">
                 <span style="display: inline-block;">
+                  <a href="/docs/ja-jp/nim-jp/">ja-jp</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/ru-ru/nim-ru/">ru-ru</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -1616,6 +1684,9 @@
           <td class="lang">
                 <span style="display: inline-block;">
                   <a href="/docs/de-de/nix-de/">de-de</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
+                  <a href="/docs/fr-fr/nix-fr/">fr-fr</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/sv-se/nix-sv/">sv-se</a>&nbsp;
@@ -1762,6 +1833,13 @@
         <tr>
           <td class="name">
             <a href="/docs/phel/">phel</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
+            <a href="/docs/phix/">Phix</a>
           </td>
           <td class="lang">
           </td>
@@ -2043,6 +2121,13 @@
         </tr>
         <tr>
           <td class="name">
+            <a href="/docs/rescript/">ReScript</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
             <a href="/docs/rst/">restructured text (RST)</a>
           </td>
           <td class="lang">
@@ -2231,7 +2316,7 @@
           </td>
           <td class="lang">
                 <span style="display: inline-block;">
-                  <a href="/docs/es-es/learnsmallbasic-es/">es-es</a>&nbsp;
+                  <a href="/docs/es-es/smallbasic-es/">es-es</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/id-id/smallbasic-id/">id-id</a>&nbsp;
@@ -2483,7 +2568,7 @@
                   <a href="/docs/pt-br/visualbasic-pt/">pt-br</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
-                  <a href="/docs/ru-ru/learnvisualbasic-ru/">ru-ru</a>&nbsp;
+                  <a href="/docs/ru-ru/visualbasic-ru/">ru-ru</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/zh-cn/visualbasic-cn/">zh-cn</a>&nbsp;
@@ -2497,19 +2582,6 @@
           <td class="lang">
                 <span style="display: inline-block;">
                   <a href="/docs/uk-ua/wasm-ua/">uk-ua</a>&nbsp;
-                </span>
-          </td>
-        </tr>
-        <tr>
-          <td class="name">
-            <a href="/docs/whip/">whip</a>
-          </td>
-          <td class="lang">
-                <span style="display: inline-block;">
-                  <a href="/docs/es-es/whip-es/">es-es</a>&nbsp;
-                </span>
-                <span style="display: inline-block;">
-                  <a href="/docs/pt-br/whip-pt/">pt-br</a>&nbsp;
                 </span>
           </td>
         </tr>
@@ -2711,6 +2783,9 @@
             <a href="/docs/p5/">p5</a>
           </td>
           <td class="lang">
+                <span style="display: inline-block;">
+                  <a href="/docs/pt-br/p5-pt/">pt-br</a>&nbsp;
+                </span>
           </td>
         </tr>
         <tr>
@@ -2845,6 +2920,9 @@
                   <a href="/docs/pt-br/awk-pt/">pt-br</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/uk-ua/awk-uk/">uk-ua</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/zh-cn/awk-cn/">zh-cn</a>&nbsp;
                 </span>
           </td>
@@ -2913,6 +2991,9 @@
           </td>
           <td class="lang">
                 <span style="display: inline-block;">
+                  <a href="/docs/it-it/cmake-it/">it-it</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/pt-br/cmake-pt/">pt-br</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -2974,6 +3055,9 @@
             <a href="/docs/fish/">fish</a>
           </td>
           <td class="lang">
+                <span style="display: inline-block;">
+                  <a href="/docs/it-it/fish-it/">it-it</a>&nbsp;
+                </span>
           </td>
         </tr>
         <tr>
@@ -3015,6 +3099,13 @@
         </tr>
         <tr>
           <td class="name">
+            <a href="/docs/hcl/">HCL</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
             <a href="/docs/httpie/">httpie</a>
           </td>
           <td class="lang">
@@ -3049,6 +3140,9 @@
                   <a href="/docs/de-de/make-de/">de-de</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/es-es/make-es/">es-es</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/fr-fr/make-fr/">fr-fr</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -3062,6 +3156,13 @@
         <tr>
           <td class="name">
             <a href="/docs/mercurial/">Mercurial</a>
+          </td>
+          <td class="lang">
+          </td>
+        </tr>
+        <tr>
+          <td class="name">
+            <a href="/docs/openmp/">OpenMP</a>
           </td>
           <td class="lang">
           </td>
@@ -3124,10 +3225,10 @@
           </td>
           <td class="lang">
                 <span style="display: inline-block;">
-                  <a href="/docs/es-es/tmux-es/">es-es</a>&nbsp;
+                  <a href="/docs/es-es/tmux/">es-es</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
-                  <a href="/docs/es-es/tmux/">es-es</a>&nbsp;
+                  <a href="/docs/es-es/tmux-es/">es-es</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/fr-fr/tmux-fr/">fr-fr</a>&nbsp;
@@ -3256,6 +3357,9 @@
                   <a href="/docs/pt-br/dynamic-programming-pt/">pt-br</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
+                  <a href="/docs/ru-ru/dynamic-programming-ru/">ru-ru</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
                   <a href="/docs/tr-tr/dynamic-programming-tr/">tr-tr</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
@@ -3273,6 +3377,9 @@
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/fr-fr/lambda-calculus-fr/">fr-fr</a>&nbsp;
+                </span>
+                <span style="display: inline-block;">
+                  <a href="/docs/pt-br/lambda-calculus-pt/">pt-br</a>&nbsp;
                 </span>
                 <span style="display: inline-block;">
                   <a href="/docs/zh-cn/lambda-calculus-cn/">zh-cn</a>&nbsp;

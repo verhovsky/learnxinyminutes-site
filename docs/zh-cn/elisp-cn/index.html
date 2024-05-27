@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -156,12 +158,12 @@
 
 <span class="c1">;; `C-j&#39; 会在buffer中插入当前运算的结果</span>
 
-<span class="c1">;; 而`C-xC-e&#39; 则会在emacs最底部显示结果，也就是被称作&quot;minibuffer&quot;的区域</span>
+<span class="c1">;; 而`C-xC-e&#39; 则会在emacs最底部显示结果，也就是被称作&quot;echo area&quot;的区域</span>
 <span class="c1">;; 为了避免把我们的buffer填满无用的结果，我们以后会一直用`C-xC-e&#39;</span>
 
 <span class="c1">;; `setq&#39; 可以将一个值赋给一个变量</span>
 <span class="p">(</span><span class="nf">setq</span><span class="w"> </span><span class="nv">my-name</span><span class="w"> </span><span class="s">&quot;Bastien&quot;</span><span class="p">)</span>
-<span class="c1">;; `C-xC-e&#39; 输出 &quot;Bastien&quot; (在 mini-buffer 中显示)</span>
+<span class="c1">;; `C-xC-e&#39; 输出 &quot;Bastien&quot; (在 echo area 中显示)</span>
 
 <span class="c1">;; `insert&#39; 会在光标处插入字符串:</span>
 <span class="p">(</span><span class="nf">insert</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">)</span>

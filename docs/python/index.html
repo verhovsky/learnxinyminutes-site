@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -109,7 +111,7 @@ syntactic clarity. It&rsquo;s basically executable pseudocode.</p>
 <span class="mi">10</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># =&gt; 20</span>
 <span class="mi">35</span> <span class="o">/</span> <span class="mi">5</span>  <span class="c1"># =&gt; 7.0</span>
 
-<span class="c1"># Integer division rounds down for both positive and negative numbers.</span>
+<span class="c1"># Integer division rounds towards zero for both positive and negative numbers.</span>
 <span class="mi">5</span> <span class="o">//</span> <span class="mi">3</span>       <span class="c1"># =&gt; 1</span>
 <span class="o">-</span><span class="mi">5</span> <span class="o">//</span> <span class="mi">3</span>      <span class="c1"># =&gt; -2</span>
 <span class="mf">5.0</span> <span class="o">//</span> <span class="mf">3.0</span>   <span class="c1"># =&gt; 1.0  # works on floats too</span>
@@ -896,8 +898,8 @@ syntactic clarity. It&rsquo;s basically executable pseudocode.</p>
 <span class="c1"># variables from their parent class.</span>
 
 <span class="c1"># Using the Human class defined above as the base or parent class, we can</span>
-<span class="c1"># define a child class, Superhero, which inherits the class variables like</span>
-<span class="c1"># &quot;species&quot;, &quot;name&quot;, and &quot;age&quot;, as well as methods, like &quot;sing&quot; and &quot;grunt&quot;</span>
+<span class="c1"># define a child class, Superhero, which inherits variables like &quot;species&quot;,</span>
+<span class="c1"># &quot;name&quot;, and &quot;age&quot;, as well as methods, like &quot;sing&quot; and &quot;grunt&quot;</span>
 <span class="c1"># from the Human class, but can also have its own unique properties.</span>
 
 <span class="c1"># To take advantage of modularization by file you could place the classes above</span>
@@ -1180,7 +1182,7 @@ syntactic clarity. It&rsquo;s basically executable pseudocode.</p>
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the GitHub Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/python.html.markdown">pull request</a> yourself!
     </p>
     <p class="contributed">
-    Originally contributed by Louie Dinh, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/python.html.markdown">76 contributors</a>.
+    Originally contributed by Louie Dinh, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/python.html.markdown">75 contributors</a>.
     </p>
 
     <footer>

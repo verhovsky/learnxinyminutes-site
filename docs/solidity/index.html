@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -742,7 +744,7 @@ This will use whatever network is currently selected in your metamask as the net
 <span class="c1">// in a decentralized manner, otherwise you run into the centralized risk that </span>
 <span class="c1">// smart contract design matter prevents. </span>
 
-<span class="c1">// To easiest way get and use pre-boxed decentralized data is with Chainlink Data Feeds</span>
+<span class="c1">// The easiest way to get and use pre-boxed decentralized data is with Chainlink Data Feeds</span>
 <span class="c1">// https://docs.chain.link/docs/get-the-latest-price</span>
 <span class="c1">// We can reference on-chain reference points that have already been aggregated by </span>
 <span class="c1">// multiple sources and delivered on-chain, and we can use it as a &quot;data bank&quot; </span>
@@ -1084,7 +1086,7 @@ This will use whatever network is currently selected in your metamask as the net
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the GitHub Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/solidity.html.markdown">pull request</a> yourself!
     </p>
     <p class="contributed">
-    Originally contributed by Nemil Dalal, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/solidity.html.markdown">21 contributors</a>.
+    Originally contributed by Nemil Dalal, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/solidity.html.markdown">22 contributors</a>.
     </p>
 
     <footer>

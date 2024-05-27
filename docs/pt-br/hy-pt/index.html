@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -139,7 +141,7 @@ Hy chamar código Python nativo e vice-versa.</p>
 <span class="c1">; Listas são criadas usando [], a indexação começa em 0</span>
 <span class="p">(</span><span class="kd">setv </span><span class="nv">mylist</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">])</span>
 <span class="c1">; tuplas são estruturas de dados imutáveis</span>
-<span class="p">(</span><span class="kd">setv </span><span class="nv">mytuple</span><span class="w"> </span><span class="p">(</span>,<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="kd">setv </span><span class="nv">mytuple</span><span class="w"> </span><span class="p">(</span><span class="k">, </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
 <span class="c1">; dicionários são pares de valores-chave</span>
 <span class="p">(</span><span class="kd">setv </span><span class="nv">dict1</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;key1&quot;</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="s">&quot;key2&quot;</span><span class="w"> </span><span class="mi">21</span><span class="p">})</span>
 <span class="c1">; :nome pode ser utilizado para definir palavras-chave em Hy que podem ser utilizados para as chaves</span>
@@ -221,7 +223,7 @@ Hy chamar código Python nativo e vice-versa.</p>
 <span class="p">(</span><span class="k">let </span><span class="p">[[</span><span class="nv">nemesis</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;superman&quot;</span><span class="w"> </span><span class="s">&quot;lex luther&quot;</span>
 <span class="w">                </span><span class="s">&quot;sherlock&quot;</span><span class="w"> </span><span class="s">&quot;moriarty&quot;</span>
 <span class="w">                </span><span class="s">&quot;seinfeld&quot;</span><span class="w"> </span><span class="s">&quot;newman&quot;</span><span class="p">}]]</span>
-<span class="w">  </span><span class="p">(</span><span class="k">for</span><span class="w"> </span><span class="p">[(</span>,<span class="w"> </span><span class="nv">h</span><span class="w"> </span><span class="nv">v</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">.items</span><span class="w"> </span><span class="nv">nemesis</span><span class="p">)]</span>
+<span class="w">  </span><span class="p">(</span><span class="k">for</span><span class="w"> </span><span class="p">[(</span><span class="k">, </span><span class="nv">h</span><span class="w"> </span><span class="nv">v</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">.items</span><span class="w"> </span><span class="nv">nemesis</span><span class="p">)]</span>
 <span class="w">    </span><span class="p">(</span><span class="nb">print</span><span class="w"> </span><span class="p">(</span><span class="nf">.format</span><span class="w"> </span><span class="s">&quot;{0}&#39;s nemesis was {1}&quot;</span><span class="w"> </span><span class="nv">h</span><span class="w"> </span><span class="nv">v</span><span class="p">))))</span>
 
 <span class="c1">;; classes</span>

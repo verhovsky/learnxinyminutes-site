@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -644,7 +646,7 @@ Caso queira aprender mais:</p>
     <p>Sugestões ou correções? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Abra uma issue</a> no repositório do GitHub, ou faça um <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/pt-br/clojure-pt.html.markdown">pull request</a> você mesmo!
     </p>
     <p class="contributed">
-    Originalmente contribuído por Adam Bard e atualizado por <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/pt-br/clojure-pt.html.markdown">2 colaborador(es)</a>.
+    Originalmente contribuído por Adam Bard e atualizado por <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/pt-br/clojure-pt.html.markdown">3 colaborador(es)</a>.
     </p>
 
     <footer>
@@ -656,7 +658,8 @@ Caso queira aprender mais:</p>
 
     <p>
       Translated by:
-        <a href="">Raphael Bezerra do Nascimento</a>
+        <a href="https://twitter.com/mariane_sm">Mariane Siqueira Machado</a>
+        <a href="https://github.com/ysads">Ygor Sad</a>
 
     </footer>
   </div>

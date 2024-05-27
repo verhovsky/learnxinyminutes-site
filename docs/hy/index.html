@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -136,7 +138,7 @@ Hy to call native Python code or Python to call native Hy code as well</p>
 <span class="c1">; lists are created using [], indexing starts at 0</span>
 <span class="p">(</span><span class="kd">setv </span><span class="nv">mylist</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">])</span>
 <span class="c1">; tuples are immutable data structures</span>
-<span class="p">(</span><span class="kd">setv </span><span class="nv">mytuple</span><span class="w"> </span><span class="p">(</span>,<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="kd">setv </span><span class="nv">mytuple</span><span class="w"> </span><span class="p">(</span><span class="k">, </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
 <span class="c1">; dictionaries are key value pairs</span>
 <span class="p">(</span><span class="kd">setv </span><span class="nv">dict1</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;key1&quot;</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="s">&quot;key2&quot;</span><span class="w"> </span><span class="mi">21</span><span class="p">})</span>
 <span class="c1">; :name can be used to define keywords in Hy which can be used for keys</span>

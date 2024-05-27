@@ -33,30 +33,32 @@
                 if (!el) {
                   return;
                 }
-
-                if (theme === "dark" ) {
-                    el.className = "dark";
-                } else {
-                    el.className = "light";
-                }
-
+                el.className = theme === "dark" ? "dark" : "light";
                 localStorage.setItem(THEME_KEY, theme);
             }
 
             function load_theme() {
               var theme = localStorage.getItem(THEME_KEY);
-              if (theme) {
-                set_theme(theme);
+              if (!theme) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
               }
+              set_theme(theme)
             }
 
             // Attempt immediate application of html style
             load_theme();
 
             // Backup: do it onload. Will flash, but better than nothing.
-            window.addEventListener("load", function(){
+            window.onload = function(){
               load_theme();
-            });
+            };
+
+            // Listen for system preference change
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", ({matches:isDark}) => {
+                set_theme(isDark ? "dark" : "light")
+              })
         </script>
     </head>
     <body>
@@ -962,7 +964,7 @@
 
 <ul>
 <li><p><a href="http://www.headfirstlabs.com/books/hfjava/">Head First Java</a></p></li>
-<li><p><a href="http://www.mindview.net/Books/TIJ/">Thinking in Java</a></p></li>
+<li><p><a href="https://www.amazon.com/Thinking-Java-4th-Bruce-Eckel/dp/0131872486/">Thinking in Java</a></p></li>
 <li><p><a href="https://www.amazon.com/Objects-First-Java-Practical-Introduction/dp/0132492660">Objects First with Java</a></p></li>
 <li><p><a href="https://www.amazon.com/gp/product/0071606300">Java The Complete Reference</a></p></li>
 </ul>
@@ -971,7 +973,7 @@
     <p>Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the GitHub Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/fa-ir/java-fa.html.markdown">pull request</a> yourself!
     </p>
     <p class="contributed">
-    Originally contributed by Jake Prather, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/fa-ir/java-fa.html.markdown">12 contributors</a>.
+    Originally contributed by Jake Prather, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/fa-ir/java-fa.html.markdown">13 contributors</a>.
     </p>
 
     <footer>
