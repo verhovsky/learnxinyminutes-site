@@ -76,7 +76,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="c1">// Enumeration values can also be specified</span>
 <span class="k">enum</span><span class="w"> </span><span class="n">days</span><span class="w"> </span><span class="p">{</span><span class="n">SUN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MON</span><span class="p">,</span><span class="w"> </span><span class="n">TUE</span><span class="p">,</span><span class="w"> </span><span class="n">WED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w"> </span><span class="n">THU</span><span class="p">,</span><span class="w"> </span><span class="n">FRI</span><span class="p">,</span><span class="w"> </span><span class="n">SAT</span><span class="p">};</span>
 <span class="c1">// MON gets 2 automatically, TUE gets 3, etc.</span>
-<span class="c1">// WED get 99, THU gets 100, FRI gets 101, etc.</span>
+<span class="c1">// WED gets 99, THU gets 100, FRI gets 101, etc.</span>
 
 <span class="c1">// Import headers with #include</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
@@ -88,7 +88,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="c1">// For your own headers, use double quotes instead of angle brackets, and</span>
 <span class="c1">// provide the path:</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;my_header.h&quot;</span><span class="c1"> 		// local file</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;../my_lib/my_lib_header.h&quot;</span><span class="c1"> //relative path</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;../my_lib/my_lib_header.h&quot;</span><span class="c1"> // relative path</span>
 
 <span class="c1">// Declare function signatures in advance in a .h file, or at the top of</span>
 <span class="c1">// your .c file.</span>
@@ -367,7 +367,7 @@ memory management and C will take you as far as you need to go.</p>
 
 <span class="w">  </span><span class="c1">// While loops exist</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//ANY value less than ten is true.</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// ANY value less than ten is true.</span>
 <span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d, &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ii</span><span class="o">++</span><span class="p">);</span><span class="w"> </span><span class="c1">// ii++ increments ii AFTER using its current value.</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// =&gt; prints &quot;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, &quot;</span>
 
@@ -421,22 +421,23 @@ memory management and C will take you as far as you need to go.</p>
 <span class="w">  </span><span class="cm">/*</span>
 <span class="cm">    Using &quot;goto&quot; in C</span>
 <span class="cm">  */</span>
-<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kt">bool</span><span class="p">;</span>
-<span class="w">  </span><span class="c1">// for C don&#39;t have bool as data type before C99 :(</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">disaster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
 <span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
 <span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span>
 <span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
-<span class="w">        </span><span class="n">disaster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">disaster</span><span class="p">)</span>
-<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">error</span><span class="p">;</span><span class="w">  </span><span class="c1">// exit both for loops</span>
+<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">error</span><span class="p">;</span><span class="w">  </span><span class="c1">// exit both for loops immediately</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;No error found. Completed normally.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">goto</span><span class="w"> </span><span class="n">end</span><span class="p">;</span>
+<span class="w">  </span>
 <span class="w">  </span><span class="nl">error</span><span class="p">:</span><span class="w"> </span><span class="c1">// this is a label that you can &quot;jump&quot; to with &quot;goto error;&quot;</span>
 <span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error occurred at i = %d &amp; j = %d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="w">  </span><span class="nl">end</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">  </span><span class="cm">/*</span>
-<span class="cm">    https://ideone.com/GuPhd6</span>
+<span class="cm">    https://ideone.com/z7nzKJ</span>
 <span class="cm">    this will print out &quot;Error occurred at i = 51 &amp; j = 99.&quot;</span>
 <span class="cm">  */</span>
 <span class="w">  </span><span class="cm">/*</span>
@@ -507,7 +508,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// =&gt; Prints 1</span>
 
 <span class="w">  </span><span class="c1">// Arrays are a good way to allocate a contiguous block of memory</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x_array</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span><span class="w"> </span><span class="c1">//declares array of size 20 (cannot change size)</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x_array</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span><span class="w"> </span><span class="c1">// declares array of size 20 (cannot change size)</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">xx</span><span class="p">;</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">xx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">xx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="n">xx</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">x_array</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xx</span><span class="p">;</span>
@@ -560,7 +561,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="w">  </span><span class="n">size</span><span class="o">++</span><span class="p">;</span>
 <span class="w">  </span><span class="n">my_arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realloc</span><span class="p">(</span><span class="n">my_arr</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">my_arr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">//Remember to check for realloc failure!</span>
+<span class="w">    </span><span class="c1">// Remember to check for realloc failure!</span>
 <span class="w">    </span><span class="k">return</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">my_arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
@@ -605,7 +606,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="cm">/*</span>
 <span class="cm">Functions are call by value. When a function is called, the arguments passed to</span>
 <span class="cm">the function are copies of the original arguments (except arrays). Anything you</span>
-<span class="cm">do to the arguments in the function do not change the value of the original</span>
+<span class="cm">do to the arguments in the function does not change the value of the original</span>
 <span class="cm">argument where the function was called.</span>
 
 <span class="cm">Use pointers if you need to edit the original argument values (arrays are always</span>
@@ -630,7 +631,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="w">    </span><span class="n">str_in</span><span class="p">[</span><span class="n">len</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-<span class="c1">//NOTE: string.h header file needs to be included to use strlen()</span>
+<span class="c1">// NOTE: string.h header file needs to be included to use strlen()</span>
 
 <span class="cm">/*</span>
 <span class="cm">char c[] = &quot;This is a test.&quot;;</span>
@@ -664,14 +665,14 @@ memory management and C will take you as far as you need to go.</p>
 <span class="kt">int</span><span class="w"> </span><span class="nf">return_multiple</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">array_of_3</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">ret1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">ret2</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">ret3</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">array_of_3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">//return error code (false)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// return error code (false)</span>
 
-<span class="w">    </span><span class="c1">//de-reference the pointer so we modify its value</span>
+<span class="w">    </span><span class="c1">// de-reference the pointer so we modify its value</span>
 <span class="w">   </span><span class="o">*</span><span class="n">ret1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_of_3</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="w">   </span><span class="o">*</span><span class="n">ret2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_of_3</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="w">   </span><span class="o">*</span><span class="n">ret3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_of_3</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 
-<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">//return error code (true)</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// return error code (true)</span>
 <span class="p">}</span>
 
 <span class="cm">/*</span>
@@ -699,11 +700,11 @@ memory management and C will take you as far as you need to go.</p>
 <span class="c1">// if referring to external variables outside function, you should use the extern keyword.</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">testFunc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">//i here is now using external variable i</span>
+<span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// i here is now using external variable i</span>
 <span class="p">}</span>
 
 <span class="c1">// make external variables private to source file with static:</span>
-<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">//other files using testFunc2() cannot access variable j</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// other files using testFunc2() cannot access variable j</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">testFunc2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
 <span class="p">}</span>
@@ -715,7 +716,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="c1">// value across function calls, but is only accessible within the function it</span>
 <span class="c1">// is declared in. Additionally, static variables are initialized to 0 if not</span>
 <span class="c1">// declared with some other starting value.</span>
-<span class="c1">//**You may also declare functions as static to make them private**</span>
+<span class="c1">// **You may also declare functions as static to make them private**</span>
 
 <span class="c1">///////////////////////////////////////</span>
 <span class="c1">// User-defined types and structs</span>
@@ -816,7 +817,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="c1">// Printing characters with printf()</span>
 <span class="c1">/////////////////////////////</span>
 
-<span class="c1">//Special characters:</span>
+<span class="c1">// Special characters:</span>
 <span class="cm">/*</span>
 <span class="cm">&#39;\a&#39;; // alert (bell) character</span>
 <span class="cm">&#39;\n&#39;; // newline character</span>
@@ -834,7 +835,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="cm">&#39;\xhh&#39;; // hexadecimal number. Example: &#39;\xb&#39; = vertical tab character</span>
 <span class="cm">&#39;\0oo&#39;; // octal number. Example: &#39;\013&#39; = vertical tab character</span>
 
-<span class="cm">//print formatting:</span>
+<span class="cm">// print formatting:</span>
 <span class="cm">&quot;%d&quot;;    // integer</span>
 <span class="cm">&quot;%3d&quot;;   // integer with minimum of length 3 digits (right justifies text)</span>
 <span class="cm">&quot;%s&quot;;    // string</span>
@@ -859,7 +860,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="c1">//        Operators                  | Associativity //</span>
 <span class="c1">//---------------------------------------------------//</span>
 <span class="c1">// () [] -&gt; .                        | left to right //</span>
-<span class="c1">// ! ~ ++ -- + = *(type) sizeof      | right to left //</span>
+<span class="c1">// ! ~ ++ -- + - *(type) sizeof      | right to left //</span>
 <span class="c1">// * / %                             | left to right //</span>
 <span class="c1">// + -                               | left to right //</span>
 <span class="c1">// &lt;&lt; &gt;&gt;                             | left to right //</span>
@@ -882,8 +883,8 @@ memory management and C will take you as far as you need to go.</p>
 <span class="cm">separate files.</span>
 
 <span class="cm">Header files are syntactically similar to C source files but reside in &quot;.h&quot;</span>
-<span class="cm">files. They can be included in your C source file by using the precompiler</span>
-<span class="cm">command #include &quot;example.h&quot;, given that example.h exists in the same directory</span>
+<span class="cm">files. They can be included in your C source file by using the preprocessor</span>
+<span class="cm">directive #include &quot;example.h&quot;, given that example.h exists in the same directory</span>
 <span class="cm">as the C file.</span>
 <span class="cm">*/</span>
 
@@ -928,7 +929,7 @@ memory management and C will take you as far as you need to go.</p>
 <span class="cm">/* file. Excessive includes or definitions should also not be contained in   */</span>
 <span class="cm">/* a header file but instead put into separate headers or a C file.          */</span>
 
-<span class="cp">#endif </span><span class="cm">/* End of the if precompiler directive. */</span>
+<span class="cp">#endif </span><span class="cm">/* End of the if preprocessor directive. */</span>
 </pre></div>
 <h2>Further Reading</h2>
 <p>Best to find yourself a copy of <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language">K&amp;R, aka &quot;The C Programming Language&quot;</a>. It is <em>the</em> book about C, written by Dennis Ritchie, the creator of C, and Brian Kernighan. Be careful, though - it's ancient and it contains some
@@ -945,11 +946,11 @@ Readable code is better than clever code and fast code. For a good, sane coding 
           Got a suggestion? A correction, perhaps? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Open an Issue</a> on the GitHub Repo, or make a <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/c.md">pull request</a> yourself!
         </p>
         <p class="contributed">
-          Originally contributed by Adam Bard, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/c.md">42 contributors</a>.
+          Originally contributed by Adam Bard, and updated by <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/c.md">44 contributors</a>.
         </p>
 
         <footer>
-          <a style="float: left" rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width: 0; width: 88px; height: 31px;" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg" /></a>
+          <a style="float: left" rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width: 0; width: 80px; height: 28px; padding-bottom: 5px;" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg" /></a>
           <p>
             &copy; 2025
             <a href="http://adambard.com/">Adam Bard</a>,

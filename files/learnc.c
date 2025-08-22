@@ -20,7 +20,7 @@ enum days {SUN, MON, TUE, WED, THU, FRI, SAT};
 // Enumeration values can also be specified
 enum days {SUN = 1, MON, TUE, WED = 99, THU, FRI, SAT};
 // MON gets 2 automatically, TUE gets 3, etc.
-// WED get 99, THU gets 100, FRI gets 101, etc.
+// WED gets 99, THU gets 100, FRI gets 101, etc.
 
 // Import headers with #include
 #include <stdlib.h>
@@ -32,7 +32,7 @@ enum days {SUN = 1, MON, TUE, WED = 99, THU, FRI, SAT};
 // For your own headers, use double quotes instead of angle brackets, and
 // provide the path:
 #include "my_header.h" 		// local file
-#include "../my_lib/my_lib_header.h" //relative path
+#include "../my_lib/my_lib_header.h" // relative path
 
 // Declare function signatures in advance in a .h file, or at the top of
 // your .c file.
@@ -311,7 +311,7 @@ int main (int argc, char** argv)
 
   // While loops exist
   int ii = 0;
-  while (ii < 10) { //ANY value less than ten is true.
+  while (ii < 10) { // ANY value less than ten is true.
     printf("%d, ", ii++); // ii++ increments ii AFTER using its current value.
   } // => prints "0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "
 
@@ -365,22 +365,23 @@ int main (int argc, char** argv)
   /*
     Using "goto" in C
   */
-  typedef enum { false, true } bool;
-  // for C don't have bool as data type before C99 :(
-  bool disaster = false;
   int i, j;
   for(i=0; i<100; ++i)
   for(j=0; j<100; ++j)
   {
-    if((i + j) >= 150)
-        disaster = true;
-    if(disaster)
-        goto error;  // exit both for loops
+    if((i + j) >= 150) {
+        goto error;  // exit both for loops immediately
+    }
   }
+  printf("No error found. Completed normally.\n");
+  goto end;
+  
   error: // this is a label that you can "jump" to with "goto error;"
   printf("Error occurred at i = %d & j = %d.\n", i, j);
+  end:
+    return 0
   /*
-    https://ideone.com/GuPhd6
+    https://ideone.com/z7nzKJ
     this will print out "Error occurred at i = 51 & j = 99."
   */
   /*
@@ -451,7 +452,7 @@ int main (int argc, char** argv)
   printf("%d\n", x); // => Prints 1
 
   // Arrays are a good way to allocate a contiguous block of memory
-  int x_array[20]; //declares array of size 20 (cannot change size)
+  int x_array[20]; // declares array of size 20 (cannot change size)
   int xx;
   for (xx = 0; xx < 20; xx++) {
     x_array[xx] = 20 - xx;
@@ -504,7 +505,7 @@ int main (int argc, char** argv)
   size++;
   my_arr = realloc(my_arr, sizeof(int) * size);
   if (my_arr == NULL) {
-    //Remember to check for realloc failure!
+    // Remember to check for realloc failure!
     return
   }
   my_arr[10] = 5;
@@ -549,7 +550,7 @@ int add_two_ints(int x1, int x2)
 /*
 Functions are call by value. When a function is called, the arguments passed to
 the function are copies of the original arguments (except arrays). Anything you
-do to the arguments in the function do not change the value of the original
+do to the arguments in the function does not change the value of the original
 argument where the function was called.
 
 Use pointers if you need to edit the original argument values (arrays are always
@@ -574,7 +575,7 @@ void str_reverse(char *str_in)
     str_in[len - ii - 1] = tmp;
   }
 }
-//NOTE: string.h header file needs to be included to use strlen()
+// NOTE: string.h header file needs to be included to use strlen()
 
 /*
 char c[] = "This is a test.";
@@ -608,14 +609,14 @@ printf("first: %d\nsecond: %d\n", first, second);
 int return_multiple( int *array_of_3, int *ret1, int *ret2, int *ret3)
 {
     if(array_of_3 == NULL)
-        return 0; //return error code (false)
+        return 0; // return error code (false)
 
-    //de-reference the pointer so we modify its value
+    // de-reference the pointer so we modify its value
    *ret1 = array_of_3[0];
    *ret2 = array_of_3[1];
    *ret3 = array_of_3[2];
 
-   return 1; //return error code (true)
+   return 1; // return error code (true)
 }
 
 /*
@@ -643,11 +644,11 @@ printIntArray(my_arr, size);
 // if referring to external variables outside function, you should use the extern keyword.
 int i = 0;
 void testFunc() {
-  extern int i; //i here is now using external variable i
+  extern int i; // i here is now using external variable i
 }
 
 // make external variables private to source file with static:
-static int j = 0; //other files using testFunc2() cannot access variable j
+static int j = 0; // other files using testFunc2() cannot access variable j
 void testFunc2() {
   extern int j;
 }
@@ -659,7 +660,7 @@ void testFunc2() {
 // value across function calls, but is only accessible within the function it
 // is declared in. Additionally, static variables are initialized to 0 if not
 // declared with some other starting value.
-//**You may also declare functions as static to make them private**
+// **You may also declare functions as static to make them private**
 
 ///////////////////////////////////////
 // User-defined types and structs
@@ -760,7 +761,7 @@ typedef void (*my_fnp_type)(char *);
 // Printing characters with printf()
 /////////////////////////////
 
-//Special characters:
+// Special characters:
 /*
 '\a'; // alert (bell) character
 '\n'; // newline character
@@ -778,7 +779,7 @@ typedef void (*my_fnp_type)(char *);
 '\xhh'; // hexadecimal number. Example: '\xb' = vertical tab character
 '\0oo'; // octal number. Example: '\013' = vertical tab character
 
-//print formatting:
+// print formatting:
 "%d";    // integer
 "%3d";   // integer with minimum of length 3 digits (right justifies text)
 "%s";    // string
@@ -803,7 +804,7 @@ typedef void (*my_fnp_type)(char *);
 //        Operators                  | Associativity //
 //---------------------------------------------------//
 // () [] -> .                        | left to right //
-// ! ~ ++ -- + = *(type) sizeof      | right to left //
+// ! ~ ++ -- + - *(type) sizeof      | right to left //
 // * / %                             | left to right //
 // + -                               | left to right //
 // << >>                             | left to right //
@@ -826,8 +827,8 @@ source files and can simplify code and definitions by separating them into
 separate files.
 
 Header files are syntactically similar to C source files but reside in ".h"
-files. They can be included in your C source file by using the precompiler
-command #include "example.h", given that example.h exists in the same directory
+files. They can be included in your C source file by using the preprocessor
+directive #include "example.h", given that example.h exists in the same directory
 as the C file.
 */
 
@@ -872,4 +873,4 @@ Node createLinkedList(int *vals, int len);
 /* file. Excessive includes or definitions should also not be contained in   */
 /* a header file but instead put into separate headers or a C file.          */
 
-#endif /* End of the if precompiler directive. */
+#endif /* End of the if preprocessor directive. */
