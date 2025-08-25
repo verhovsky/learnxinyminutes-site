@@ -34,17 +34,29 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fja%2Fpython%2F&amp;text=X%E3%82%92Y%E5%88%86%E3%81%A7%E5%AD%A6%E3%81%B6%2C+%E3%81%9F%E3%81%A0%E3%81%97+X%3DPython">
-            このページをシェアする
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">XをY分で学ぶ</a></h1>
       <h2>ただし X=Python</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">言語:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="ja">日本語</option>
+          <option value="ar" data-url="/ar/python/">العربية</option>
+          <option value="be" data-url="/be/python/">беларуская</option>
+          <option value="cs" data-url="/cs/python/">čeština</option>
+          <option value="de" data-url="/de/python/">Deutsch</option>
+          <option value="el" data-url="/el/python/">Ελληνικά</option>
+          <option value="en" data-url="/python/">English</option>
+          <option value="es" data-url="/es/python/">español</option>
+          <option value="fr" data-url="/fr/python/">français</option>
+          <option value="it" data-url="/it/python/">italiano</option>
+          <option value="pt-br" data-url="/pt-br/python/">português (Brasil)</option>
+          <option value="ru" data-url="/ru/python/">русский</option>
+          <option value="tr" data-url="/tr/python/">Türkçe</option>
+          <option value="vi" data-url="/vi/python/">Tiếng Việt</option>
+          <option value="zh-cn" data-url="/zh-cn/python/">中文 (简体)</option>
+        </select>
+      </div>
       <p class="filelink">
         ソースコードの取得：
         <a href="/ja/files/learnpython.py">learnpython.py</a>
@@ -1056,6 +1068,19 @@
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

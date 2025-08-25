@@ -34,17 +34,32 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fpt-br%2Fbash%2F&amp;text=Aprenda+X+em+Y+Minutos%2C+onde+X%3DBash">
-            Compartilhe esta página
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Aprenda X em Y Minutos</a></h1>
       <h2>Onde X=Bash</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">Idioma:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="pt-br">português (Brasil)</option>
+          <option value="de" data-url="/de/bash/">Deutsch</option>
+          <option value="el" data-url="/el/bash/">Ελληνικά</option>
+          <option value="en" data-url="/bash/">English</option>
+          <option value="es" data-url="/es/bash/">español</option>
+          <option value="fr" data-url="/fr/bash/">français</option>
+          <option value="it" data-url="/it/bash/">italiano</option>
+          <option value="ja" data-url="/ja/bash/">日本語</option>
+          <option value="ko" data-url="/ko/bash/">한국어</option>
+          <option value="ms" data-url="/ms/bash/">Melayu</option>
+          <option value="nl" data-url="/nl/bash/">Nederlands</option>
+          <option value="no" data-url="/no/bash/">norsk</option>
+          <option value="ro" data-url="/ro/bash/">română</option>
+          <option value="ru" data-url="/ru/bash/">русский</option>
+          <option value="sk" data-url="/sk/bash/">slovenčina</option>
+          <option value="uk" data-url="/uk/bash/">українська</option>
+          <option value="zh-cn" data-url="/zh-cn/bash/">中文 (简体)</option>
+          <option value="zh-tw" data-url="/zh-tw/bash/">中文 (繁體)</option>
+        </select>
+      </div>
       <p class="filelink">
         Baixar o código:
         <a href="/pt-br/files/LearnBash.sh">LearnBash.sh</a>
@@ -55,11 +70,10 @@
 operacional GNU e como shell padrão para Linux e macOS. Praticamente todos
 os exemplos abaixo podem fazer parte de um shell script e pode ser executados
 diretamente no shell.</p>
-<p><a href="http://www.gnu.org/software/bash/manual/bashref.html">Leia mais sobre</a></p>
 <div class="highlight"><pre lang="bash"><span class="ch">#!/bin/bash</span>
 <span class="c1"># A primeira linha do script é o shebang, que conta para o sistema como executar</span>
 <span class="c1"># o script: http://en.wikipedia.org/wiki/Shebang_(Unix)</span>
-<span class="c1"># Como você já deve ter percebido, comentários começam com #. </span>
+<span class="c1"># Como você já deve ter percebido, comentários começam com #.</span>
 <span class="c1"># Shebang também é um comentário.</span>
 
 <span class="c1"># Exemplo simples de hello world:</span>
@@ -79,7 +93,7 @@ diretamente no shell.</p>
 <span class="c1"># Ou assim:</span>
 <span class="nv">Variavel</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Alguma string&#39;</span>
 <span class="c1"># Bash interpretará &#39;Alguma string&#39; como um comando e tentará executar e lhe retornará</span>
-<span class="c1"># um erro porque o comando não pôde ser encontrado. (Nesse caso a a parte &#39;Variavel=&#39; </span>
+<span class="c1"># um erro porque o comando não pôde ser encontrado. (Nesse caso a a parte &#39;Variavel=&#39;</span>
 <span class="c1"># é vista com uma declaração de variável válida apenas para o escopo do comando &#39;Uma string&#39;).</span>
 
 <span class="c1"># Usando a variável:</span>
@@ -136,7 +150,7 @@ diretamente no shell.</p>
 <span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Isso vai rodar se </span><span class="nv">$Nome</span><span class="s2"> é igual Estevao E </span><span class="nv">$Idade</span><span class="s2"> é 15.&quot;</span>
 <span class="k">fi</span>
 
-<span class="k">fi</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$Nome</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Daniela&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$Nome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Jose&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>
+<span class="k">fi</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$Nome</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Daniela&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$Nome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Jose&quot;</span><span class="w"> </span><span class="o">]</span>
 <span class="k">then</span>
 <span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Isso vai rodar se </span><span class="nv">$Nome</span><span class="s2"> é Daniela ou Jose.&quot;</span>
 <span class="k">fi</span>
@@ -144,7 +158,7 @@ diretamente no shell.</p>
 <span class="c1"># Expressões são escritas com o seguinte formato</span>
 <span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">5</span><span class="k">))</span>
 
-<span class="c1"># Diferentemente das outras linguagens de programação, bash é um shell, então ele </span>
+<span class="c1"># Diferentemente das outras linguagens de programação, bash é um shell, então ele</span>
 <span class="c1"># funciona no diretório atual. Você pode listar os arquivos e diretórios no diretório</span>
 <span class="c1"># atual com o comando ls:</span>
 ls
@@ -200,7 +214,7 @@ rm<span class="w"> </span>-v<span class="w"> </span>output.out<span class="w"> <
 <span class="c1"># O comando a seguir mostra o número de arquivos e diretórios no diretório atual</span>
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Existem </span><span class="k">$(</span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2"> itens aqui.&quot;</span>
 
-<span class="c1"># O mesmo pode ser feito usando crase `` mas elas não podem ser aninhadas - dá se </span>
+<span class="c1"># O mesmo pode ser feito usando crase `` mas elas não podem ser aninhadas - dá se</span>
 <span class="c1"># preferência ao uso do $( )</span>
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Existem `ls | wc -l` itens aqui.&quot;</span>
 
@@ -290,7 +304,7 @@ fgrep<span class="w"> </span><span class="s2">&quot;^foo.*bar</span>$<span class
 <span class="c1"># Leia a documentação interna do shell Bash com o comando interno &#39;help&#39;:</span>
 <span class="nb">help</span>
 <span class="nb">help</span><span class="w"> </span><span class="nb">help</span>
-<span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>
+<span class="nb">help</span><span class="w"> </span><span class="k">for</span>
 <span class="nb">help</span><span class="w"> </span><span class="k">return</span>
 <span class="nb">help</span><span class="w"> </span><span class="nb">source</span>
 <span class="nb">help</span><span class="w"> </span>.
@@ -303,22 +317,23 @@ man<span class="w"> </span>bash
 <span class="c1"># Leia a documentação de informação com info (? para ajuda)</span>
 apropos<span class="w"> </span>info<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;^info.*(&#39;</span>
 man<span class="w"> </span>info
-info<span class="w"> </span>info<span class="w"> </span>
-info<span class="w"> </span><span class="m">5</span><span class="w"> </span>info<span class="w"> </span>
+info<span class="w"> </span>info
+info<span class="w"> </span><span class="m">5</span><span class="w"> </span>info
 
 <span class="c1">#Leia a documentação informativa do Bash:</span>
 info<span class="w"> </span>bash
 info<span class="w"> </span>bash<span class="w"> </span><span class="s1">&#39;Bash Features&#39;</span>
 info<span class="w"> </span>bash<span class="w"> </span><span class="m">6</span>
-info<span class="w"> </span>--apropos<span class="w"> </span>bash<span class="w"> </span>
+info<span class="w"> </span>--apropos<span class="w"> </span>bash
 </pre></div>
+<p><a href="https://www.gnu.org/software/bash/manual/bashref.html">Leia mais sobre</a></p>
 
         <hr>
         <p>
           Sugestões ou correções? <a href="https://github.com/adambard/learnxinyminutes-docs/issues/new">Abra uma issue</a> no repositório do GitHub, ou faça um <a href="https://github.com/adambard/learnxinyminutes-docs/edit/master/pt-br/bash.md">pull request</a> você mesmo!
         </p>
         <p class="contributed">
-          Originalmente contribuído por Max Yankov e atualizado por <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/pt-br/bash.md">6 colaboradores</a>.
+          Originalmente contribuído por Max Yankov e atualizado por <a href="https://github.com/adambard/learnxinyminutes-docs/blame/master/pt-br/bash.md">5 colaboradores</a>.
         </p>
 
         <footer>
@@ -334,6 +349,19 @@ info<span class="w"> </span>--apropos<span class="w"> </span>bash<span class="w"
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

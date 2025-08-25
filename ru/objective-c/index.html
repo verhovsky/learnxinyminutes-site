@@ -34,17 +34,21 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fru%2Fobjective-c%2F&amp;text=%D0%98%D0%B7%D1%83%D1%87%D0%B8%D1%82%D0%B5+X+%D0%B7%D0%B0+Y+%D0%BC%D0%B8%D0%BD%D1%83%D1%82%2C+%D0%B3%D0%B4%D0%B5+X%3DObjective-C">
-            Поделиться страницей
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Изучите X за Y минут</a></h1>
       <h2>Где X=Objective-C</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">Язык:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="ru">русский</option>
+          <option value="en" data-url="/objective-c/">English</option>
+          <option value="es" data-url="/es/objective-c/">español</option>
+          <option value="fr" data-url="/fr/objective-c/">français</option>
+          <option value="tr" data-url="/tr/objective-c/">Türkçe</option>
+          <option value="vi" data-url="/vi/objective-c/">Tiếng Việt</option>
+          <option value="zh-cn" data-url="/zh-cn/objective-c/">中文 (简体)</option>
+        </select>
+      </div>
       <p class="filelink">
         Получить исходный код:
         <a href="/ru/files/LearnObjectiveC.m">LearnObjectiveC.m</a>
@@ -868,6 +872,19 @@ Cocoa Touch.
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

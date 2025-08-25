@@ -34,17 +34,25 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fko%2Fkotlin%2F&amp;text=Y%EB%B6%84+%EB%A7%8C%EC%97%90+X+%EB%B0%B0%EC%9A%B0%EA%B8%B0%2C+%EC%9D%B4%EB%95%8C+X%3DKotlin">
-            공유하기
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Y분 만에 X 배우기</a></h1>
       <h2>이때 X=Kotlin</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">언어:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="ko">한국어</option>
+          <option value="ca" data-url="/ca/kotlin/">català</option>
+          <option value="en" data-url="/kotlin/">English</option>
+          <option value="es" data-url="/es/kotlin/">español</option>
+          <option value="fr" data-url="/fr/kotlin/">français</option>
+          <option value="pt-br" data-url="/pt-br/kotlin/">português (Brasil)</option>
+          <option value="pt-pt" data-url="/pt-pt/kotlin/">português (Portugal)</option>
+          <option value="ru" data-url="/ru/kotlin/">русский</option>
+          <option value="tr" data-url="/tr/kotlin/">Türkçe</option>
+          <option value="uk" data-url="/uk/kotlin/">українська</option>
+          <option value="zh-cn" data-url="/zh-cn/kotlin/">中文 (简体)</option>
+        </select>
+      </div>
       <p class="filelink">
         코드 내려받기:
         <a href="/ko/files/LearnKotlin.kt">LearnKotlin.kt</a>
@@ -430,6 +438,19 @@
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

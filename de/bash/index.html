@@ -34,17 +34,32 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fde%2Fbash%2F&amp;text=Lerne+X+in+Y+Minuten%2C+wobei+X%3DBash">
-            Teile diese Seite mit anderen
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Lerne X in Y Minuten</a></h1>
       <h2>Wobei X=Bash</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">Sprache:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="de">Deutsch</option>
+          <option value="el" data-url="/el/bash/">Ελληνικά</option>
+          <option value="en" data-url="/bash/">English</option>
+          <option value="es" data-url="/es/bash/">español</option>
+          <option value="fr" data-url="/fr/bash/">français</option>
+          <option value="it" data-url="/it/bash/">italiano</option>
+          <option value="ja" data-url="/ja/bash/">日本語</option>
+          <option value="ko" data-url="/ko/bash/">한국어</option>
+          <option value="ms" data-url="/ms/bash/">Melayu</option>
+          <option value="nl" data-url="/nl/bash/">Nederlands</option>
+          <option value="no" data-url="/no/bash/">norsk</option>
+          <option value="pt-br" data-url="/pt-br/bash/">português (Brasil)</option>
+          <option value="ro" data-url="/ro/bash/">română</option>
+          <option value="ru" data-url="/ru/bash/">русский</option>
+          <option value="sk" data-url="/sk/bash/">slovenčina</option>
+          <option value="uk" data-url="/uk/bash/">українська</option>
+          <option value="zh-cn" data-url="/zh-cn/bash/">中文 (简体)</option>
+          <option value="zh-tw" data-url="/zh-tw/bash/">中文 (繁體)</option>
+        </select>
+      </div>
       <p class="filelink">
         Lade den Code herunter:
         <a href="/de/files/LearnBash.sh">LearnBash.sh</a>
@@ -52,7 +67,6 @@
       <div id="doc">
 <p>Bash ist der Name der Unix-Shell, die als Shell des GNU-Betriebssystems und auch als Standard-Shell von Linux und macOS ausgeliefert wurde.
 Beinahe alle der folgenden Beispiele können als Teile eines Shell-Skripts oder direkt in der Shell ausgeführt werden.</p>
-<p><a href="http://www.gnu.org/software/bash/manual/bashref.html">Weitere Informationen (Englisch)</a></p>
 <div class="highlight"><pre lang="bash"><span class="ch">#!/bin/bash</span>
 <span class="c1"># Die erste Zeile des Scripts nennt sich Shebang, dies gibt dem System an, </span>
 <span class="c1"># wie das Script ausgeführt werden soll: http://de.wikipedia.org/wiki/Shebang</span>
@@ -318,6 +332,7 @@ info<span class="w"> </span>bash<span class="w"> </span><span class="s1">&#39;Ba
 info<span class="w"> </span>bash<span class="w"> </span><span class="m">6</span>
 info<span class="w"> </span>--apropos<span class="w"> </span>bash
 </pre></div>
+<p><a href="https://www.gnu.org/software/bash/manual/bashref.html">Weitere Informationen (Englisch)</a></p>
 
         <hr>
         <p>
@@ -336,6 +351,19 @@ info<span class="w"> </span>--apropos<span class="w"> </span>bash
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

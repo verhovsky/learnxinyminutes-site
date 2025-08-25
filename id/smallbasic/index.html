@@ -34,17 +34,17 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fid%2Fsmallbasic%2F&amp;text=Belajar+X+dalam+Y+Menit%2C+dimana+X%3DSmallBASIC">
-            Bagikan laman ini
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Belajar X dalam Y Menit</a></h1>
       <h2>Dimana X=SmallBASIC</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">Bahasa:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="id">Indonesia</option>
+          <option value="en" data-url="/smallbasic/">English</option>
+          <option value="es" data-url="/es/smallbasic/">español</option>
+        </select>
+      </div>
       <p class="filelink">
         Dapatkan Kode:
         <a href="/id/files/learnsmallbasic.bas">learnsmallbasic.bas</a>
@@ -182,6 +182,19 @@ PAUSE
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

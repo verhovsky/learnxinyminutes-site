@@ -34,17 +34,32 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fzh-cn%2Fbash%2F&amp;text=Y%E5%88%86%E9%92%9F%E9%80%9F%E6%88%90X%2C+%E5%85%B6%E4%B8%AD+X%3DBash">
-            分享此页
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Y分钟速成X</a></h1>
       <h2>其中 X=Bash</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">语言:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="zh-cn">中文 (简体)</option>
+          <option value="de" data-url="/de/bash/">Deutsch</option>
+          <option value="el" data-url="/el/bash/">Ελληνικά</option>
+          <option value="en" data-url="/bash/">English</option>
+          <option value="es" data-url="/es/bash/">español</option>
+          <option value="fr" data-url="/fr/bash/">français</option>
+          <option value="it" data-url="/it/bash/">italiano</option>
+          <option value="ja" data-url="/ja/bash/">日本語</option>
+          <option value="ko" data-url="/ko/bash/">한국어</option>
+          <option value="ms" data-url="/ms/bash/">Melayu</option>
+          <option value="nl" data-url="/nl/bash/">Nederlands</option>
+          <option value="no" data-url="/no/bash/">norsk</option>
+          <option value="pt-br" data-url="/pt-br/bash/">português (Brasil)</option>
+          <option value="ro" data-url="/ro/bash/">română</option>
+          <option value="ru" data-url="/ru/bash/">русский</option>
+          <option value="sk" data-url="/sk/bash/">slovenčina</option>
+          <option value="uk" data-url="/uk/bash/">українська</option>
+          <option value="zh-tw" data-url="/zh-tw/bash/">中文 (繁體)</option>
+        </select>
+      </div>
       <p class="filelink">
         源代码下载：
         <a href="/zh-cn/files/LearnBash.sh">LearnBash.sh</a>
@@ -52,7 +67,6 @@
       <div id="doc">
 <p>Bash 是一个为 GNU 计划编写的 Unix shell，是 Linux 和 macOS 下的默认 shell。
 以下大多数例子可以作为脚本的一部分运行，也可直接在 shell 下交互执行。</p>
-<p><a href="http://www.gnu.org/software/bash/manual/bashref.html">更多信息</a></p>
 <div class="highlight"><pre lang="bash"><span class="ch">#!/bin/bash</span>
 <span class="c1"># 脚本的第一行叫 shebang，用来告知系统如何执行该脚本:</span>
 <span class="c1"># 参见： http://en.wikipedia.org/wiki/Shebang_(Unix)</span>
@@ -304,6 +318,7 @@ info<span class="w"> </span>bash<span class="w"> </span><span class="s1">&#39;Ba
 info<span class="w"> </span>bash<span class="w"> </span><span class="m">6</span>
 info<span class="w"> </span>--apropos<span class="w"> </span>bash
 </pre></div>
+<p><a href="https://www.gnu.org/software/bash/manual/bashref.html">更多信息</a></p>
 
         <hr>
         <p>
@@ -329,6 +344,19 @@ info<span class="w"> </span>--apropos<span class="w"> </span>bash
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

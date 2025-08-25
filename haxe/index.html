@@ -34,17 +34,16 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fhaxe%2F&amp;text=Learn+X+in+Y+minutes%2C+where+X%3DHaxe">
-            Share this page
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Learn X in Y minutes</a></h1>
       <h2>Where X=Haxe</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">Language:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="en">English</option>
+          <option value="pt-br" data-url="/pt-br/haxe/">português (Brasil)</option>
+        </select>
+      </div>
       <p class="filelink">
         Get the code:
         <a href="/files/LearnHaxe3.hx">LearnHaxe3.hx</a>
@@ -776,6 +775,19 @@ freenode</a>, or on the
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

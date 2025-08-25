@@ -34,17 +34,24 @@
   </head>
   <body>
     <div class="container">
-      <div class="share">
-        <span class="sharemsg">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flearnxinyminutes.com%2Fru%2Fsql%2F&amp;text=%D0%98%D0%B7%D1%83%D1%87%D0%B8%D1%82%D0%B5+X+%D0%B7%D0%B0+Y+%D0%BC%D0%B8%D0%BD%D1%83%D1%82%2C+%D0%B3%D0%B4%D0%B5+X%3DSQL">
-            Поделиться страницей
-          </a>
-        </span>
-        <span class='st_facebook_large' displayText='Facebook'></span>
-        <span class='st_twitter_large' displayText='Tweet'></span>
-      </div>
       <h1><a href="/">Изучите X за Y минут</a></h1>
       <h2>Где X=SQL</h2>
+
+      <div class="lang-choice">
+        <label for="lang-select">Язык:</label>
+        <select id="lang-select" name="lang-select">
+          <option value="ru">русский</option>
+          <option value="ar" data-url="/ar/sql/">العربية</option>
+          <option value="de" data-url="/de/sql/">Deutsch</option>
+          <option value="en" data-url="/sql/">English</option>
+          <option value="es" data-url="/es/sql/">español</option>
+          <option value="fr" data-url="/fr/sql/">français</option>
+          <option value="it" data-url="/it/sql/">italiano</option>
+          <option value="pt-br" data-url="/pt-br/sql/">português (Brasil)</option>
+          <option value="tr" data-url="/tr/sql/">Türkçe</option>
+          <option value="zh-cn" data-url="/zh-cn/sql/">中文 (简体)</option>
+        </select>
+      </div>
       <p class="filelink">
         Получить исходный код:
         <a href="/ru/files/learnsql.sql">learnsql.sql</a>
@@ -172,6 +179,19 @@
           </p>
         </footer>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const langSelect = document.getElementById('lang-select');
+          langSelect?.addEventListener('change', () => {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            const url = selectedOption?.getAttribute('data-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+      </script>
     </div>
   </body>
 </html>
